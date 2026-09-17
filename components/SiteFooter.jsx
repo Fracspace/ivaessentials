@@ -97,7 +97,7 @@ export default function SiteFooter() {
             <h5 style={{ fontSize: '10.5px', letterSpacing: '.24em', textTransform: 'uppercase', color: '#8A7B6B', margin: '0 0 20px', fontWeight: 400 }}>Help</h5>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '13.5px', fontWeight: 300 }}>
               <Link href="/contact" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Contact</Link>
-              <a href="https://ivaessentials.com/policies/shipping-policy" target="_blank" rel="noreferrer" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Shipping</a>
+              <Link href="/shipping-policy" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Shipping</Link>
               <a href="https://ivaessentials.com/policies/refund-policy" target="_blank" rel="noreferrer" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Refund Policy</a>
               <a href="https://ivaessentials.com/policies/privacy-policy" target="_blank" rel="noreferrer" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Privacy Policy</a>
               <a href="https://ivaessentials.com/policies/terms-of-service" target="_blank" rel="noreferrer" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Terms</a>
