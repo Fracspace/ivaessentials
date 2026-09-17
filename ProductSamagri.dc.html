@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #F7F2E9; color: #17130F; font-family: "DM Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #17130F; text-decoration: none; }
+  a:hover { color: #A2543A; }
+  img { display: block; }
+</style>
+</helmet>
+
+<dc-import name="SiteNav" active="shop" style="position:sticky;top:0;z-index:50" hint-size="100%,140px"></dc-import>
+
+<section style="max-width:1500px;margin:0 auto;padding:clamp(28px,4vh,48px) clamp(20px,4vw,56px) clamp(60px,10vh,120px)">
+  <div style="display:flex;gap:10px;align-items:center;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B;margin-bottom:clamp(26px,4vh,44px)">
+    <a href="IVA%20Essentials.dc.html" style="color:#8A7B6B">Home</a><span>/</span><a href="Shop.dc.html" style="color:#8A7B6B">Shop</a><span>/</span><span style="color:#17130F">Pooja Samagri</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(30px,5vw,80px);align-items:start">
+    <div>
+      <div style="overflow:hidden;background:#E3D9C8;margin-bottom:14px;position:relative">
+        <img data-hero src="https://ivaessentials.com/cdn/shop/files/shivaPoojaKit.png?v=1777456301&amp;width=1600" alt="Shree Shiva Pooja Samagri" style="width:100%;aspect-ratio:1/1;object-fit:cover" />
+        <span data-stock style="position:absolute;top:18px;left:18px;background:rgba(247,242,233,.94);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;padding:8px 13px;color:#6B5F52">Sold out</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+        <button type="button" data-thumb="https://ivaessentials.com/cdn/shop/files/shivaPoojaKit.png?v=1777456301&amp;width=1600" data-name="Shree Shiva Pooja Samagri" data-desc="Vibhuti, bilva and abhishek essentials for Shiva pooja." onClick="{{ onThumb }}" style="padding:0;border:1px solid #17130F;background:#E3D9C8;cursor:pointer;overflow:hidden"><img src="https://ivaessentials.com/cdn/shop/files/shivaPoojaKit.png?v=1777456301&amp;width=500" alt="Shiva samagri" style="width:100%;aspect-ratio:1/1;object-fit:cover" /></button>
+        <button type="button" data-thumb="https://ivaessentials.com/cdn/shop/files/lakshmiPookaKit.png?v=1777456303&amp;width=1600" data-name="Shree Mahalakshmi Pooja Samagri" data-desc="For abundance — pure samagri for Lakshmi pooja." onClick="{{ onThumb }}" style="padding:0;border:1px solid transparent;background:#E3D9C8;cursor:pointer;overflow:hidden"><img src="https://ivaessentials.com/cdn/shop/files/lakshmiPookaKit.png?v=1777456303&amp;width=500" alt="Mahalakshmi samagri" style="width:100%;aspect-ratio:1/1;object-fit:cover" /></button>
+        <button type="button" data-thumb="https://ivaessentials.com/cdn/shop/files/ganeshPoojaKit.png?v=1777456304&amp;width=1600" data-name="Shree Vinayaka Pooja Samagri" data-desc="Begin well — samagri for Ganesha pooja." onClick="{{ onThumb }}" style="padding:0;border:1px solid transparent;background:#E3D9C8;cursor:pointer;overflow:hidden"><img src="https://ivaessentials.com/cdn/shop/files/ganeshPoojaKit.png?v=1777456304&amp;width=500" alt="Vinayaka samagri" style="width:100%;aspect-ratio:1/1;object-fit:cover" /></button>
+        <button type="button" data-thumb="https://ivaessentials.com/cdn/shop/files/hanumanPoojaKit.png?v=1777456300&amp;width=1600" data-name="Shree Vishnu Pooja Samagri" data-desc="Tulsi, chandanam and offerings for satyanarayana vratam." onClick="{{ onThumb }}" style="padding:0;border:1px solid transparent;background:#E3D9C8;cursor:pointer;overflow:hidden"><img src="https://ivaessentials.com/cdn/shop/files/hanumanPoojaKit.png?v=1777456300&amp;width=500" alt="Vishnu samagri" style="width:100%;aspect-ratio:1/1;object-fit:cover" /></button>
+      </div>
+      <p style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#8A7B6B;margin:16px 0 0">Switch between the four samagri kits</p>
+    </div>
+
+    <div style="position:sticky;top:120px;max-width:520px">
+      <span style="font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:#A2543A">Pooja Samagri · Restocking</span>
+      <h1 data-title style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,4.2vw,56px);line-height:1.04;margin:16px 0 18px">Shree Shiva Pooja Samagri</h1>
+      <p data-desc style="font-size:clamp(14.5px,1.2vw,17px);line-height:1.8;color:#5C5147;font-weight:300;margin:0 0 26px;max-width:46ch;text-wrap:pretty">Vibhuti, bilva and abhishek essentials for Shiva pooja.</p>
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:30px">
+        <span style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,40px);line-height:1">₹699</span>
+        <span style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8A7B6B">Inclusive of taxes</span>
+      </div>
+
+      <div style="padding:22px 24px;background:#F2EADD;margin-bottom:24px">
+        <div style="font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px">Currently sold out</div>
+        <p style="font-size:13.5px;line-height:1.75;color:#5C5147;font-weight:300;margin:0">Each batch is assembled by hand. Leave your email and we'll write the day it returns.</p>
+      </div>
+      <form onSubmit="{{ onNotify }}" style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px">
+        <input type="email" required="required" placeholder="you@email.com" aria-label="Email address" style="flex:1 1 200px;min-width:0;background:transparent;border:none;border-bottom:1px solid rgba(23,19,15,.25);font-family:'DM Sans',sans-serif;font-size:15px;padding:14px 2px;outline:none;color:#17130F" style-focus="border-bottom:1px solid #A2543A" />
+        <button type="submit" style="flex:none;background:#17130F;color:#F7F2E9;border:none;font-family:'DM Sans',sans-serif;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;padding:17px 30px;cursor:pointer;border-radius:2px;transition:background .3s" style-hover="background:#A2543A">Notify me</button>
+      </form>
+      <div style="font-size:12.5px;color:#6B5F52;min-height:20px;margin-bottom:26px">{{ note }}</div>
+
+      <a href="Product.dc.html" style="display:block;text-align:center;border:1px solid rgba(23,19,15,.25);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;padding:17px 28px;border-radius:2px;margin-bottom:28px;transition:border-color .3s" style-hover="border-color:#17130F">Shop the Blessed Kit instead</a>
+
+      <div data-acc data-open="1" onClick="{{ onAcc }}" style="border-top:1px solid rgba(23,19,15,.14);padding:20px 0;cursor:pointer">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px"><span style="font-size:11.5px;letter-spacing:.2em;text-transform:uppercase">Typical contents</span><span data-accicon style="color:#A2543A;font-size:18px">–</span></div>
+        <div data-accbody style="overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.2,1)">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:4px 24px;padding-top:14px">
+            <span style="font-size:13.5px;color:#5C5147;font-weight:300;padding:6px 0">Kumkum &amp; pasupu</span>
+            <span style="font-size:13.5px;color:#5C5147;font-weight:300;padding:6px 0">Chandanam</span>
+            <span style="font-size:13.5px;color:#5C5147;font-weight:300;padding:6px 0">Cotton wicks</span>
+            <span style="font-size:13.5px;color:#5C5147;font-weight:300;padding:6px 0">Camphor</span>
+            <span style="font-size:13.5px;color:#5C5147;font-weight:300;padding:6px 0">Agarbatti</span>
+            <span style="font-size:13.5px;color:#5C5147;font-weight:300;padding:6px 0">Deity-specific offerings</span>
+          </div>
+        </div>
+      </div>
+      <div data-acc data-open="0" onClick="{{ onAcc }}" style="border-top:1px solid rgba(23,19,15,.14);border-bottom:1px solid rgba(23,19,15,.14);padding:20px 0;cursor:pointer">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px"><span style="font-size:11.5px;letter-spacing:.2em;text-transform:uppercase">Sourcing</span><span data-accicon style="color:#A2543A;font-size:18px">+</span></div>
+        <div data-accbody style="max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.2,1)">
+          <p style="font-size:13.5px;line-height:1.8;color:#5C5147;font-weight:300;margin:14px 0 0;max-width:56ch">Ingredients are sourced to preserve tradition and quality, then sealed by hand in small batches — which is why kits sell out.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#EFE7DA;padding:clamp(56px,9vh,120px) 0">
+  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(30px,5vw,72px);align-items:center">
+    <div data-reveal style="overflow:hidden;background:#E3D9C8"><img src="https://ivaessentials.com/cdn/shop/files/hanumanPoojaKit.png?v=1777456300&amp;width=1400" alt="Samagri arranged for pooja" style="width:100%;aspect-ratio:4/3;object-fit:cover" /></div>
+    <div data-reveal>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(26px,3.4vw,46px);line-height:1.1;margin:0 0 18px;max-width:20ch">Assembled in small batches.</h2>
+      <p style="font-size:14.5px;line-height:1.85;color:#5C5147;font-weight:300;margin:0 0 20px;max-width:48ch">Every samagri kit is packed for one specific pooja — no generic box, no substitutions.</p>
+      <a href="Contact.dc.html" style="font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid #17130F;padding-bottom:7px" style-hover="color:#A2543A;border-color:#A2543A">Ask about a custom kit</a>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,760px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { note: "" };
+  renderVals() {
+    return {
+      note: this.state.note,
+      onNotify: (e) => { e.preventDefault(); this.setState({ note: "Noted — we'll write to you the day this kit returns." }); },
+      onThumb: (e) => {
+        const b = e.currentTarget;
+        const hero = document.querySelector("[data-hero]");
+        const title = document.querySelector("[data-title]");
+        const desc = document.querySelector("[data-desc]");
+        if (hero) { hero.style.opacity = "0"; setTimeout(() => { hero.src = b.getAttribute("data-thumb"); hero.style.transition = "opacity .5s ease"; hero.style.opacity = "1"; }, 120); }
+        if (title) title.textContent = b.getAttribute("data-name");
+        if (desc) desc.textContent = b.getAttribute("data-desc");
+        document.querySelectorAll("[data-thumb]").forEach((t) => { t.style.borderColor = t === b ? "#17130F" : "transparent"; });
+      },
+      onAcc: (e) => {
+        const row = e.currentTarget;
+        const body = row.querySelector("[data-accbody]");
+        const icon = row.querySelector("[data-accicon]");
+        const open = row.getAttribute("data-open") === "1";
+        row.setAttribute("data-open", open ? "0" : "1");
+        if (body) body.style.maxHeight = open ? "0px" : body.scrollHeight + 40 + "px";
+        if (icon) icon.textContent = open ? "+" : "–";
+      }
+    };
+  }
+  componentDidMount() {
+    if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const inView = (el) => { const r = el.getBoundingClientRect(); return r.top < window.innerHeight && r.bottom > 0; };
+    const show = (el) => { el.style.opacity = "1"; el.style.transform = "none"; };
+    const els = Array.from(document.querySelectorAll("[data-reveal]"));
+    els.forEach((el, i) => {
+      if (inView(el)) { show(el); return; }
+      el.style.opacity = "0"; el.style.transform = "translateY(20px)";
+      el.style.transition = "opacity .9s cubic-bezier(.2,.7,.2,1) " + ((i % 2) * 0.07).toFixed(2) + "s, transform .9s cubic-bezier(.2,.7,.2,1) " + ((i % 2) * 0.07).toFixed(2) + "s";
+    });
+    const io = new IntersectionObserver((ents) => { ents.forEach((en) => { if (en.isIntersecting) { show(en.target); io.unobserve(en.target); } }); }, { rootMargin: "0px 0px -8% 0px", threshold: .08 });
+    els.forEach((el) => io.observe(el));
+    setTimeout(() => { els.forEach((el) => { if (el.style.opacity === "0" && inView(el)) show(el); }); }, 1200);
+    window.addEventListener("scroll", () => { els.forEach((el) => { if (el.style.opacity === "0" && inView(el)) show(el); }); }, { passive: true });
+    this._io = io;
+  }
+  componentWillUnmount() { if (this._io) this._io.disconnect(); }
+}
+</script>
+</body>
+</html>

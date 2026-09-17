@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #F7F2E9; color: #17130F; font-family: "DM Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #17130F; text-decoration: none; }
+  a:hover { color: #A2543A; }
+  img { display: block; }
+  @keyframes ivaGlow { 0%,100% { opacity:.5 } 50% { opacity:.9 } }
+</style>
+</helmet>
+
+<dc-import name="SiteNav" active="blessed" style="position:sticky;top:0;z-index:50" hint-size="100%,140px"></dc-import>
+
+<section style="position:relative;overflow:hidden;background:#14100D;min-height:min(80vh,760px);display:flex;align-items:flex-end">
+  <img data-parallax src="https://ivaessentials.com/cdn/shop/files/blessedKit.png?v=1778915965&amp;width=2400" alt="The Blessed Kit arranged for ritual" style="position:absolute;inset:0;width:100%;height:112%;object-fit:cover;opacity:.72" />
+  <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,10,8,.92) 0%,rgba(14,10,8,.4) 55%,rgba(14,10,8,.25) 100%)"></div>
+  <div style="position:relative;max-width:1400px;margin:0 auto;padding:clamp(60px,12vh,140px) clamp(20px,4vw,56px) clamp(48px,8vh,90px);width:100%">
+    <div data-reveal style="max-width:720px">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:26px">
+        <span style="width:34px;height:1px;background:#B18F52;display:block"></span>
+        <span style="font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;color:#D9BE8B">Where devotion meets Kashi</span>
+      </div>
+      <h1 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(40px,6.6vw,92px);line-height:1;color:#F8F2E6;margin:0 0 22px;text-wrap:balance">From Your Devotion,<br /><em style="font-style:italic;color:#E8CFA3">To Divine Blessings.</em></h1>
+      <p style="font-size:clamp(14.5px,1.3vw,17.5px);line-height:1.8;color:rgba(245,238,226,.85);font-weight:300;max-width:50ch;margin:0 0 36px;text-wrap:pretty">Every Blessed Kit carries your sankalp through sacred rituals performed near Kashi Vishwanath — a connection between your devotion and the energy of Kashi, delivered to your home.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+        <a href="Product.dc.html" style="background:#F7F2E9;color:#17130F;font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:18px 34px;border-radius:2px;transition:background .35s" style-hover="background:#E8CFA3">Claim your Blessed Kit</a>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2vw,28px);color:#E8CFA3">₹1,499</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1400px;margin:0 auto;padding:clamp(66px,11vh,140px) clamp(20px,4vw,56px)">
+  <div data-reveal style="text-align:center;max-width:640px;margin:0 auto clamp(44px,7vh,86px)">
+    <span style="font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:#A2543A">The Journey</span>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,4.2vw,58px);line-height:1.08;margin:18px 0 0">Four steps, performed with care.</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:clamp(24px,3vw,44px)">
+    <div data-reveal>
+      <div style="overflow:hidden;background:#E7DDCD;margin-bottom:22px"><img src="https://ivaessentials.com/cdn/shop/files/placingOrder_7b500b21-11d8-46a3-8cd2-688cbe10984d.png?v=1779097979&amp;width=900" alt="Placing your order" style="width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)" /></div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:#B18F52;letter-spacing:.14em;margin-bottom:10px">01</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(19px,1.8vw,25px);margin:0 0 10px">Your sankalp is received</h3>
+      <p style="font-size:13.5px;line-height:1.75;color:#5C5147;font-weight:300;margin:0">We take your name and gotra, along with your prayer intention.</p>
+    </div>
+    <div data-reveal>
+      <div style="overflow:hidden;background:#E7DDCD;margin-bottom:22px"><img src="https://ivaessentials.com/cdn/shop/files/temple.png?v=1779086798&amp;width=900" alt="Rituals performed in temple" style="width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)" /></div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:#B18F52;letter-spacing:.14em;margin-bottom:10px">02</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(19px,1.8vw,25px);margin:0 0 10px">Rituals near Kashi Vishwanath</h3>
+      <p style="font-size:13.5px;line-height:1.75;color:#5C5147;font-weight:300;margin:0">Your sankalp card is offered in temple archana near Kashi Vishwanath.</p>
+    </div>
+    <div data-reveal>
+      <div style="overflow:hidden;background:#E7DDCD;margin-bottom:22px"><img src="https://ivaessentials.com/cdn/shop/files/ChatGPT_Image_May_18_2026_04_11_52_PM.png?v=1779100963&amp;width=900" alt="Blessed and carefully packed" style="width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)" /></div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:#B18F52;letter-spacing:.14em;margin-bottom:10px">03</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(19px,1.8vw,25px);margin:0 0 10px">Prepared &amp; packed</h3>
+      <p style="font-size:13.5px;line-height:1.75;color:#5C5147;font-weight:300;margin:0">Sacred items and your sankalp card, packed respectfully to preserve purity.</p>
+    </div>
+    <div data-reveal>
+      <div style="overflow:hidden;background:#E7DDCD;margin-bottom:22px"><img src="https://ivaessentials.com/cdn/shop/files/delivery.png?v=1779100909&amp;width=900" alt="Delivered to your home" style="width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)" /></div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:#B18F52;letter-spacing:.14em;margin-bottom:10px">04</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(19px,1.8vw,25px);margin:0 0 10px">Delivered with blessings</h3>
+      <p style="font-size:13.5px;line-height:1.75;color:#5C5147;font-weight:300;margin:0">Your kit reaches your home, ready for your ritual.</p>
+    </div>
+  </div>
+</section>
+
+<section style="background:#EFE7DA;padding:clamp(66px,11vh,140px) 0">
+  <div style="max-width:1400px;margin:0 auto;padding:0 clamp(20px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(36px,6vw,88px);align-items:center">
+    <div data-reveal style="overflow:hidden;background:#E3D9C8">
+      <img src="https://ivaessentials.com/cdn/shop/files/insideBlessedKit_90cb4623-f70a-4f25-a0e4-2336095fd761.png?height=1024&amp;v=1782120045" alt="What is inside a Blessed Kit" style="width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.04)" />
+    </div>
+    <div data-reveal>
+      <span style="font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:#A2543A">Inside the kit</span>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,4.2vw,58px);line-height:1.06;margin:18px 0 28px;max-width:20ch">What's inside a Blessed Kit</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:2px 26px">
+        <div style="padding:15px 0;border-top:1px solid rgba(23,19,15,.14);font-size:14px;color:#3D352D;font-weight:300">Sankalp card in your name</div>
+        <div style="padding:15px 0;border-top:1px solid rgba(23,19,15,.14);font-size:14px;color:#3D352D;font-weight:300">Kashi vibhuti</div>
+        <div style="padding:15px 0;border-top:1px solid rgba(23,19,15,.14);font-size:14px;color:#3D352D;font-weight:300">Sacred kumkum &amp; pasupu</div>
+        <div style="padding:15px 0;border-top:1px solid rgba(23,19,15,.14);font-size:14px;color:#3D352D;font-weight:300">Pure chandanam</div>
+        <div style="padding:15px 0;border-top:1px solid rgba(23,19,15,.14);font-size:14px;color:#3D352D;font-weight:300">Cotton wicks &amp; camphor</div>
+        <div style="padding:15px 0;border-top:1px solid rgba(23,19,15,.14);font-size:14px;color:#3D352D;font-weight:300">Agarbatti</div>
+        <div style="padding:15px 0;border-top:1px solid rgba(23,19,15,.14);font-size:14px;color:#3D352D;font-weight:300">Gangajal</div>
+        <div style="padding:15px 0;border-top:1px solid rgba(23,19,15,.14);font-size:14px;color:#3D352D;font-weight:300">Sacred thread (kalava)</div>
+      </div>
+      <a href="Product.dc.html" style="display:inline-flex;margin-top:34px;background:#17130F;color:#F7F2E9;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;padding:17px 32px;border-radius:2px;transition:background .3s" style-hover="background:#A2543A">View product details</a>
+    </div>
+  </div>
+</section>
+
+<section style="position:relative;overflow:hidden;background:#14100D">
+  <img data-parallax2 src="https://ivaessentials.com/cdn/shop/files/shivaImg1.png?v=1779182755&amp;width=2400" alt="Sacred Kashi environment" style="position:absolute;inset:0;width:100%;height:112%;object-fit:cover;opacity:.42" />
+  <div style="position:absolute;inset:0;background:radial-gradient(120% 90% at 25% 50%,rgba(14,10,8,.5),rgba(14,10,8,.94) 70%)"></div>
+  <div style="position:relative;max-width:1400px;margin:0 auto;padding:clamp(80px,15vh,180px) clamp(20px,4vw,56px)">
+    <div data-reveal style="max-width:660px">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:26px">
+        <span style="width:7px;height:7px;border:1px solid #B18F52;transform:rotate(45deg);display:block;animation:ivaGlow 4s ease-in-out infinite"></span>
+        <span style="font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;color:#D9BE8B">Shravan Maas</span>
+      </div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,5.2vw,74px);line-height:1.04;color:#F5EEE2;margin:0 0 26px;max-width:22ch">The holiest month to seek Shiva's blessings</h2>
+      <p style="font-size:clamp(14px,1.2vw,16.5px);line-height:1.85;color:rgba(242,235,224,.78);font-weight:300;max-width:52ch;margin:0 0 20px;text-wrap:pretty">Through the sacred month of Mahadev, every sankalp is performed with devotion and reverence. Each Shravan Monday, selected offerings become part of rituals near Kashi Vishwanath.</p>
+      <p style="font-size:13px;line-height:1.8;color:rgba(242,235,224,.5);font-weight:300;max-width:52ch;margin:0">Presented respectfully. Spiritual experiences are personal and vary by individual faith.</p>
+    </div>
+  </div>
+</section>
+
+<section id="sankalp" style="max-width:1400px;margin:0 auto;padding:clamp(66px,11vh,140px) clamp(20px,4vw,56px)">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(36px,6vw,88px);align-items:start">
+    <div data-reveal>
+      <span style="font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:#A2543A">Sankalp</span>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,4.2vw,58px);line-height:1.06;margin:18px 0 22px;max-width:18ch">Submit your sacred sankalp</h2>
+      <p style="font-size:clamp(14.5px,1.2vw,17px);line-height:1.8;color:#5C5147;font-weight:300;max-width:46ch;margin:0 0 26px;text-wrap:pretty">Your details and prayer intention will be included in the rituals offered in Kashi. Submitted with your order, held in confidence.</p>
+      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,1.7vw,23px);color:#A2543A">ॐ नमः शिवाय</div>
+    </div>
+    <form data-reveal onSubmit="{{ onSankalp }}" style="display:flex;flex-direction:column;gap:22px;background:#F2EADD;padding:clamp(26px,4vw,48px)">
+      <label style="display:flex;flex-direction:column;gap:9px">
+        <span style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B">Full name</span>
+        <input type="text" required="required" placeholder="Your name" style="background:transparent;border:none;border-bottom:1px solid rgba(23,19,15,.25);font-family:'DM Sans',sans-serif;font-size:15px;padding:10px 2px;outline:none;color:#17130F" style-focus="border-bottom:1px solid #A2543A" />
+      </label>
+      <label style="display:flex;flex-direction:column;gap:9px">
+        <span style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B">Gotra (optional)</span>
+        <input type="text" placeholder="Your gotra" style="background:transparent;border:none;border-bottom:1px solid rgba(23,19,15,.25);font-family:'DM Sans',sans-serif;font-size:15px;padding:10px 2px;outline:none;color:#17130F" style-focus="border-bottom:1px solid #A2543A" />
+      </label>
+      <label style="display:flex;flex-direction:column;gap:9px">
+        <span style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B">Email</span>
+        <input type="email" required="required" placeholder="you@email.com" style="background:transparent;border:none;border-bottom:1px solid rgba(23,19,15,.25);font-family:'DM Sans',sans-serif;font-size:15px;padding:10px 2px;outline:none;color:#17130F" style-focus="border-bottom:1px solid #A2543A" />
+      </label>
+      <label style="display:flex;flex-direction:column;gap:9px">
+        <span style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B">Your prayer intention</span>
+        <textarea rows="3" placeholder="Written in your own words" style="background:transparent;border:none;border-bottom:1px solid rgba(23,19,15,.25);font-family:'DM Sans',sans-serif;font-size:15px;padding:10px 2px;outline:none;resize:vertical;color:#17130F" style-focus="border-bottom:1px solid #A2543A"></textarea>
+      </label>
+      <button type="submit" style="align-self:flex-start;background:#17130F;color:#F7F2E9;border:none;font-family:'DM Sans',sans-serif;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;padding:17px 32px;cursor:pointer;border-radius:2px;transition:background .3s" style-hover="background:#A2543A">Submit sankalp</button>
+      <div style="font-size:12.5px;color:#6B5F52;min-height:18px">{{ sankalpNote }}</div>
+    </form>
+  </div>
+</section>
+
+<section style="background:#F2EADD;padding:clamp(56px,9vh,110px) 0">
+  <div style="max-width:1000px;margin:0 auto;padding:0 clamp(20px,4vw,56px);text-align:center">
+    <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,4vw,54px);line-height:1.1;margin:0 0 22px">Rooted in Kashi. Guided by tradition.</h2>
+    <p data-reveal style="font-size:clamp(14.5px,1.2vw,17px);line-height:1.8;color:#5C5147;font-weight:300;max-width:46ch;margin:0 auto clamp(30px,5vh,46px)">Bring home a kit prepared with reverence — and keep your ritual complete.</p>
+    <div data-reveal style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+      <a href="Product.dc.html" style="background:#17130F;color:#F7F2E9;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;padding:18px 34px;border-radius:2px;transition:background .3s" style-hover="background:#A2543A">Claim your Blessed Kit · ₹1,499</a>
+      <a href="Contact.dc.html" style="border:1px solid rgba(23,19,15,.25);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;padding:18px 34px;border-radius:2px;transition:border-color .3s" style-hover="border-color:#17130F">Ask a question</a>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,760px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { sankalpNote: "" };
+  renderVals() {
+    return {
+      sankalpNote: this.state.sankalpNote,
+      onSankalp: (e) => { e.preventDefault(); this.setState({ sankalpNote: "Received with devotion. Your sankalp will travel with your kit." }); }
+    };
+  }
+  componentDidMount() {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if ("IntersectionObserver" in window && !reduce) {
+    const inView = (el) => { const r = el.getBoundingClientRect(); return r.top < window.innerHeight && r.bottom > 0; };
+    const show = (el) => { el.style.opacity = "1"; el.style.transform = "none"; };
+      const els = Array.from(document.querySelectorAll("[data-reveal]"));
+      els.forEach((el, i) => {
+      if (inView(el)) { show(el); return; }
+      el.style.opacity = "0"; el.style.transform = "translateY(20px)";
+        el.style.transition = "opacity .9s cubic-bezier(.2,.7,.2,1) " + ((i % 4) * 0.07).toFixed(2) + "s, transform .9s cubic-bezier(.2,.7,.2,1) " + ((i % 4) * 0.07).toFixed(2) + "s";
+      });
+      const io = new IntersectionObserver((ents) => { ents.forEach((en) => { if (en.isIntersecting) { en.target.style.opacity = "1"; en.target.style.transform = "none"; io.unobserve(en.target); } }); }, { rootMargin: "0px 0px -8% 0px", threshold: .08 });
+      els.forEach((el) => io.observe(el));
+      setTimeout(() => { els.forEach((el) => { if (el.style.opacity === "0" && inView(el)) show(el); }); }, 1200);
+      window.addEventListener("scroll", () => { els.forEach((el) => { if (el.style.opacity === "0" && inView(el)) show(el); }); }, { passive: true });
+      this._io = io;
+    }
+    const p1 = document.querySelector("[data-parallax]");
+    const p2 = document.querySelector("[data-parallax2]");
+    let t = false;
+    const onScroll = () => {
+      if (t || reduce) return; t = true;
+      requestAnimationFrame(() => {
+        [p1, p2].forEach((el) => {
+          if (!el) return;
+          const r = el.parentElement.getBoundingClientRect();
+          if (r.bottom > 0 && r.top < window.innerHeight) el.style.transform = "translate3d(0," + (r.top * -0.07).toFixed(1) + "px,0)";
+        });
+        t = false;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    this._onScroll = onScroll; onScroll();
+  }
+  componentWillUnmount() { if (this._io) this._io.disconnect(); if (this._onScroll) window.removeEventListener("scroll", this._onScroll); }
+}
+</script>
+</body>
+</html>

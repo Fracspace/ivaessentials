@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #F7F2E9; color: #17130F; font-family: "DM Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #17130F; text-decoration: none; }
+  a:hover { color: #A2543A; }
+  img { display: block; }
+</style>
+</helmet>
+
+<dc-import name="SiteNav" cart-count="{{ itemCount }}" style="position:sticky;top:0;z-index:50" hint-size="100%,140px"></dc-import>
+
+<section style="max-width:1300px;margin:0 auto;padding:clamp(40px,7vh,90px) clamp(20px,4vw,56px) clamp(60px,10vh,130px)">
+  <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;justify-content:space-between;margin-bottom:clamp(30px,5vh,56px)">
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,5.2vw,68px);line-height:1;margin:0">Your cart</h1>
+    <a href="Shop.dc.html" style="font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:#6B5F52;border-bottom:1px solid rgba(23,19,15,.3);padding-bottom:6px" style-hover="color:#A2543A;border-color:#A2543A">Continue shopping</a>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(30px,5vw,72px);align-items:start">
+    <div style="flex:1 1 60%">
+      <div style="display:flex;gap:clamp(16px,2.4vw,28px);padding:26px 0;border-top:1px solid rgba(23,19,15,.16)">
+        <a href="Product.dc.html" style="flex:none;width:clamp(96px,12vw,150px);overflow:hidden;background:#E3D9C8"><img src="https://ivaessentials.com/cdn/shop/files/ChatGPTImageMay22_2026_03_19_25PM.png?v=1779443409&amp;width=600" alt="Blessed Kit" style="width:100%;aspect-ratio:4/5;object-fit:cover" /></a>
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:10px">
+          <a href="Product.dc.html" style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2vw,27px);line-height:1.2">Blessed Kit</a>
+          <span style="font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A7B6B">Shravan · sankalp included</span>
+          <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:6px">
+            <div style="display:flex;align-items:center;border:1px solid rgba(23,19,15,.22);border-radius:2px">
+              <button type="button" onClick="{{ onDecA }}" aria-label="Decrease quantity" style="background:transparent;border:none;font-size:17px;color:#17130F;width:42px;height:46px;cursor:pointer">–</button>
+              <span style="min-width:30px;text-align:center;font-size:14px">{{ qtyA }}</span>
+              <button type="button" onClick="{{ onIncA }}" aria-label="Increase quantity" style="background:transparent;border:none;font-size:17px;color:#17130F;width:42px;height:46px;cursor:pointer">+</button>
+            </div>
+            <button type="button" onClick="{{ onRemoveA }}" style="background:none;border:none;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A7B6B;cursor:pointer;padding:0;border-bottom:1px solid rgba(23,19,15,.2)" style-hover="color:#A2543A">Remove</button>
+          </div>
+        </div>
+        <div style="flex:none;font-size:15px;text-align:right">{{ lineA }}</div>
+      </div>
+
+      <div style="display:flex;gap:clamp(16px,2.4vw,28px);padding:26px 0;border-top:1px solid rgba(23,19,15,.16);border-bottom:1px solid rgba(23,19,15,.16)">
+        <a href="YatraKit.dc.html" style="flex:none;width:clamp(96px,12vw,150px);overflow:hidden;background:#E3D9C8"><img src="https://cdn.shopify.com/s/files/1/0705/4095/1667/files/yatraKit_2.png?v=1782120370" alt="Yatra Kit" style="width:100%;aspect-ratio:4/5;object-fit:cover" /></a>
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:10px">
+          <a href="YatraKit.dc.html" style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2vw,27px);line-height:1.2">Yatra Kit</a>
+          <span style="font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A7B6B">Travel-ready essentials</span>
+          <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:6px">
+            <div style="display:flex;align-items:center;border:1px solid rgba(23,19,15,.22);border-radius:2px">
+              <button type="button" onClick="{{ onDecB }}" aria-label="Decrease quantity" style="background:transparent;border:none;font-size:17px;color:#17130F;width:42px;height:46px;cursor:pointer">–</button>
+              <span style="min-width:30px;text-align:center;font-size:14px">{{ qtyB }}</span>
+              <button type="button" onClick="{{ onIncB }}" aria-label="Increase quantity" style="background:transparent;border:none;font-size:17px;color:#17130F;width:42px;height:46px;cursor:pointer">+</button>
+            </div>
+            <button type="button" onClick="{{ onRemoveB }}" style="background:none;border:none;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A7B6B;cursor:pointer;padding:0;border-bottom:1px solid rgba(23,19,15,.2)" style-hover="color:#A2543A">Remove</button>
+          </div>
+        </div>
+        <div style="flex:none;font-size:15px;text-align:right">{{ lineB }}</div>
+      </div>
+
+      <div style="margin-top:34px;padding:24px 26px;background:#EFE7DA;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between">
+        <div style="max-width:40ch">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:5px">Add a sankalp note</div>
+          <div style="font-size:13px;line-height:1.7;color:#5C5147;font-weight:300">Your name, gotra and prayer intention are collected after checkout.</div>
+        </div>
+        <a href="BlessedKit.dc.html#sankalp" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid #17130F;padding-bottom:6px" style-hover="color:#A2543A;border-color:#A2543A">Submit now</a>
+      </div>
+    </div>
+
+    <aside style="position:sticky;top:130px;background:#F2EADD;padding:clamp(26px,3.4vw,42px)">
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(22px,2.2vw,30px);margin:0 0 26px">Order summary</h2>
+      <div style="display:flex;justify-content:space-between;font-size:14px;padding:12px 0;border-bottom:1px solid rgba(23,19,15,.12)"><span style="color:#5C5147;font-weight:300">Subtotal</span><span>{{ subtotal }}</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:14px;padding:12px 0;border-bottom:1px solid rgba(23,19,15,.12)"><span style="color:#5C5147;font-weight:300">Shipping</span><span style="color:#A2543A">Complimentary</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;padding:20px 0 26px">
+        <span style="font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B">Total</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,2.6vw,34px)">{{ subtotal }}</span>
+      </div>
+      <a href="Checkout.dc.html" style="display:block;text-align:center;background:#17130F;color:#F7F2E9;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;padding:18px 28px;border-radius:2px;transition:background .3s" style-hover="background:#A2543A">Proceed to checkout</a>
+      <div style="font-size:12px;line-height:1.7;color:#8A7B6B;margin-top:18px;font-weight:300">Taxes included. Dispatched within 48 hours, delivered across India.</div>
+    </aside>
+  </div>
+
+  <div style="margin-top:clamp(50px,8vh,100px);display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);padding-top:30px;border-top:1px solid rgba(23,19,15,.12)">
+    <div style="flex:1 1 200px"><div style="font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px">Carefully packed</div><div style="font-size:13px;color:#6B5F52;font-weight:300">Sealed to protect every sacred item.</div></div>
+    <div style="flex:1 1 200px"><div style="font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px">Authentically curated</div><div style="font-size:13px;color:#6B5F52;font-weight:300">Pure samagri, sourced with care.</div></div>
+    <div style="flex:1 1 200px"><div style="font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px">Need help?</div><div style="font-size:13px;color:#6B5F52;font-weight:300"><a href="mailto:support@ivaessentials.com" style="color:#6B5F52;border-bottom:1px solid rgba(23,19,15,.2)">support@ivaessentials.com</a></div></div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,760px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { a: 1, b: 2 };
+
+  fmt(n) { return "₹" + n.toLocaleString("en-IN"); }
+
+  renderVals() {
+    const a = this.state.a, b = this.state.b;
+    const total = a * 1499 + b * 199;
+    return {
+      qtyA: a, qtyB: b,
+      lineA: this.fmt(a * 1499),
+      lineB: this.fmt(b * 199),
+      subtotal: this.fmt(total),
+      itemCount: a + b,
+      onIncA: () => this.setState((s) => ({ a: Math.min(9, s.a + 1) })),
+      onDecA: () => this.setState((s) => ({ a: Math.max(0, s.a - 1) })),
+      onRemoveA: () => this.setState({ a: 0 }),
+      onIncB: () => this.setState((s) => ({ b: Math.min(9, s.b + 1) })),
+      onDecB: () => this.setState((s) => ({ b: Math.max(0, s.b - 1) })),
+      onRemoveB: () => this.setState({ b: 0 })
+    };
+  }
+}
+</script>
+</body>
+</html>

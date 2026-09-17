@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #F7F2E9; color: #17130F; font-family: "DM Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #17130F; text-decoration: none; }
+  a:hover { color: #A2543A; }
+  img { display: block; }
+</style>
+</helmet>
+
+<header style="border-bottom:1px solid rgba(23,19,15,.12);background:#F7F2E9">
+  <div style="max-width:1200px;margin:0 auto;padding:22px clamp(20px,4vw,48px);display:flex;align-items:center;justify-content:space-between;gap:20px">
+    <a href="IVA%20Essentials.dc.html" style="display:flex;flex-direction:column;gap:3px">
+      <span style="font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:.3em;font-weight:500;line-height:1">IVA</span>
+      <span style="font-size:8.5px;letter-spacing:.42em;color:#8A7B6B;text-transform:uppercase">Essentials</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:10px;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A7B6B">
+      <span style="width:7px;height:7px;border:1px solid #A2543A;border-radius:50%;display:block"></span>Secure checkout
+    </div>
+  </div>
+</header>
+
+<div style="max-width:1200px;margin:0 auto;padding:clamp(28px,5vh,56px) clamp(20px,4vw,48px) clamp(50px,8vh,110px)">
+  <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:clamp(30px,5vh,52px)">
+    <a href="Cart.dc.html" style="color:#8A7B6B">Cart</a><span style="color:#C3B7A6">—</span>
+    <span data-step="1" style="color:#17130F">Information</span><span style="color:#C3B7A6">—</span>
+    <span data-step="2" style="color:#B3A795">Delivery</span><span style="color:#C3B7A6">—</span>
+    <span data-step="3" style="color:#B3A795">Payment</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(30px,5vw,72px);align-items:start">
+    <div>
+      <section data-panel="1">
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,3.6vw,46px);line-height:1.08;margin:0 0 28px">Contact &amp; address</h1>
+        <div style="display:flex;flex-direction:column;gap:22px">
+          <label style="display:flex;flex-direction:column;gap:9px">
+            <span style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B">Email</span>
+            <input type="email" placeholder="you@email.com" style="background:transparent;border:none;border-bottom:1px solid rgba(23,19,15,.25);font-family:'DM Sans',sans-serif;font-size:15px;padding:11px 2px;outline:none;color:#17130F" style-focus="border-bottom:1px solid #A2543A" />
+          </label>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:22px">
+            <label style="display:flex;flex-direction:column;gap:9px">
+              <span style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B">First name</span>
+              <input type="text" style="background:transparent;border:none;border-bottom:1px solid rgba(23,19,15,.25);font-family:'DM Sans',sans-serif;font-size:15px;padding:11px 2px;outline:none;color:#17130F" style-focus="border-bottom:1px solid #A2543A" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:9px">
+              <span style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B">Last name</span>
+              <input type="text" style="background:transparent;border:none;border-bottom:1px solid rgba(23,19,15,.25);font-family:'DM Sans',sans-serif;font-size:15px;padding:11px 2px;outline:none;color:#17130F" style-focus="border-bottom:1px solid #A2543A" />
+            </label>
+          </div>
+          <label style="display:flex;flex-direction:column;gap:9px">
+            <span style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B">Address</span>
+            <input type="text" placeholder="House, street, area" style="background:transparent;border:none;border-bottom:1px solid rgba(23,19,15,.25);font-family:'DM Sans',sans-serif;font-size:15px;padding:11px 2px;outline:none;color:#17130F" style-focus="border-bottom:1px solid #A2543A" />
+          </label>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,140px),1fr));gap:22px">
+            <label style="display:flex;flex-direction:column;gap:9px">
+              <span style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B">City</span>
+              <input type="text" style="background:transparent;border:none;border-bottom:1px solid rgba(23,19,15,.25);font-family:'DM Sans',sans-serif;font-size:15px;padding:11px 2px;outline:none;color:#17130F" style-focus="border-bottom:1px solid #A2543A" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:9px">
+              <span style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B">State</span>
+              <input type="text" style="background:transparent;border:none;border-bottom:1px solid rgba(23,19,15,.25);font-family:'DM Sans',sans-serif;font-size:15px;padding:11px 2px;outline:none;color:#17130F" style-focus="border-bottom:1px solid #A2543A" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:9px">
+              <span style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B">PIN code</span>
+              <input type="text" inputmode="numeric" style="background:transparent;border:none;border-bottom:1px solid rgba(23,19,15,.25);font-family:'DM Sans',sans-serif;font-size:15px;padding:11px 2px;outline:none;color:#17130F" style-focus="border-bottom:1px solid #A2543A" />
+            </label>
+          </div>
+          <label style="display:flex;flex-direction:column;gap:9px">
+            <span style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B">Phone</span>
+            <input type="tel" placeholder="+91" style="background:transparent;border:none;border-bottom:1px solid rgba(23,19,15,.25);font-family:'DM Sans',sans-serif;font-size:15px;padding:11px 2px;outline:none;color:#17130F" style-focus="border-bottom:1px solid #A2543A" />
+          </label>
+        </div>
+        <div style="margin-top:34px;padding:24px 26px;background:#F2EADD">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:21px;margin-bottom:8px">Your sankalp</div>
+          <p style="font-size:13.5px;line-height:1.75;color:#5C5147;font-weight:300;margin:0 0 18px;max-width:52ch">Your Blessed Kit includes a sankalp card. Share your name, gotra and prayer intention — held in confidence, prepared before dispatch.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:20px">
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B">Name for sankalp</span>
+              <input type="text" style="background:transparent;border:none;border-bottom:1px solid rgba(23,19,15,.25);font-family:'DM Sans',sans-serif;font-size:14.5px;padding:10px 2px;outline:none;color:#17130F" style-focus="border-bottom:1px solid #A2543A" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B">Gotra (optional)</span>
+              <input type="text" style="background:transparent;border:none;border-bottom:1px solid rgba(23,19,15,.25);font-family:'DM Sans',sans-serif;font-size:14.5px;padding:10px 2px;outline:none;color:#17130F" style-focus="border-bottom:1px solid #A2543A" />
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section data-panel="2" style="display:none">
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,3.6vw,46px);line-height:1.08;margin:0 0 28px">Delivery</h1>
+        <div data-ship="standard" onClick="{{ onShip }}" style="border:1px solid #17130F;padding:22px 24px;margin-bottom:14px;cursor:pointer;display:flex;justify-content:space-between;gap:18px;align-items:center">
+          <div>
+            <div style="font-size:14.5px;margin-bottom:5px">Standard · 3–5 working days</div>
+            <div style="font-size:12.5px;color:#6B5F52;font-weight:300">Dispatched within 48 hours, tracked across India.</div>
+          </div>
+          <span style="font-size:13px;color:#A2543A;letter-spacing:.14em;white-space:nowrap">Free</span>
+        </div>
+        <div data-ship="express" onClick="{{ onShip }}" style="border:1px solid rgba(23,19,15,.2);padding:22px 24px;margin-bottom:14px;cursor:pointer;display:flex;justify-content:space-between;gap:18px;align-items:center">
+          <div>
+            <div style="font-size:14.5px;margin-bottom:5px">Express · 1–2 working days</div>
+            <div style="font-size:12.5px;color:#6B5F52;font-weight:300">Priority dispatch for festival dates.</div>
+          </div>
+          <span style="font-size:13px;white-space:nowrap">₹149</span>
+        </div>
+        <div data-ship="muhurat" onClick="{{ onShip }}" style="border:1px solid rgba(23,19,15,.2);padding:22px 24px;cursor:pointer;display:flex;justify-content:space-between;gap:18px;align-items:center">
+          <div>
+            <div style="font-size:14.5px;margin-bottom:5px">Deliver on a chosen date</div>
+            <div style="font-size:12.5px;color:#6B5F52;font-weight:300">Tell us your muhurat and we'll time the arrival.</div>
+          </div>
+          <span style="font-size:13px;white-space:nowrap">₹99</span>
+        </div>
+      </section>
+
+      <section data-panel="3" style="display:none">
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,3.6vw,46px);line-height:1.08;margin:0 0 28px">Payment</h1>
+        <div data-pay="upi" onClick="{{ onPay }}" style="border:1px solid #17130F;padding:22px 24px;margin-bottom:14px;cursor:pointer;font-size:14.5px">UPI — GPay, PhonePe, Paytm</div>
+        <div data-pay="card" onClick="{{ onPay }}" style="border:1px solid rgba(23,19,15,.2);padding:22px 24px;margin-bottom:14px;cursor:pointer;font-size:14.5px">Credit or debit card</div>
+        <div data-pay="netbanking" onClick="{{ onPay }}" style="border:1px solid rgba(23,19,15,.2);padding:22px 24px;margin-bottom:14px;cursor:pointer;font-size:14.5px">Net banking</div>
+        <div data-pay="cod" onClick="{{ onPay }}" style="border:1px solid rgba(23,19,15,.2);padding:22px 24px;cursor:pointer;font-size:14.5px">Cash on delivery <span style="color:#8A7B6B;font-size:12.5px">· ₹49 handling</span></div>
+        <p style="font-size:12.5px;line-height:1.75;color:#8A7B6B;font-weight:300;margin:24px 0 0;max-width:54ch">Payments are processed by our payment partner. IVA Essentials never stores your card details.</p>
+      </section>
+
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:36px;padding-top:26px;border-top:1px solid rgba(23,19,15,.14)">
+        <button type="button" onClick="{{ onNext }}" style="background:#17130F;color:#F7F2E9;border:none;font-family:'DM Sans',sans-serif;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;padding:18px 34px;cursor:pointer;border-radius:2px;transition:background .3s" style-hover="background:#A2543A">{{ nextLabel }}</button>
+        <button type="button" onClick="{{ onBack }}" style="background:none;border:none;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8A7B6B;cursor:pointer;padding:0;border-bottom:1px solid rgba(23,19,15,.2)" style-hover="color:#A2543A">{{ backLabel }}</button>
+      </div>
+      <div style="font-size:13px;color:#A2543A;margin-top:18px;min-height:20px">{{ note }}</div>
+    </div>
+
+    <aside style="position:sticky;top:30px;background:#F2EADD;padding:clamp(24px,3vw,38px)">
+      <div style="display:flex;gap:16px;padding-bottom:20px;border-bottom:1px solid rgba(23,19,15,.12)">
+        <div style="flex:none;width:66px;overflow:hidden;background:#E3D9C8"><img src="https://ivaessentials.com/cdn/shop/files/ChatGPTImageMay22_2026_03_19_25PM.png?v=1779443409&amp;width=300" alt="Blessed Kit" style="width:100%;aspect-ratio:4/5;object-fit:cover" /></div>
+        <div style="flex:1;min-width:0">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1.25">Blessed Kit</div>
+          <div style="font-size:12px;color:#8A7B6B;letter-spacing:.12em;margin-top:4px">Qty 1 · Shravan</div>
+        </div>
+        <div style="flex:none;font-size:14px">₹1,499</div>
+      </div>
+      <div style="display:flex;gap:16px;padding:20px 0;border-bottom:1px solid rgba(23,19,15,.12)">
+        <div style="flex:none;width:66px;overflow:hidden;background:#E3D9C8"><img src="https://cdn.shopify.com/s/files/1/0705/4095/1667/files/yatraKit_2.png?v=1782120370" alt="Yatra Kit" style="width:100%;aspect-ratio:4/5;object-fit:cover" /></div>
+        <div style="flex:1;min-width:0">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1.25">Yatra Kit</div>
+          <div style="font-size:12px;color:#8A7B6B;letter-spacing:.12em;margin-top:4px">Qty 2</div>
+        </div>
+        <div style="flex:none;font-size:14px">₹398</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:14px;padding:14px 0;border-bottom:1px solid rgba(23,19,15,.12)"><span style="color:#5C5147;font-weight:300">Subtotal</span><span>₹1,897</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:14px;padding:14px 0;border-bottom:1px solid rgba(23,19,15,.12)"><span style="color:#5C5147;font-weight:300">Delivery</span><span>{{ shipLabel }}</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;padding:20px 0 4px">
+        <span style="font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B">Total</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,2.6vw,34px)">{{ total }}</span>
+      </div>
+      <div style="font-size:12px;line-height:1.7;color:#8A7B6B;font-weight:300;margin-top:16px">Taxes included. Complimentary standard shipping across India.</div>
+      <a href="Cart.dc.html" style="display:inline-block;margin-top:20px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#6B5F52;border-bottom:1px solid rgba(23,19,15,.2);padding-bottom:5px" style-hover="color:#A2543A">Edit cart</a>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { step: 1, ship: 0, note: "" };
+
+  fmt(n) { return "₹" + n.toLocaleString("en-IN"); }
+
+  renderVals() {
+    const s = this.state;
+    const shipNames = ["Free", "₹149", "₹99"];
+    return {
+      note: s.note,
+      shipLabel: shipNames[s.ship],
+      total: this.fmt(1897 + [0, 149, 99][s.ship]),
+      nextLabel: s.step === 3 ? "Pay now" : s.step === 2 ? "Continue to payment" : "Continue to delivery",
+      backLabel: s.step === 1 ? "Return to cart" : "Back",
+      onShip: (e) => {
+        const key = e.currentTarget.getAttribute("data-ship");
+        const order = ["standard", "express", "muhurat"];
+        document.querySelectorAll("[data-ship]").forEach((el) => {
+          el.style.borderColor = el === e.currentTarget ? "#17130F" : "rgba(23,19,15,.2)";
+        });
+        this.setState({ ship: order.indexOf(key) });
+      },
+      onPay: (e) => {
+        document.querySelectorAll("[data-pay]").forEach((el) => {
+          el.style.borderColor = el === e.currentTarget ? "#17130F" : "rgba(23,19,15,.2)";
+        });
+      },
+      onNext: () => {
+        const s2 = this.state.step;
+        if (s2 === 3) { this.setState({ note: "Demo checkout — connect your payment provider to complete the order." }); return; }
+        this.goTo(s2 + 1);
+      },
+      onBack: () => {
+        const s2 = this.state.step;
+        if (s2 === 1) { window.location.href = "Cart.dc.html"; return; }
+        this.goTo(s2 - 1);
+      }
+    };
+  }
+
+  goTo(n) {
+    document.querySelectorAll("[data-panel]").forEach((p) => {
+      p.style.display = p.getAttribute("data-panel") === String(n) ? "" : "none";
+    });
+    document.querySelectorAll("[data-step]").forEach((el) => {
+      const i = Number(el.getAttribute("data-step"));
+      el.style.color = i === n ? "#17130F" : i < n ? "#8A7B6B" : "#B3A795";
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    this.setState({ step: n, note: "" });
+  }
+}
+</script>
+</body>
+</html>

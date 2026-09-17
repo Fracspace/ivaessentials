@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #F7F2E9; color: #17130F; font-family: "DM Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #17130F; text-decoration: none; }
+  a:hover { color: #A2543A; }
+  img { display: block; }
+</style>
+</helmet>
+
+<dc-import name="SiteNav" active="shop" style="position:sticky;top:0;z-index:50" hint-size="100%,140px"></dc-import>
+
+<section style="max-width:1500px;margin:0 auto;padding:clamp(28px,4vh,48px) clamp(20px,4vw,56px) clamp(60px,10vh,120px)">
+  <div style="display:flex;gap:10px;align-items:center;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B;margin-bottom:clamp(26px,4vh,44px)">
+    <a href="IVA%20Essentials.dc.html" style="color:#8A7B6B">Home</a><span>/</span><a href="Shop.dc.html" style="color:#8A7B6B">Shop</a><span>/</span><span style="color:#17130F">Blessed Kit</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(30px,5vw,80px);align-items:start">
+    <div>
+      <div style="overflow:hidden;background:#E3D9C8;margin-bottom:14px">
+        <img data-hero src="https://ivaessentials.com/cdn/shop/files/ChatGPTImageMay22_2026_03_19_25PM.png?v=1779443409&amp;width=1600" alt="Blessed Kit" style="width:100%;aspect-ratio:1/1;object-fit:cover" />
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+        <button type="button" data-thumb="https://ivaessentials.com/cdn/shop/files/ChatGPTImageMay22_2026_03_19_25PM.png?v=1779443409&amp;width=1600" onClick="{{ onThumb }}" style="padding:0;border:1px solid #17130F;background:#E3D9C8;cursor:pointer;overflow:hidden"><img src="https://ivaessentials.com/cdn/shop/files/ChatGPTImageMay22_2026_03_19_25PM.png?v=1779443409&amp;width=500" alt="Blessed Kit packaging" style="width:100%;aspect-ratio:1/1;object-fit:cover" /></button>
+        <button type="button" data-thumb="https://ivaessentials.com/cdn/shop/files/insideBlessedKit_90cb4623-f70a-4f25-a0e4-2336095fd761.png?height=1024&amp;v=1782120045" onClick="{{ onThumb }}" style="padding:0;border:1px solid transparent;background:#E3D9C8;cursor:pointer;overflow:hidden"><img src="https://ivaessentials.com/cdn/shop/files/insideBlessedKit_90cb4623-f70a-4f25-a0e4-2336095fd761.png?height=500&amp;v=1782120045" alt="Inside the kit" style="width:100%;aspect-ratio:1/1;object-fit:cover" /></button>
+        <button type="button" data-thumb="https://ivaessentials.com/cdn/shop/files/blessedKit.png?v=1778915965&amp;width=1600" onClick="{{ onThumb }}" style="padding:0;border:1px solid transparent;background:#E3D9C8;cursor:pointer;overflow:hidden"><img src="https://ivaessentials.com/cdn/shop/files/blessedKit.png?v=1778915965&amp;width=500" alt="Kit arranged for ritual" style="width:100%;aspect-ratio:1/1;object-fit:cover" /></button>
+        <button type="button" data-thumb="https://ivaessentials.com/cdn/shop/files/shivaLingam.png?v=1779100253&amp;width=1600" onClick="{{ onThumb }}" style="padding:0;border:1px solid transparent;background:#E3D9C8;cursor:pointer;overflow:hidden"><img src="https://ivaessentials.com/cdn/shop/files/shivaLingam.png?v=1779100253&amp;width=500" alt="Abhishek ritual" style="width:100%;aspect-ratio:1/1;object-fit:cover" /></button>
+      </div>
+    </div>
+
+    <div data-sticky style="position:sticky;top:120px;max-width:520px">
+      <span style="font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:#A2543A">Signature · In stock</span>
+      <h1 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,4.8vw,64px);line-height:1.02;margin:16px 0 18px">The Blessed Kit</h1>
+      <p style="font-size:clamp(14.5px,1.2vw,17px);line-height:1.8;color:#5C5147;font-weight:300;margin:0 0 26px;max-width:46ch;text-wrap:pretty">Everything you need for a sacred ritual, thoughtfully brought together — with your sankalp card placed inside and offerings prepared with reverence near Kashi Vishwanath.</p>
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:30px">
+        <span style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,40px);line-height:1">₹1,499</span>
+        <span style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8A7B6B">Inclusive of taxes</span>
+      </div>
+
+      <div style="margin-bottom:26px">
+        <div style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7B6B;margin-bottom:12px">Ritual</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <button type="button" data-variant="shravan" onClick="{{ onVariant }}" style="background:#17130F;color:#F7F2E9;border:1px solid #17130F;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:13px 20px;cursor:pointer;border-radius:2px;transition:all .3s">Shravan</button>
+          <button type="button" data-variant="everyday" onClick="{{ onVariant }}" style="background:transparent;color:#5C5147;border:1px solid rgba(23,19,15,.22);font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:13px 20px;cursor:pointer;border-radius:2px;transition:all .3s" style-hover="border-color:#17130F;color:#17130F">Everyday devotion</button>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:stretch;margin-bottom:18px">
+        <div style="display:flex;align-items:center;border:1px solid rgba(23,19,15,.22);border-radius:2px">
+          <button type="button" onClick="{{ onDec }}" aria-label="Decrease quantity" style="background:transparent;border:none;font-size:18px;color:#17130F;width:48px;height:56px;cursor:pointer">–</button>
+          <span style="min-width:34px;text-align:center;font-size:14.5px">{{ qty }}</span>
+          <button type="button" onClick="{{ onInc }}" aria-label="Increase quantity" style="background:transparent;border:none;font-size:18px;color:#17130F;width:48px;height:56px;cursor:pointer">+</button>
+        </div>
+        <button type="button" onClick="{{ onAdd }}" style="flex:1 1 200px;background:#17130F;color:#F7F2E9;border:none;font-family:'DM Sans',sans-serif;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;padding:18px 28px;cursor:pointer;border-radius:2px;transition:background .3s" style-hover="background:#A2543A">Add to cart</button>
+      </div>
+      <a href="Checkout.dc.html" style="display:block;text-align:center;border:1px solid rgba(23,19,15,.25);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;padding:17px 28px;border-radius:2px;margin-bottom:12px;transition:border-color .3s" style-hover="border-color:#17130F">Buy it now</a>
+      <div style="font-size:12.5px;color:#6B5F52;min-height:20px;margin-bottom:28px">{{ addNote }}</div>
+
+      <div data-acc data-open="1" onClick="{{ onAcc }}" style="border-top:1px solid rgba(23,19,15,.14);padding:20px 0;cursor:pointer">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px">
+          <span style="font-size:11.5px;letter-spacing:.2em;text-transform:uppercase">What's inside</span><span data-accicon style="color:#A2543A;font-size:18px">–</span>
+        </div>
+        <div data-accbody style="overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.2,1)">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:4px 24px;padding-top:14px">
+            <span style="font-size:13.5px;color:#5C5147;font-weight:300;padding:6px 0">Sankalp card in your name</span>
+            <span style="font-size:13.5px;color:#5C5147;font-weight:300;padding:6px 0">Kashi vibhuti</span>
+            <span style="font-size:13.5px;color:#5C5147;font-weight:300;padding:6px 0">Kumkum &amp; pasupu</span>
+            <span style="font-size:13.5px;color:#5C5147;font-weight:300;padding:6px 0">Pure chandanam</span>
+            <span style="font-size:13.5px;color:#5C5147;font-weight:300;padding:6px 0">Cotton wicks &amp; camphor</span>
+            <span style="font-size:13.5px;color:#5C5147;font-weight:300;padding:6px 0">Agarbatti</span>
+            <span style="font-size:13.5px;color:#5C5147;font-weight:300;padding:6px 0">Gangajal</span>
+            <span style="font-size:13.5px;color:#5C5147;font-weight:300;padding:6px 0">Sacred thread (kalava)</span>
+          </div>
+        </div>
+      </div>
+      <div data-acc data-open="0" onClick="{{ onAcc }}" style="border-top:1px solid rgba(23,19,15,.14);padding:20px 0;cursor:pointer">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px">
+          <span style="font-size:11.5px;letter-spacing:.2em;text-transform:uppercase">How the sankalp works</span><span data-accicon style="color:#A2543A;font-size:18px">+</span>
+        </div>
+        <div data-accbody style="max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.2,1)">
+          <p style="font-size:13.5px;line-height:1.8;color:#5C5147;font-weight:300;margin:14px 0 0;max-width:56ch">After checkout you'll share your name, gotra and prayer intention. Your sankalp card is prepared and included in temple archana near Kashi Vishwanath, then placed inside your kit. <a href="BlessedKit.dc.html" style="border-bottom:1px solid #A2543A;color:#A2543A">Read the full journey</a>.</p>
+        </div>
+      </div>
+      <div data-acc data-open="0" onClick="{{ onAcc }}" style="border-top:1px solid rgba(23,19,15,.14);border-bottom:1px solid rgba(23,19,15,.14);padding:20px 0;cursor:pointer">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px">
+          <span style="font-size:11.5px;letter-spacing:.2em;text-transform:uppercase">Shipping &amp; care</span><span data-accicon style="color:#A2543A;font-size:18px">+</span>
+        </div>
+        <div data-accbody style="max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.2,1)">
+          <p style="font-size:13.5px;line-height:1.8;color:#5C5147;font-weight:300;margin:14px 0 0;max-width:56ch">Dispatched within 48 hours, delivered across India with complimentary shipping. Store in a cool, dry place; keep the gangajal sealed until use.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#EFE7DA;padding:clamp(60px,10vh,130px) 0">
+  <div style="max-width:1400px;margin:0 auto;padding:0 clamp(20px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(30px,5vw,80px);align-items:center">
+    <div data-reveal style="overflow:hidden;background:#E3D9C8"><img src="https://ivaessentials.com/cdn/shop/files/temple.png?v=1779086798&amp;width=1400" alt="Ritual performed near Kashi Vishwanath" style="width:100%;aspect-ratio:4/3;object-fit:cover" /></div>
+    <div data-reveal>
+      <span style="font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:#A2543A">Why this kit</span>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(26px,3.4vw,46px);line-height:1.1;margin:16px 0 20px;max-width:20ch">Assembled so your ritual is never interrupted.</h2>
+      <p style="font-size:14.5px;line-height:1.85;color:#5C5147;font-weight:300;margin:0 0 14px;max-width:48ch">Complete samagri — nothing missing, everything in its place, sealed to preserve purity.</p>
+      <p style="font-size:13px;line-height:1.8;color:#8A7B6B;font-weight:300;margin:0;max-width:48ch">Presented respectfully. Spiritual experiences are personal and vary by individual faith.</p>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1400px;margin:0 auto;padding:clamp(60px,10vh,130px) clamp(20px,4vw,56px)">
+  <div data-reveal style="display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:flex-end;margin-bottom:clamp(28px,4vh,50px);padding-bottom:22px;border-bottom:1px solid rgba(23,19,15,.14)">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(26px,3.4vw,46px);line-height:1.1;margin:0">Complete your ritual</h2>
+    <a href="Shop.dc.html" style="font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:#6B5F52;border-bottom:1px solid rgba(23,19,15,.3);padding-bottom:6px" style-hover="color:#A2543A;border-color:#A2543A">All products</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:clamp(24px,3vw,44px)">
+    <div data-reveal>
+      <a href="ProductYatraKit.dc.html" style="display:block;overflow:hidden;background:#E3D9C8"><img src="https://cdn.shopify.com/s/files/1/0705/4095/1667/files/yatraKit_2.png?v=1782120370" alt="Yatra Kit" style="width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)" /></a>
+      <div style="padding-top:18px"><a href="YatraKit.dc.html" style="font-family:'Cormorant Garamond',serif;font-size:22px">Yatra Kit</a><div style="font-size:14px;margin-top:6px">₹199</div></div>
+    </div>
+    <div data-reveal>
+      <a href="ProductSamagri.dc.html" style="display:block;overflow:hidden;background:#E3D9C8"><img src="https://ivaessentials.com/cdn/shop/files/shivaPoojaKit.png?v=1777456301&amp;width=900" alt="Shree Shiva Pooja Samagri" style="width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)" /></a>
+      <div style="padding-top:18px"><a href="ProductSamagri.dc.html" style="font-family:'Cormorant Garamond',serif;font-size:22px">Shree Shiva Pooja Samagri</a><div style="font-size:14px;margin-top:6px">₹699 · Sold out</div></div>
+    </div>
+    <div data-reveal>
+      <a href="ProductSamagri.dc.html" style="display:block;overflow:hidden;background:#E3D9C8"><img src="https://ivaessentials.com/cdn/shop/files/lakshmiPookaKit.png?v=1777456303&amp;width=900" alt="Shree Mahalakshmi Pooja Samagri" style="width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)" /></a>
+      <div style="padding-top:18px"><a href="ProductSamagri.dc.html" style="font-family:'Cormorant Garamond',serif;font-size:22px">Shree Mahalakshmi Pooja Samagri</a><div style="font-size:14px;margin-top:6px">₹699 · Sold out</div></div>
+    </div>
+    <div data-reveal>
+      <a href="ProductSamagri.dc.html" style="display:block;overflow:hidden;background:#E3D9C8"><img src="https://ivaessentials.com/cdn/shop/files/ganeshPoojaKit.png?v=1777456304&amp;width=900" alt="Shree Vinayaka Pooja Samagri" style="width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)" /></a>
+      <div style="padding-top:18px"><a href="ProductSamagri.dc.html" style="font-family:'Cormorant Garamond',serif;font-size:22px">Shree Vinayaka Pooja Samagri</a><div style="font-size:14px;margin-top:6px">₹699 · Sold out</div></div>
+    </div>
+  </div>
+</section>
+
+<div data-mobilebar style="position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(23,19,15,.96);backdrop-filter:blur(10px);padding:12px clamp(14px,3vw,22px);display:flex;align-items:center;justify-content:space-between;gap:14px;transform:translateY(120%);transition:transform .45s cubic-bezier(.2,.7,.2,1)">
+  <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+    <span style="font-size:13px;color:#F2EBE0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">The Blessed Kit</span>
+    <span style="font-size:11px;letter-spacing:.14em;color:#B18F52">₹1,499</span>
+  </div>
+  <button type="button" onClick="{{ onAdd }}" style="flex:none;background:#E8CFA3;color:#17130F;border:none;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:14px 22px;border-radius:2px;cursor:pointer">Add to cart</button>
+</div>
+
+<dc-import name="SiteFooter" hint-size="100%,760px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { qty: 1, addNote: "" };
+
+  renderVals() {
+    return {
+      qty: this.state.qty,
+      addNote: this.state.addNote,
+      onInc: () => this.setState((s) => ({ qty: Math.min(9, s.qty + 1) })),
+      onDec: () => this.setState((s) => ({ qty: Math.max(1, s.qty - 1) })),
+      onAdd: () => this.setState((s) => ({ addNote: s.qty + (s.qty > 1 ? " kits" : " kit") + " added — your sankalp details are collected after checkout." })),
+      onThumb: (e) => {
+        const src = e.currentTarget.getAttribute("data-thumb");
+        const hero = document.querySelector("[data-hero]");
+        if (hero) { hero.style.opacity = "0"; setTimeout(() => { hero.src = src; hero.style.transition = "opacity .5s ease"; hero.style.opacity = "1"; }, 120); }
+        document.querySelectorAll("[data-thumb]").forEach((b) => { b.style.borderColor = b === e.currentTarget ? "#17130F" : "transparent"; });
+      },
+      onVariant: (e) => {
+        document.querySelectorAll("[data-variant]").forEach((b) => {
+          const on = b === e.currentTarget;
+          b.style.background = on ? "#17130F" : "transparent";
+          b.style.color = on ? "#F7F2E9" : "#5C5147";
+          b.style.borderColor = on ? "#17130F" : "rgba(23,19,15,.22)";
+        });
+      },
+      onAcc: (e) => {
+        const row = e.currentTarget;
+        const body = row.querySelector("[data-accbody]");
+        const icon = row.querySelector("[data-accicon]");
+        const open = row.getAttribute("data-open") === "1";
+        row.setAttribute("data-open", open ? "0" : "1");
+        if (body) body.style.maxHeight = open ? "0px" : body.scrollHeight + 40 + "px";
+        if (icon) icon.textContent = open ? "+" : "–";
+      }
+    };
+  }
+
+  componentDidMount() {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if ("IntersectionObserver" in window && !reduce) {
+    const inView = (el) => { const r = el.getBoundingClientRect(); return r.top < window.innerHeight && r.bottom > 0; };
+    const show = (el) => { el.style.opacity = "1"; el.style.transform = "none"; };
+      const els = Array.from(document.querySelectorAll("[data-reveal]"));
+      els.forEach((el, i) => {
+      if (inView(el)) { show(el); return; }
+      el.style.opacity = "0"; el.style.transform = "translateY(20px)";
+        el.style.transition = "opacity .9s cubic-bezier(.2,.7,.2,1) " + ((i % 3) * 0.07).toFixed(2) + "s, transform .9s cubic-bezier(.2,.7,.2,1) " + ((i % 3) * 0.07).toFixed(2) + "s";
+      });
+      const io = new IntersectionObserver((ents) => { ents.forEach((en) => { if (en.isIntersecting) { en.target.style.opacity = "1"; en.target.style.transform = "none"; io.unobserve(en.target); } }); }, { rootMargin: "0px 0px -8% 0px", threshold: .08 });
+      els.forEach((el) => io.observe(el));
+      setTimeout(() => { els.forEach((el) => { if (el.style.opacity === "0" && inView(el)) show(el); }); }, 1200);
+      window.addEventListener("scroll", () => { els.forEach((el) => { if (el.style.opacity === "0" && inView(el)) show(el); }); }, { passive: true });
+      this._io = io;
+    }
+    const bar = document.querySelector("[data-mobilebar]");
+    let t = false;
+    const onScroll = () => {
+      if (t) return; t = true;
+      requestAnimationFrame(() => { if (bar) bar.style.transform = (window.scrollY || 0) > 700 ? "translateY(0)" : "translateY(120%)"; t = false; });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    this._onScroll = onScroll;
+  }
+  componentWillUnmount() { if (this._io) this._io.disconnect(); if (this._onScroll) window.removeEventListener("scroll", this._onScroll); }
+}
+</script>
+</body>
+</html>
