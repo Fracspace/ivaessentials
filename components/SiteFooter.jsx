@@ -98,9 +98,9 @@ export default function SiteFooter() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '13.5px', fontWeight: 300 }}>
               <Link href="/contact" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Contact</Link>
               <Link href="/shipping-policy" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Shipping</Link>
-              <a href="https://ivaessentials.com/policies/refund-policy" target="_blank" rel="noreferrer" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Refund Policy</a>
-              <a href="https://ivaessentials.com/policies/privacy-policy" target="_blank" rel="noreferrer" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Privacy Policy</a>
-              <a href="https://ivaessentials.com/policies/terms-of-service" target="_blank" rel="noreferrer" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Terms</a>
+              <Link href="/refund-policy" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Refund Policy</Link>
+              <Link href="/privacy-policy" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Privacy Policy</Link>
+              <Link href="/terms-of-service" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Terms</Link>
             </div>
           </div>
           <div>
