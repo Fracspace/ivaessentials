@@ -102,7 +102,7 @@ export default function ShippingPolicyPage() {
                       <td style={{ padding: '16px 20px', color: '#4A423A' }}>5–8 business days</td>
                     </tr>
                     <tr style={{ borderBottom: '1px solid rgba(23,19,15,.08)' }}>
-                      <td style={{ padding: '16px 20px', fontWeight 500, color: '#17130F' }}>Remote Areas</td>
+                      <td style={{ padding: '16px 20px', fontWeight: 500, color: '#17130F' }}>Remote Areas</td>
                       <td style={{ padding: '16px 20px', color: '#4A423A' }}>7–12 business days</td>
                     </tr>
                     <tr style={{ background: 'rgba(239,231,218,.4)' }}>
