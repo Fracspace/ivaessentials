@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import RevealOnScroll from '../../components/RevealOnScroll';
+import ScrollBackgroundSection from '../../components/ScrollBackgroundSection';
 import ParallaxImage from '../../components/ParallaxImage';
 import { IMAGES } from '../../lib/images';
 import { useCart } from '../../context/CartContext';
@@ -25,9 +26,10 @@ export default function BlessedKitPage() {
   };
 
   return (
-    <div style={{ background: '#F7F2E9' }}>
-      {/* 1. Hero Parallax */}
+    <div style={{ background: '#14100D' }}>
+      {/* 1. Hero Parallax (Dark Theme) */}
       <section
+        data-nav-theme="dark"
         style={{
           position: 'relative',
           overflow: 'hidden',
@@ -76,63 +78,66 @@ export default function BlessedKitPage() {
         </div>
       </section>
 
-      {/* 2. Four Steps Journey */}
-      <section style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(66px,11vh,140px) clamp(20px,4vw,56px)' }}>
-        <RevealOnScroll style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto clamp(44px,7vh,86px)' }}>
-          <span style={{ fontSize: '10.5px', letterSpacing: '.32em', textTransform: 'uppercase', color: '#A2543A' }}>The Journey</span>
-          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(30px,4.2vw,58px)', lineHeight: 1.08, margin: '18px 0 0' }}>
-            Four steps, performed with care.
-          </h2>
-        </RevealOnScroll>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,230px), 1fr))', gap: 'clamp(24px,3vw,44px)' }}>
-          <RevealOnScroll>
-            <div style={{ overflow: 'hidden', background: '#E7DDCD', marginBottom: '22px' }}>
-              <img src={IMAGES.journey.sankalp} alt="Placing your order" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.1s cubic-bezier(.2,.7,.2,1)' }} className="product-card-img" />
-            </div>
-            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '13px', color: '#B18F52', letterSpacing: '.14em', marginBottom: '10px' }}>01</div>
-            <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: 'clamp(19px,1.8vw,25px)', margin: '0 0 10px' }}>Your sankalp is received</h3>
-            <p style={{ fontSize: '13.5px', lineHeight: 1.75, color: '#5C5147', fontWeight: 300, margin: 0 }}>We take your name and gotra, along with your prayer intention.</p>
+      {/* 2. Four Steps Journey (Pure Sandalwood Ivory Theme - Light Nav Theme) */}
+      <ScrollBackgroundSection navTheme="light" defaultBg="#14100D" activeBg="#FAF5EC">
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(66px,11vh,140px) clamp(20px,4vw,56px)' }}>
+          <RevealOnScroll style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto clamp(44px,7vh,86px)' }}>
+            <span style={{ fontSize: '10.5px', letterSpacing: '.32em', textTransform: 'uppercase', color: '#8A7B6B' }}>The Journey</span>
+            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(30px,4.2vw,58px)', lineHeight: 1.08, margin: '18px 0 0', color: '#17130F' }}>
+              Four steps, performed with care.
+            </h2>
           </RevealOnScroll>
 
-          <RevealOnScroll delay={100}>
-            <div style={{ overflow: 'hidden', background: '#E7DDCD', marginBottom: '22px' }}>
-              <img src={IMAGES.journey.temple} alt="Rituals in Kashi" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.1s cubic-bezier(.2,.7,.2,1)' }} className="product-card-img" />
-            </div>
-            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '13px', color: '#B18F52', letterSpacing: '.14em', marginBottom: '10px' }}>02</div>
-            <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: 'clamp(19px,1.8vw,25px)', margin: '0 0 10px' }}>Rituals near Kashi Vishwanath</h3>
-            <p style={{ fontSize: '13.5px', lineHeight: 1.75, color: '#5C5147', fontWeight: 300, margin: 0 }}>Your sankalp card is offered in temple archana near Kashi Vishwanath.</p>
-          </RevealOnScroll>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,230px), 1fr))', gap: 'clamp(24px,3vw,44px)' }}>
+            <RevealOnScroll variant="fall" delay={0}>
+              <div style={{ overflow: 'hidden', background: '#DFD3C0', borderRadius: '3px', marginBottom: '22px' }}>
+                <img src={IMAGES.journey.sankalp} alt="Placing your order" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.1s cubic-bezier(.2,.7,.2,1)' }} className="product-card-img" />
+              </div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '13px', color: '#B18F52', letterSpacing: '.14em', marginBottom: '10px' }}>01</div>
+              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: 'clamp(19px,1.8vw,25px)', margin: '0 0 10px', color: '#17130F' }}>Your sankalp is received</h3>
+              <p style={{ fontSize: '13.5px', lineHeight: 1.75, color: '#5C5147', fontWeight: 300, margin: 0 }}>We take your name and gotra, along with your prayer intention.</p>
+            </RevealOnScroll>
 
-          <RevealOnScroll delay={200}>
-            <div style={{ overflow: 'hidden', background: '#E7DDCD', marginBottom: '22px' }}>
-              <img src={IMAGES.journey.packed} alt="Prepared and packed" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.1s cubic-bezier(.2,.7,.2,1)' }} className="product-card-img" />
-            </div>
-            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '13px', color: '#B18F52', letterSpacing: '.14em', marginBottom: '10px' }}>03</div>
-            <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: 'clamp(19px,1.8vw,25px)', margin: '0 0 10px' }}>Prepared &amp; packed</h3>
-            <p style={{ fontSize: '13.5px', lineHeight: 1.75, color: '#5C5147', fontWeight: 300, margin: 0 }}>Sacred items and your sankalp card, packed respectfully to preserve purity.</p>
-          </RevealOnScroll>
+            <RevealOnScroll variant="fall" delay={180}>
+              <div style={{ overflow: 'hidden', background: '#DFD3C0', borderRadius: '3px', marginBottom: '22px' }}>
+                <img src={IMAGES.journey.temple} alt="Rituals in Kashi" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.1s cubic-bezier(.2,.7,.2,1)' }} className="product-card-img" />
+              </div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '13px', color: '#B18F52', letterSpacing: '.14em', marginBottom: '10px' }}>02</div>
+              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: 'clamp(19px,1.8vw,25px)', margin: '0 0 10px', color: '#17130F' }}>Rituals near Kashi Vishwanath</h3>
+              <p style={{ fontSize: '13.5px', lineHeight: 1.75, color: '#5C5147', fontWeight: 300, margin: 0 }}>Your sankalp card is offered in temple archana near Kashi Vishwanath.</p>
+            </RevealOnScroll>
 
-          <RevealOnScroll delay={300}>
-            <div style={{ overflow: 'hidden', background: '#E7DDCD', marginBottom: '22px' }}>
-              <img src={IMAGES.journey.delivery} alt="Delivered with blessings" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.1s cubic-bezier(.2,.7,.2,1)' }} className="product-card-img" />
-            </div>
-            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '13px', color: '#B18F52', letterSpacing: '.14em', marginBottom: '10px' }}>04</div>
-            <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: 'clamp(19px,1.8vw,25px)', margin: '0 0 10px' }}>Delivered with blessings</h3>
-            <p style={{ fontSize: '13.5px', lineHeight: 1.75, color: '#5C5147', fontWeight: 300, margin: 0 }}>Your kit reaches your home, ready for your ritual.</p>
-          </RevealOnScroll>
+            <RevealOnScroll variant="fall" delay={360}>
+              <div style={{ overflow: 'hidden', background: '#DFD3C0', borderRadius: '3px', marginBottom: '22px' }}>
+                <img src={IMAGES.journey.packed} alt="Prepared and packed" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.1s cubic-bezier(.2,.7,.2,1)' }} className="product-card-img" />
+              </div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '13px', color: '#B18F52', letterSpacing: '.14em', marginBottom: '10px' }}>03</div>
+              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: 'clamp(19px,1.8vw,25px)', margin: '0 0 10px', color: '#17130F' }}>Prepared &amp; packed</h3>
+              <p style={{ fontSize: '13.5px', lineHeight: 1.75, color: '#5C5147', fontWeight: 300, margin: 0 }}>Sacred items and your sankalp card, packed respectfully to preserve purity.</p>
+            </RevealOnScroll>
+
+            <RevealOnScroll variant="fall" delay={540}>
+              <div style={{ overflow: 'hidden', background: '#DFD3C0', borderRadius: '3px', marginBottom: '22px' }}>
+                <img src={IMAGES.journey.delivery} alt="Delivered with blessings" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.1s cubic-bezier(.2,.7,.2,1)' }} className="product-card-img" />
+              </div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '13px', color: '#B18F52', letterSpacing: '.14em', marginBottom: '10px' }}>04</div>
+              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: 'clamp(19px,1.8vw,25px)', margin: '0 0 10px', color: '#17130F' }}>Delivered with blessings</h3>
+              <p style={{ fontSize: '13.5px', lineHeight: 1.75, color: '#5C5147', fontWeight: 300, margin: 0 }}>Your kit reaches your home, ready for your ritual.</p>
+            </RevealOnScroll>
+          </div>
         </div>
-      </section>
+      </ScrollBackgroundSection>
 
-      {/* 3. Inside the Kit Breakdown */}
-      <section style={{ background: '#EFE7DA', padding: 'clamp(66px,11vh,140px) 0' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 clamp(20px,4vw,56px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,340px), 1fr))', gap: 'clamp(36px,6vw,88px)', alignItems: 'center' }}>
-          <RevealOnScroll style={{ overflow: 'hidden', background: '#E3D9C8' }}>
+      {/* 3. Inside the Kit Breakdown (Kashi Obsidian Theme - Dark Nav Theme) */}
+      <ScrollBackgroundSection navTheme="dark" defaultBg="#FAF5EC" activeBg="#1C1410">
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(66px,11vh,140px) clamp(20px,4vw,56px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,340px), 1fr))', gap: 'clamp(36px,6vw,88px)', alignItems: 'center' }}>
+          {/* SELECTIVE BOLD GOLD BORDER around Inside the Kit showcase image */}
+          <RevealOnScroll variant="zoom" style={{ overflow: 'hidden', background: '#14100D', borderRadius: '3px', border: '2px solid #B18F52', boxShadow: '0 20px 48px rgba(0,0,0,0.6)' }}>
             <img src={IMAGES.products.blessedKit.insideUrl} alt="What is inside a Blessed Kit" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.2s cubic-bezier(.2,.7,.2,1)' }} className="product-card-img" />
           </RevealOnScroll>
           <RevealOnScroll delay={150}>
-            <span style={{ fontSize: '10.5px', letterSpacing: '.32em', textTransform: 'uppercase', color: '#A2543A' }}>Inside the kit</span>
-            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(30px,4.2vw,58px)', lineHeight: 1.06, margin: '18px 0 28px', maxWidth: '20ch' }}>
+            <span style={{ fontSize: '10.5px', letterSpacing: '.32em', textTransform: 'uppercase', color: '#E8CFA3' }}>Inside the kit</span>
+            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(30px,4.2vw,58px)', lineHeight: 1.06, margin: '18px 0 28px', maxWidth: '20ch', color: '#F8F2E6' }}>
               What's inside a Blessed Kit
             </h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,170px), 1fr))', gap: '2px 26px' }}>
@@ -146,17 +151,64 @@ export default function BlessedKitPage() {
                 'Gangajal',
                 'Sacred thread (kalava)'
               ].map(item => (
-                <div key={item} style={{ padding: '15px 0', borderTop: '1px solid rgba(23,19,15,.14)', fontSize: '14px', color: '#3D352D', fontWeight: 300 }}>
+                <div key={item} style={{ padding: '15px 0', borderTop: '1px solid rgba(177,143,82,.25)', fontSize: '14px', color: '#F8F2E6', fontWeight: 300 }}>
                   {item}
                 </div>
               ))}
             </div>
-            <Link href="/product/blessed-kit" style={{ display: 'inline-flex', marginTop: '34px', background: '#17130F', color: '#F7F2E9', fontSize: '11.5px', letterSpacing: '.2em', textTransform: 'uppercase', padding: '17px 32px', borderRadius: '2px', textDecoration: 'none' }} className="cart-btn">
+            <Link href="/product/blessed-kit" style={{ display: 'inline-flex', marginTop: '34px', background: '#F7F2E9', color: '#17130F', fontSize: '11.5px', letterSpacing: '.2em', textTransform: 'uppercase', padding: '17px 32px', borderRadius: '2px', textDecoration: 'none', transition: 'background .35s, color .35s' }} className="cart-btn">
               View product details
             </Link>
           </RevealOnScroll>
         </div>
-      </section>
+      </ScrollBackgroundSection>
+
+      {/* 4. Sacred Devotional Assurance (Sandalwood Cream Theme - Light Nav Theme) */}
+      <ScrollBackgroundSection navTheme="light" defaultBg="#1C1410" activeBg="#F4EBD9">
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(66px,11vh,120px) clamp(20px,4vw,56px)', textAlign: 'center' }}>
+          <RevealOnScroll style={{ maxWidth: '840px', margin: '0 auto' }}>
+            <span style={{ fontSize: '10.5px', letterSpacing: '.34em', textTransform: 'uppercase', color: '#8A7B6B' }}>Sacred Promise</span>
+            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(32px,4.5vw,62px)', lineHeight: 1.08, margin: '18px 0 24px', color: '#17130F' }}>
+              Prepared with reverence. Delivered with purity.
+            </h2>
+            <p style={{ fontSize: 'clamp(14.5px,1.25vw,17.5px)', lineHeight: 1.85, color: '#5C5147', fontWeight: 300, marginBottom: '40px' }}>
+              Every item in the Blessed Kit is handled with sacred intent. From temple archana offering near Kashi Vishwanath to safe tamper-evident delivery, we ensure your devotion reaches home unhindered.
+            </p>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,220px), 1fr))', gap: '24px', textAlign: 'left', marginBottom: '48px' }}>
+              <div style={{ background: '#FAF5EC', padding: '28px 24px', borderRadius: '4px', border: '1px solid rgba(177,143,82,0.2)' }}>
+                <div style={{ fontSize: '18px', marginBottom: '8px', color: '#B18F52' }}>🪔</div>
+                <h4 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '20px', fontWeight: 400, color: '#17130F', margin: '0 0 8px' }}>Authentic Samagri</h4>
+                <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#5C5147', margin: 0 }}>Sourced directly from traditional artisans and pure sacred origins.</p>
+              </div>
+
+              <div style={{ background: '#FAF5EC', padding: '28px 24px', borderRadius: '4px', border: '1px solid rgba(177,143,82,0.2)' }}>
+                <div style={{ fontSize: '18px', marginBottom: '8px', color: '#B18F52' }}>📜</div>
+                <h4 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '20px', fontWeight: 400, color: '#17130F', margin: '0 0 8px' }}>Name &amp; Gotra Sankalp</h4>
+                <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#5C5147', margin: 0 }}>Individual sankalp card included and offered in holy archana.</p>
+              </div>
+
+              <div style={{ background: '#FAF5EC', padding: '28px 24px', borderRadius: '4px', border: '1px solid rgba(177,143,82,0.2)' }}>
+                <div style={{ fontSize: '18px', marginBottom: '8px', color: '#B18F52' }}>📦</div>
+                <h4 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '20px', fontWeight: 400, color: '#17130F', margin: '0 0 8px' }}>Purity Protected</h4>
+                <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#5C5147', margin: 0 }}>Sealed Gangajal containers and moisture-proof protective packaging.</p>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+              <button
+                type="button"
+                onClick={handleClaim}
+                style={{ background: '#17130F', color: '#F7F2E9', border: 'none', fontSize: '12px', letterSpacing: '.2em', textTransform: 'uppercase', padding: '18px 36px', borderRadius: '2px', cursor: 'pointer', transition: 'background .35s' }}
+                className="cart-btn"
+              >
+                Claim your Blessed Kit (₹1,499)
+              </button>
+            </div>
+          </RevealOnScroll>
+        </div>
+      </ScrollBackgroundSection>
     </div>
   );
 }
+

@@ -78,8 +78,11 @@ export default function SiteFooter() {
       <footer style={{ background: '#100C0A', color: 'rgba(242,235,224,.82)' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(56px,9vh,104px) clamp(20px,4vw,56px) clamp(30px,4vh,48px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,200px),1fr))', gap: 'clamp(32px,4vw,64px)' }}>
           <div style={{ maxWidth: '300px' }}>
-            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '24px', letterSpacing: '.28em', color: '#F2EBE0', marginBottom: '8px' }}>IVA</div>
-            <div style={{ fontSize: '9px', letterSpacing: '.42em', textTransform: 'uppercase', color: '#8A7B6B', marginBottom: '22px' }}>Essentials</div>
+            <img
+              src="/images/iva-logo-light.png"
+              alt="IVA Essentials"
+              style={{ height: '46px', width: 'auto', marginBottom: '16px', objectFit: 'contain' }}
+            />
             <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontSize: '17px', lineHeight: 1.5, color: 'rgba(242,235,224,.72)', margin: 0 }}>
               Ancient rituals. Reimagined for modern life.
             </p>

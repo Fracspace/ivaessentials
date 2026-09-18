@@ -3,14 +3,16 @@
 import React from 'react';
 import Link from 'next/link';
 import RevealOnScroll from '../components/RevealOnScroll';
+import ScrollBackgroundSection from '../components/ScrollBackgroundSection';
 import ParallaxImage from '../components/ParallaxImage';
 import { IMAGES } from '../lib/images';
 
 export default function HomePage() {
   return (
-    <div style={{ background: '#F7F2E9' }}>
-      {/* 1. Hero Section */}
+    <div style={{ background: '#14100D' }}>
+      {/* 1. Hero Section (UNTOUCHED with background image - Dark Theme) */}
       <section
+        data-nav-theme="dark"
         style={{
           position: 'relative',
           minHeight: 'min(92vh, 880px)',
@@ -50,8 +52,8 @@ export default function HomePage() {
         >
           <RevealOnScroll style={{ maxWidth: '660px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: 'clamp(20px,3vh,34px)' }}>
-              <span style={{ width: '34px', height: '1px', background: '#B18F52', display: 'block' }} />
-              <span style={{ fontSize: '10.5px', letterSpacing: '.34em', textTransform: 'uppercase', color: '#D9BE8B' }}>
+              <span style={{ width: '34px', height: '2px', background: '#17130F', display: 'block' }} />
+              <span style={{ fontSize: '10.5px', letterSpacing: '.34em', textTransform: 'uppercase', color: '#17130F', fontWeight: 600 }}>
                 Sacred essentials since Kashi
               </span>
             </div>
@@ -126,62 +128,65 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. The Idea Section */}
-      <section style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(72px,12vh,150px) clamp(20px,4vw,56px)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,340px), 1fr))', gap: 'clamp(36px,6vw,96px)', alignItems: 'center' }}>
-          <RevealOnScroll>
-            <span style={{ fontSize: '10.5px', letterSpacing: '.32em', textTransform: 'uppercase', color: '#A2543A' }}>
-              The Idea
-            </span>
-            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(32px,4.2vw,60px)', lineHeight: 1.08, margin: '18px 0 26px', maxWidth: '22ch', textWrap: 'balance' }}>
-              Ancient rituals. A contemporary expression.
-            </h2>
-            <p style={{ fontSize: 'clamp(14.5px,1.2vw,17px)', lineHeight: 1.85, color: '#5C5147', maxWidth: '52ch', margin: '0 0 22px', fontWeight: 300, textWrap: 'pretty' }}>
-              IVA Essentials brings together timeless Indian tradition and thoughtful modern design. Each kit is assembled by hand — pure samagri, honest materials, nothing missing and nothing superfluous — so that devotion asks nothing of you but presence.
-            </p>
-            <p style={{ fontSize: 'clamp(14.5px,1.2vw,17px)', lineHeight: 1.85, color: '#5C5147', maxWidth: '52ch', margin: '0 0 34px', fontWeight: 300, textWrap: 'pretty' }}>
-              We believe a ritual should feel unhurried. Everything we make exists to remove the friction between you and that quiet moment.
-            </p>
-            <a
-              href="#collections"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '11.5px', letterSpacing: '.2em', textTransform: 'uppercase', borderBottom: '1px solid #17130F', paddingBottom: '8px', transition: 'color .3s, border-color .3s' }}
-              className="hover-color"
-            >
-              View the collections
-            </a>
-          </RevealOnScroll>
+      {/* 2. The Idea Section (Deep Temple Ebony Theme - Dark Nav Theme) */}
+      <ScrollBackgroundSection navTheme="dark" defaultBg="#14100D" activeBg="#18120E">
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(72px,12vh,150px) clamp(20px,4vw,56px)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,340px), 1fr))', gap: 'clamp(36px,6vw,96px)', alignItems: 'center' }}>
+            <RevealOnScroll>
+              <span style={{ fontSize: '10.5px', letterSpacing: '.32em', textTransform: 'uppercase', color: '#E8CFA3' }}>
+                The Idea
+              </span>
+              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(32px,4.2vw,60px)', lineHeight: 1.08, margin: '18px 0 26px', maxWidth: '22ch', textWrap: 'balance', color: '#F8F2E6' }}>
+                Ancient rituals. A contemporary expression.
+              </h2>
+              <p style={{ fontSize: 'clamp(14.5px,1.2vw,17px)', lineHeight: 1.85, color: 'rgba(248,242,230,.82)', maxWidth: '52ch', margin: '0 0 22px', fontWeight: 300, textWrap: 'pretty' }}>
+                IVA Essentials brings together timeless Indian tradition and thoughtful modern design. Each kit is assembled by hand — pure samagri, honest materials, nothing missing and nothing superfluous — so that devotion asks nothing of you but presence.
+              </p>
+              <p style={{ fontSize: 'clamp(14.5px,1.2vw,17px)', lineHeight: 1.85, color: 'rgba(248,242,230,.82)', maxWidth: '52ch', margin: '0 0 34px', fontWeight: 300, textWrap: 'pretty' }}>
+                We believe a ritual should feel unhurried. Everything we make exists to remove the friction between you and that quiet moment.
+              </p>
+              <a
+                href="#collections"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '11.5px', letterSpacing: '.2em', textTransform: 'uppercase', color: '#E8CFA3', borderBottom: '1px solid #B18F52', paddingBottom: '8px', transition: 'color .3s, border-color .3s', textDecoration: 'none' }}
+                className="hover-color"
+              >
+                View the collections
+              </a>
+            </RevealOnScroll>
 
-          <RevealOnScroll delay={200} style={{ display: 'grid', gridTemplateColumns: '1.1fr .9fr', gap: 'clamp(12px,1.6vw,20px)', alignItems: 'end' }}>
-            <div style={{ overflow: 'hidden', background: '#E7DDCD' }}>
-              <img
-                src={IMAGES.hero.fallbackHands}
-                alt="Hands arranging pooja essentials"
-                style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', transition: 'transform 1.1s cubic-bezier(.2,.7,.2,1)' }}
-                className="product-card-img"
-              />
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,1.6vw,20px)' }}>
-              <div style={{ overflow: 'hidden', background: '#E7DDCD' }}>
+            <RevealOnScroll delay={200} variant="zoom" style={{ display: 'grid', gridTemplateColumns: '1.1fr .9fr', gap: 'clamp(12px,1.6vw,20px)', alignItems: 'end' }}>
+              {/* SELECTIVE GOLD BORDER around feature image */}
+              <div style={{ overflow: 'hidden', background: '#1C1410', borderRadius: '3px', border: '2px solid #B18F52', boxShadow: '0 16px 40px rgba(0,0,0,0.5)' }}>
                 <img
-                  src={IMAGES.products.vishnuSamagri.url}
-                  alt="Curated pooja kit contents"
-                  style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.1s cubic-bezier(.2,.7,.2,1)' }}
+                  src={IMAGES.hero.fallbackHands}
+                  alt="Hands arranging pooja essentials"
+                  style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', transition: 'transform 1.1s cubic-bezier(.2,.7,.2,1)' }}
                   className="product-card-img"
                 />
               </div>
-              <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontSize: 'clamp(15px,1.4vw,19px)', lineHeight: 1.55, color: '#6B5F52', margin: 0 }}>
-                Assembled in Hyderabad. Rooted in Kashi.
-              </p>
-            </div>
-          </RevealOnScroll>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,1.6vw,20px)' }}>
+                <div style={{ overflow: 'hidden', background: '#1C1410', borderRadius: '3px', border: '1px solid rgba(177,143,82,0.3)' }}>
+                  <img
+                    src={IMAGES.products.vishnuSamagri.url}
+                    alt="Curated pooja kit contents"
+                    style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.1s cubic-bezier(.2,.7,.2,1)' }}
+                    className="product-card-img"
+                  />
+                </div>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontSize: 'clamp(15px,1.4vw,19px)', lineHeight: 1.55, color: '#E8CFA3', margin: 0 }}>
+                  Assembled in Hyderabad. Rooted in Kashi.
+                </p>
+              </div>
+            </RevealOnScroll>
+          </div>
         </div>
-      </section>
+      </ScrollBackgroundSection>
 
-      {/* 3. Collections Section */}
-      <section id="collections" style={{ background: '#EFE7DA', padding: 'clamp(72px,12vh,140px) 0' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 clamp(20px,4vw,56px)' }}>
+      {/* 3. Collections Section (Pure Sandalwood Ivory Theme - Light Nav Theme) */}
+      <ScrollBackgroundSection id="collections" navTheme="light" defaultBg="#18120E" activeBg="#FAF5EC">
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(72px,12vh,140px) clamp(20px,4vw,56px)' }}>
           <RevealOnScroll style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 'clamp(36px,6vh,68px)' }}>
-            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(30px,4vw,56px)', lineHeight: 1.1, margin: 0, maxWidth: '18ch' }}>
+            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(30px,4vw,56px)', lineHeight: 1.1, margin: 0, maxWidth: '18ch', color: '#17130F' }}>
               Four ways to keep tradition close.
             </h2>
             <span style={{ fontSize: '11px', letterSpacing: '.24em', textTransform: 'uppercase', color: '#8A7B6B' }}>
@@ -190,8 +195,8 @@ export default function HomePage() {
           </RevealOnScroll>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,300px), 1fr))', gap: 'clamp(20px,3vw,40px)' }}>
-            <RevealOnScroll>
-              <Link href="/blessed-kit" style={{ display: 'block', position: 'relative', overflow: 'hidden', background: '#DFD3C0' }}>
+            <RevealOnScroll variant="float">
+              <Link href="/blessed-kit" style={{ display: 'block', position: 'relative', overflow: 'hidden', background: '#DFD3C0', borderRadius: '3px' }}>
                 <img
                   src={IMAGES.products.blessedKit.url}
                   alt="Blessed Kit"
@@ -209,8 +214,8 @@ export default function HomePage() {
               </Link>
             </RevealOnScroll>
 
-            <RevealOnScroll delay={100}>
-              <Link href="/shop" style={{ display: 'block', position: 'relative', overflow: 'hidden', background: '#DFD3C0' }}>
+            <RevealOnScroll delay={100} variant="float">
+              <Link href="/shop" style={{ display: 'block', position: 'relative', overflow: 'hidden', background: '#DFD3C0', borderRadius: '3px' }}>
                 <img
                   src={IMAGES.products.lakshmiSamagri.url}
                   alt="Pooja essentials"
@@ -228,8 +233,8 @@ export default function HomePage() {
               </Link>
             </RevealOnScroll>
 
-            <RevealOnScroll delay={200}>
-              <Link href="/yatra-kit" style={{ display: 'block', position: 'relative', overflow: 'hidden', background: '#DFD3C0' }}>
+            <RevealOnScroll delay={200} variant="float">
+              <Link href="/yatra-kit" style={{ display: 'block', position: 'relative', overflow: 'hidden', background: '#DFD3C0', borderRadius: '3px' }}>
                 <img
                   src={IMAGES.products.yatraKit.url}
                   alt="Yatra Kit"
@@ -247,8 +252,8 @@ export default function HomePage() {
               </Link>
             </RevealOnScroll>
 
-            <RevealOnScroll delay={300}>
-              <Link href="/shop" style={{ display: 'block', position: 'relative', overflow: 'hidden', background: '#DFD3C0' }}>
+            <RevealOnScroll delay={300} variant="float">
+              <Link href="/shop" style={{ display: 'block', position: 'relative', overflow: 'hidden', background: '#DFD3C0', borderRadius: '3px' }}>
                 <img
                   src={IMAGES.products.sacredGifting.url}
                   alt="Sacred gifting"
@@ -267,107 +272,108 @@ export default function HomePage() {
             </RevealOnScroll>
           </div>
         </div>
-      </section>
+      </ScrollBackgroundSection>
 
-      {/* 4. Signature Section */}
-      <section style={{ maxWidth: '1500px', margin: '0 auto', padding: 'clamp(72px,12vh,150px) clamp(20px,4vw,56px)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,360px), 1fr))', gap: 'clamp(36px,6vw,90px)', alignItems: 'center' }}>
-          <RevealOnScroll style={{ overflow: 'hidden', background: '#E7DDCD' }}>
-            <img
-              src={IMAGES.hero.fallbackSigBlessedKit}
-              alt="The Blessed Kit"
-              style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.3s cubic-bezier(.2,.7,.2,1)' }}
-              className="product-card-img"
-            />
-          </RevealOnScroll>
+      {/* 4. Signature Section (Kashi Obsidian & Copper Theme - Dark Nav Theme) */}
+      <ScrollBackgroundSection navTheme="dark" defaultBg="#FAF5EC" activeBg="#1C1410">
+        <div style={{ maxWidth: '1500px', margin: '0 auto', padding: 'clamp(72px,12vh,150px) clamp(20px,4vw,56px)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,360px), 1fr))', gap: 'clamp(36px,6vw,90px)', alignItems: 'center' }}>
+            {/* SELECTIVE BOLD GOLD BORDER around Signature Blessed Kit feature showcase */}
+            <RevealOnScroll variant="zoom" style={{ overflow: 'hidden', background: '#14100D', borderRadius: '3px', border: '2px solid #B18F52', boxShadow: '0 20px 48px rgba(0,0,0,0.6)' }}>
+              <img
+                src={IMAGES.hero.fallbackSigBlessedKit}
+                alt="The Blessed Kit"
+                style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.3s cubic-bezier(.2,.7,.2,1)' }}
+                className="product-card-img"
+              />
+            </RevealOnScroll>
 
-          <RevealOnScroll delay={150} style={{ maxWidth: '520px' }}>
-            <span style={{ fontSize: '10.5px', letterSpacing: '.32em', textTransform: 'uppercase', color: '#A2543A' }}>
-              Signature
-            </span>
-            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(34px,4.6vw,66px)', lineHeight: 1.04, margin: '18px 0 22px' }}>
-              The Blessed Kit
-            </h2>
-            <p style={{ fontSize: 'clamp(15px,1.25vw,18px)', lineHeight: 1.8, color: '#5C5147', fontWeight: 300, margin: '0 0 30px', maxWidth: '46ch', textWrap: 'pretty' }}>
-              Everything you need for a sacred ritual, thoughtfully brought together — with your sankalp card placed inside, and offerings prepared with reverence near Kashi Vishwanath.
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', margin: '0 0 36px', padding: '26px 0', borderTop: '1px solid rgba(23,19,15,.14)', borderBottom: '1px solid rgba(23,19,15,.14)' }}>
-              <div style={{ display: 'flex', gap: '14px', alignItems: 'baseline' }}>
-                <span style={{ width: '5px', height: '5px', background: '#B18F52', borderRadius: '50%', flex: 'none', transform: 'translateY(-3px)' }} />
-                <span style={{ fontSize: '14px', color: '#3D352D', fontWeight: 300 }}>Complete samagri — nothing missing, everything in its place</span>
+            <RevealOnScroll delay={150} style={{ maxWidth: '520px' }}>
+              <span style={{ fontSize: '10.5px', letterSpacing: '.32em', textTransform: 'uppercase', color: '#E8CFA3' }}>
+                Signature
+              </span>
+              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(34px,4.6vw,66px)', lineHeight: 1.04, margin: '18px 0 22px', color: '#F8F2E6' }}>
+                The Blessed Kit
+              </h2>
+              <p style={{ fontSize: 'clamp(15px,1.25vw,18px)', lineHeight: 1.8, color: 'rgba(248,242,230,.84)', fontWeight: 300, margin: '0 0 30px', maxWidth: '46ch', textWrap: 'pretty' }}>
+                Everything you need for a sacred ritual, thoughtfully brought together — with your sankalp card placed inside, and offerings prepared with reverence near Kashi Vishwanath.
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', margin: '0 0 36px', padding: '26px 0', borderTop: '1px solid rgba(177,143,82,.25)', borderBottom: '1px solid rgba(177,143,82,.25)' }}>
+                <div style={{ display: 'flex', gap: '14px', alignItems: 'baseline' }}>
+                  <span style={{ width: '6px', height: '6px', background: '#B18F52', borderRadius: '50%', flex: 'none', transform: 'translateY(-3px)' }} />
+                  <span style={{ fontSize: '14px', color: '#F8F2E6', fontWeight: 300 }}>Complete samagri — nothing missing, everything in its place</span>
+                </div>
+                <div style={{ display: 'flex', gap: '14px', alignItems: 'baseline' }}>
+                  <span style={{ width: '6px', height: '6px', background: '#B18F52', borderRadius: '50%', flex: 'none', transform: 'translateY(-3px)' }} />
+                  <span style={{ fontSize: '14px', color: '#F8F2E6', fontWeight: 300 }}>Sankalp card prepared in your name and gotra</span>
+                </div>
+                <div style={{ display: 'flex', gap: '14px', alignItems: 'baseline' }}>
+                  <span style={{ width: '6px', height: '6px', background: '#B18F52', borderRadius: '50%', flex: 'none', transform: 'translateY(-3px)' }} />
+                  <span style={{ fontSize: '14px', color: '#F8F2E6', fontWeight: 300 }}>Packed respectfully, delivered across India</span>
+                </div>
               </div>
-              <div style={{ display: 'flex', gap: '14px', alignItems: 'baseline' }}>
-                <span style={{ width: '5px', height: '5px', background: '#B18F52', borderRadius: '50%', flex: 'none', transform: 'translateY(-3px)' }} />
-                <span style={{ fontSize: '14px', color: '#3D352D', fontWeight: 300 }}>Sankalp card prepared in your name and gotra</span>
-              </div>
-              <div style={{ display: 'flex', gap: '14px', alignItems: 'baseline' }}>
-                <span style={{ width: '5px', height: '5px', background: '#B18F52', borderRadius: '50%', flex: 'none', transform: 'translateY(-3px)' }} />
-                <span style={{ fontSize: '14px', color: '#3D352D', fontWeight: 300 }}>Packed respectfully, delivered across India</span>
-              </div>
-            </div>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(18px,3vw,36px)', alignItems: 'center' }}>
-              <div>
-                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(28px,3vw,40px)', lineHeight: 1 }}>₹1,499</div>
-                <div style={{ fontSize: '10.5px', letterSpacing: '.2em', textTransform: 'uppercase', color: '#8A7B6B', marginTop: '6px' }}>Inclusive of taxes</div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(18px,3vw,36px)', alignItems: 'center' }}>
+                <div>
+                  <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(28px,3vw,40px)', lineHeight: 1, color: '#E8CFA3' }}>₹1,499</div>
+                  <div style={{ fontSize: '10.5px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'rgba(248,242,230,.6)', marginTop: '6px' }}>Inclusive of taxes</div>
+                </div>
+                <Link
+                  href="/product/blessed-kit"
+                  style={{
+                    background: '#F7F2E9',
+                    color: '#17130F',
+                    fontSize: '12px',
+                    letterSpacing: '.2em',
+                    textTransform: 'uppercase',
+                    padding: '18px 34px',
+                    borderRadius: '2px',
+                    transition: 'background .35s, color .35s',
+                    textDecoration: 'none'
+                  }}
+                  className="cart-btn"
+                >
+                  Explore Blessed Kit
+                </Link>
               </div>
-              <Link
-                href="/product/blessed-kit"
-                style={{
-                  background: '#17130F',
-                  color: '#F7F2E9',
-                  fontSize: '12px',
-                  letterSpacing: '.2em',
-                  textTransform: 'uppercase',
-                  padding: '18px 34px',
-                  borderRadius: '2px',
-                  transition: 'background .35s',
-                  textDecoration: 'none'
-                }}
-                className="cart-btn"
-              >
-                Explore Blessed Kit
-              </Link>
-            </div>
-          </RevealOnScroll>
+            </RevealOnScroll>
+          </div>
         </div>
-      </section>
+      </ScrollBackgroundSection>
 
-      {/* 5. Philosophy Section */}
-      <section style={{ background: '#F2EADD', padding: 'clamp(72px,12vh,140px) 0' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 clamp(20px,4vw,56px)' }}>
-
-
+      {/* 5. Philosophy Section (Warm Sandstone Theme - Light Nav Theme) */}
+      <ScrollBackgroundSection navTheme="light" defaultBg="#1C1410" activeBg="#F4EBD9">
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(72px,12vh,140px) clamp(20px,4vw,56px)' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,230px), 1fr))', gap: 'clamp(24px,3vw,44px)' }}>
-            <RevealOnScroll style={{ paddingTop: '26px', borderTop: '1px solid rgba(23,19,15,.18)' }}>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '14px', letterSpacing: '.14em', color: '#B18F52', marginBottom: '18px' }}>01</div>
-              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: 'clamp(20px,1.9vw,27px)', margin: '0 0 12px', lineHeight: 1.25 }}>Thoughtfully Curated</h3>
+            <RevealOnScroll variant="fall" delay={0} style={{ paddingTop: '26px', borderTop: '3px solid #B18F52' }}>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '15px', letterSpacing: '.14em', color: '#B18F52', marginBottom: '18px', fontWeight: 600 }}>01</div>
+              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: 'clamp(20px,1.9vw,27px)', margin: '0 0 12px', lineHeight: 1.25, color: '#17130F' }}>Thoughtfully Curated</h3>
               <p style={{ fontSize: '14px', lineHeight: 1.75, color: '#5C5147', fontWeight: 300, margin: 0 }}>Every item has a purpose. Nothing is included to fill a box.</p>
             </RevealOnScroll>
 
-            <RevealOnScroll delay={100} style={{ paddingTop: '26px', borderTop: '1px solid rgba(23,19,15,.18)' }}>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '14px', letterSpacing: '.14em', color: '#B18F52', marginBottom: '18px' }}>02</div>
-              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: 'clamp(20px,1.9vw,27px)', margin: '0 0 12px', lineHeight: 1.25 }}>Rooted in Tradition</h3>
+            <RevealOnScroll variant="fall" delay={180} style={{ paddingTop: '26px', borderTop: '3px solid #B18F52' }}>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '15px', letterSpacing: '.14em', color: '#B18F52', marginBottom: '18px', fontWeight: 600 }}>02</div>
+              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: 'clamp(20px,1.9vw,27px)', margin: '0 0 12px', lineHeight: 1.25, color: '#17130F' }}>Rooted in Tradition</h3>
               <p style={{ fontSize: '14px', lineHeight: 1.75, color: '#5C5147', fontWeight: 300, margin: 0 }}>Inspired by timeless Indian rituals and the customs that carry them.</p>
             </RevealOnScroll>
 
-            <RevealOnScroll delay={200} style={{ paddingTop: '26px', borderTop: '1px solid rgba(23,19,15,.18)' }}>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '14px', letterSpacing: '.14em', color: '#B18F52', marginBottom: '18px' }}>03</div>
-              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: 'clamp(20px,1.9vw,27px)', margin: '0 0 12px', lineHeight: 1.25 }}>Designed for Modern Life</h3>
+            <RevealOnScroll variant="fall" delay={360} style={{ paddingTop: '26px', borderTop: '3px solid #B18F52' }}>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '15px', letterSpacing: '.14em', color: '#B18F52', marginBottom: '18px', fontWeight: 600 }}>03</div>
+              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: 'clamp(20px,1.9vw,27px)', margin: '0 0 12px', lineHeight: 1.25, color: '#17130F' }}>Designed for Modern Life</h3>
               <p style={{ fontSize: '14px', lineHeight: 1.75, color: '#5C5147', fontWeight: 300, margin: 0 }}>Simple, beautiful and effortless to use in a small city home.</p>
             </RevealOnScroll>
 
-            <RevealOnScroll delay={300} style={{ paddingTop: '26px', borderTop: '1px solid rgba(23,19,15,.18)' }}>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '14px', letterSpacing: '.14em', color: '#B18F52', marginBottom: '18px' }}>04</div>
-              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: 'clamp(20px,1.9vw,27px)', margin: '0 0 12px', lineHeight: 1.25 }}>Made with Reverence</h3>
+            <RevealOnScroll variant="fall" delay={540} style={{ paddingTop: '26px', borderTop: '3px solid #B18F52' }}>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '15px', letterSpacing: '.14em', color: '#B18F52', marginBottom: '18px', fontWeight: 600 }}>04</div>
+              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: 'clamp(20px,1.9vw,27px)', margin: '0 0 12px', lineHeight: 1.25, color: '#17130F' }}>Made with Reverence</h3>
               <p style={{ fontSize: '14px', lineHeight: 1.75, color: '#5C5147', fontWeight: 300, margin: 0 }}>Prepared with care, respect and an unhurried hand.</p>
             </RevealOnScroll>
           </div>
         </div>
-      </section>
+      </ScrollBackgroundSection>
 
-      {/* 6. Kashi Section with Parallax */}
-      <section style={{ position: 'relative', overflow: 'hidden', background: '#14100D' }}>
+      {/* 6. Kashi Section with Parallax (Intact Dark Theme) */}
+      <section data-nav-theme="dark" style={{ position: 'relative', overflow: 'hidden', background: '#14100D' }}>
         <ParallaxImage
           src={IMAGES.hero.fallbackKashiSilhouette}
           alt="Temple silhouette at dusk"

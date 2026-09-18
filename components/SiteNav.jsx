@@ -10,8 +10,37 @@ export default function SiteNav({ active }) {
   const pathname = usePathname();
   const { itemCount } = useCart();
   const [compact, setCompact] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isSearchMounted, setIsSearchMounted] = useState(false);
+  const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const closeSearchTimeoutRef = React.useRef(null);
+
+  const openSearch = () => {
+    if (closeSearchTimeoutRef.current) clearTimeout(closeSearchTimeoutRef.current);
+    setIsSearchMounted(true);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setIsSearchActive(true);
+      });
+    });
+  };
+
+  const closeSearch = () => {
+    setIsSearchActive(false);
+    if (closeSearchTimeoutRef.current) clearTimeout(closeSearchTimeoutRef.current);
+    closeSearchTimeoutRef.current = setTimeout(() => {
+      setIsSearchMounted(false);
+      setSearchQuery('');
+    }, 420);
+  };
+
+  const toggleSearch = () => {
+    if (isSearchActive) {
+      closeSearch();
+    } else {
+      openSearch();
+    }
+  };
 
   // Sample searchable products
   const productsList = [
@@ -74,13 +103,30 @@ export default function SiteNav({ active }) {
     );
   });
 
+  const [scrolled, setScrolled] = useState(false);
+  const [activeNavTheme, setActiveNavTheme] = useState('dark');
+
   useEffect(() => {
     let ticking = false;
     const onScroll = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
-        setCompact(window.scrollY > 60);
+        const isScrolledNow = window.scrollY > 260;
+        setScrolled(isScrolledNow);
+        setCompact(window.scrollY > 280);
+
+        // Detect section navTheme near top header (y = 80px)
+        const sections = document.querySelectorAll('[data-nav-theme]');
+        let currentTheme = 'dark';
+        sections.forEach(sec => {
+          const rect = sec.getBoundingClientRect();
+          if (rect.top <= 140 && rect.bottom >= 40) {
+            currentTheme = sec.getAttribute('data-nav-theme') || 'dark';
+          }
+        });
+        setActiveNavTheme(currentTheme);
+
         ticking = false;
       });
     };
@@ -88,6 +134,16 @@ export default function SiteNav({ active }) {
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isSearchActive) {
+        closeSearch();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isSearchActive]);
 
   const links = [
     { label: 'Shop', href: '/shop', key: 'shop' },
@@ -103,24 +159,49 @@ export default function SiteNav({ active }) {
     return false;
   };
 
-  return (
-    <div style={{ position: 'sticky', top: 0, zIndex: 50, background: '#F7F2E9' }}>
+  const isDarkHeroPage = pathname === '/' || pathname === '/blessed-kit' || pathname === '/yatra-kit';
+  const isTopDarkHero = isDarkHeroPage && !scrolled;
+  const isDarkCurrentNav = isTopDarkHero || (scrolled && activeNavTheme === 'dark');
 
+  const textColor = isDarkCurrentNav ? '#F8F2E6' : '#17130F';
+  const subTextColor = isDarkCurrentNav ? '#E8CFA3' : '#8A7B6B';
+  const actionColor = isDarkCurrentNav ? '#E8CFA3' : '#5C5147';
+  const textShadowStyle = isTopDarkHero ? '0 1px 3px rgba(0,0,0,0.4)' : 'none';
+
+  return (
+    <div
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        width: '100%',
+        background: 'transparent'
+      }}
+    >
       {/* Main Header */}
       <header
         style={{
-          background: compact ? 'rgba(247,242,233,.97)' : 'rgba(247,242,233,.9)',
-          backdropFilter: 'blur(14px)',
-          borderBottom: '1px solid rgba(23,19,15,.09)',
-          boxShadow: compact ? '0 1px 24px rgba(23,19,15,.07)' : 'none',
-          transition: 'background .35s ease, box-shadow .35s ease, padding .35s ease'
+          background: scrolled
+            ? (activeNavTheme === 'dark' ? 'rgba(20,16,13,.88)' : 'rgba(250,245,236,.90)')
+            : 'transparent',
+          backdropFilter: scrolled ? 'blur(20px) saturate(140%)' : 'none',
+          WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(140%)' : 'none',
+          borderBottom: scrolled
+            ? (activeNavTheme === 'dark' ? '1px solid rgba(177,143,82,.25)' : '1px solid rgba(177,143,82,.18)')
+            : 'none',
+          boxShadow: scrolled
+            ? (activeNavTheme === 'dark' ? '0 8px 32px rgba(0,0,0,.45)' : '0 4px 20px rgba(23,19,15,.05)')
+            : 'none',
+          transition: 'background .65s cubic-bezier(.16,1,.3,1), backdrop-filter .65s cubic-bezier(.16,1,.3,1), -webkit-backdrop-filter .65s cubic-bezier(.16,1,.3,1), border-color .65s ease, box-shadow .65s ease, padding .4s ease'
         }}
       >
         <div
           style={{
             maxWidth: '1400px',
             margin: '0 auto',
-            padding: compact ? '12px clamp(20px,4vw,56px)' : '22px clamp(20px,4vw,56px)',
+            padding: compact ? '10px clamp(20px,4vw,56px)' : '18px clamp(20px,4vw,56px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -129,29 +210,24 @@ export default function SiteNav({ active }) {
           }}
         >
           {/* Brand Logo */}
-          <Link href="/" style={{ display: 'flex', flexDirection: 'column', gap: '3px', flex: 'none', textDecoration: 'none' }}>
-            <span
+          <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', flex: 'none', textDecoration: 'none' }}>
+            <img
+              src={isDarkCurrentNav ? IMAGES.logo.lightText : IMAGES.logo.darkText}
+              alt="IVA Essentials"
               style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: 'clamp(19px,2.2vw,25px)',
-                letterSpacing: '.3em',
-                fontWeight: 500,
-                lineHeight: 1,
-                color: '#17130F'
+                height: compact ? '34px' : '42px',
+                width: 'auto',
+                objectFit: 'contain',
+                transition: 'height .35s ease'
               }}
-            >
-              IVA
-            </span>
-            <span style={{ fontSize: '8.5px', letterSpacing: '.42em', color: '#8A7B6B', textTransform: 'uppercase' }}>
-              Essentials
-            </span>
+            />
           </Link>
 
           {/* Desktop Nav Links */}
           <nav
             style={{
               display: 'flex',
-              gap: 'clamp(16px,2.4vw,36px)',
+              gap: 'clamp(12px,1.8vw,28px)',
               alignItems: 'center',
               justifyContent: 'center',
               flexWrap: 'wrap'
@@ -169,13 +245,13 @@ export default function SiteNav({ active }) {
                     letterSpacing: '.16em',
                     textTransform: 'uppercase',
                     whiteSpace: 'nowrap',
-                    paddingBottom: '3px',
-                    color: isCurrent ? '#17130F' : '#17130F',
-                    borderBottom: isCurrent ? '1px solid #17130F' : '1px solid transparent',
-                    transition: 'border-color .3s, color .3s',
+                    fontWeight: 500,
+                    color: textColor,
+                    textShadow: textShadowStyle,
+                    borderBottom: isCurrent ? `1px solid ${isDarkCurrentNav ? '#E8CFA3' : '#17130F'}` : '1px solid transparent',
                     textDecoration: 'none'
                   }}
-                  className="nav-link-item"
+                  className="nav-pill-item"
                 >
                   {link.label}
                 </Link>
@@ -184,28 +260,29 @@ export default function SiteNav({ active }) {
           </nav>
 
           {/* Right Actions */}
-          <div style={{ flex: 'none', display: 'flex', gap: 'clamp(14px,2vw,26px)', alignItems: 'center', whiteSpace: 'nowrap' }}>
+          <div style={{ flex: 'none', display: 'flex', gap: 'clamp(10px,1.4vw,20px)', alignItems: 'center', whiteSpace: 'nowrap' }}>
 
             {/* Search Trigger Button */}
             <button
               type="button"
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
+              onClick={toggleSearch}
               style={{
                 background: 'none',
                 border: 'none',
                 fontSize: '11.5px',
                 letterSpacing: '.14em',
                 textTransform: 'uppercase',
-                color: isSearchOpen ? '#17130F' : '#6B5F52',
+                fontWeight: 500,
+                color: isSearchActive ? textColor : actionColor,
+                textShadow: textShadowStyle,
                 cursor: 'pointer',
-                padding: 0,
                 display: 'flex',
                 alignItems: 'center',
                 gap: '6px'
               }}
-              className="hover-color"
+              className="nav-pill-item"
             >
-              <span>Search</span>
+              <span>{isSearchActive ? 'Close' : 'Search'}</span>
             </button>
 
             <Link
@@ -214,11 +291,12 @@ export default function SiteNav({ active }) {
                 fontSize: '11.5px',
                 letterSpacing: '.14em',
                 textTransform: 'uppercase',
-                color: pathname === '/account' ? '#17130F' : '#6B5F52',
-                borderBottom: pathname === '/account' ? '1px solid #17130F' : 'transparent',
+                fontWeight: 500,
+                color: pathname === '/account' ? textColor : actionColor,
+                textShadow: textShadowStyle,
                 textDecoration: 'none'
               }}
-              className="hover-color"
+              className="nav-pill-item"
             >
               Account
             </Link>
@@ -229,11 +307,12 @@ export default function SiteNav({ active }) {
                 fontSize: '11.5px',
                 letterSpacing: '.14em',
                 textTransform: 'uppercase',
-                color: pathname === '/orders' ? '#17130F' : '#6B5F52',
-                borderBottom: pathname === '/orders' ? '1px solid #17130F' : 'transparent',
+                fontWeight: 500,
+                color: pathname === '/orders' ? textColor : actionColor,
+                textShadow: textShadowStyle,
                 textDecoration: 'none'
               }}
-              className="hover-color"
+              className="nav-pill-item"
             >
               Your Orders
             </Link>
@@ -244,14 +323,14 @@ export default function SiteNav({ active }) {
                 fontSize: '11.5px',
                 letterSpacing: '.14em',
                 textTransform: 'uppercase',
-                border: '1px solid rgba(23,19,15,.2)',
-                padding: '9px 16px',
-                borderRadius: '2px',
-                color: '#17130F',
+                fontWeight: 500,
+                border: isDarkCurrentNav ? '1px solid rgba(177,143,82,.5)' : '1px solid rgba(23,19,15,.25)',
+                color: textColor,
+                textShadow: textShadowStyle,
                 textDecoration: 'none',
-                transition: 'background .3s, color .3s, border-color .3s'
+                background: isDarkCurrentNav ? 'rgba(28,20,16,.6)' : 'transparent'
               }}
-              className="cart-btn"
+              className="cart-btn nav-pill-item"
             >
               Cart ({itemCount})
             </Link>
@@ -259,13 +338,19 @@ export default function SiteNav({ active }) {
         </div>
       </header>
 
-      {/* SEARCH MODAL OVERLAY */}
-      {isSearchOpen && (
+      {/* SEARCH MODAL OVERLAY WITH SMOOTH OPEN/CLOSE ANIMATION */}
+      {isSearchMounted && (
         <div style={{
           background: '#EFE7DA',
-          borderBottom: '1px solid rgba(23,19,15,.14)',
-          boxShadow: '0 8px 30px rgba(23,19,15,.08)',
-          padding: '24px clamp(20px,4vw,56px)'
+          borderBottom: isSearchActive ? '1px solid rgba(23,19,15,.14)' : '1px solid transparent',
+          boxShadow: isSearchActive ? '0 12px 36px rgba(23,19,15,.12)' : 'none',
+          padding: isSearchActive ? '24px clamp(20px,4vw,56px)' : '0px clamp(20px,4vw,56px)',
+          maxHeight: isSearchActive ? '850px' : '0px',
+          opacity: isSearchActive ? 1 : 0,
+          transform: isSearchActive ? 'translateY(0) scale(1)' : 'translateY(-14px) scale(0.985)',
+          overflow: 'hidden',
+          transition: 'max-height .45s cubic-bezier(.16,1,.3,1), opacity .38s cubic-bezier(.16,1,.3,1), transform .45s cubic-bezier(.16,1,.3,1), padding .45s cubic-bezier(.16,1,.3,1), border-color .4s ease, box-shadow .4s ease',
+          pointerEvents: isSearchActive ? 'auto' : 'none'
         }}>
           <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
@@ -290,7 +375,7 @@ export default function SiteNav({ active }) {
               />
               <button
                 type="button"
-                onClick={() => { setIsSearchOpen(false); setSearchQuery(''); }}
+                onClick={closeSearch}
                 style={{
                   background: 'none',
                   border: '1px solid rgba(23,19,15,.2)',
@@ -379,7 +464,7 @@ export default function SiteNav({ active }) {
                     <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
                       <Link
                         href="/shop"
-                        onClick={() => setIsSearchOpen(false)}
+                        onClick={closeSearch}
                         style={{
                           background: '#17130F',
                           color: '#F7F2E9',
@@ -395,7 +480,7 @@ export default function SiteNav({ active }) {
                       </Link>
                       <Link
                         href="/contact"
-                        onClick={() => setIsSearchOpen(false)}
+                        onClick={closeSearch}
                         style={{
                           background: 'transparent',
                           border: '1px solid #17130F',
@@ -418,7 +503,7 @@ export default function SiteNav({ active }) {
                       <Link
                         key={item.id}
                         href={item.href}
-                        onClick={() => setIsSearchOpen(false)}
+                        onClick={closeSearch}
                         style={{
                           display: 'flex',
                           gap: '12px',
