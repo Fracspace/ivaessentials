@@ -245,20 +245,27 @@ export default function CheckoutPage() {
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '24px', maxHeight: '300px', overflowY: 'auto' }}>
               {cartItems.map((item) => (
-                <div key={item.id} style={{ display: 'flex', gap: '14px', alignItems: 'center' }}>
-                  <img src={item.image} alt={item.name} style={{ width: '56px', height: '64px', objectFit: 'cover', background: '#E3D9C8' }} />
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '18px', lineHeight: 1.2 }}>{item.name}</div>
-                    <div style={{ fontSize: '11.5px', color: '#8A7B6B' }}>Qty: {item.quantity}</div>
+                <div key={item.id} style={{ display: 'flex', flexDirection: 'column', gap: '6px', borderBottom: '1px solid rgba(23,19,15,.08)', paddingBottom: '12px' }}>
+                  <div style={{ display: 'flex', gap: '14px', alignItems: 'center' }}>
+                    <img src={item.image} alt={item.name} style={{ width: '56px', height: '64px', objectFit: 'cover', background: '#E3D9C8', borderRadius: '2px' }} />
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '18px', lineHeight: 1.2 }}>{item.name}</div>
+                      <div style={{ fontSize: '11.5px', color: '#8A7B6B' }}>Qty: {item.quantity}</div>
+                    </div>
+                    <div style={{ fontSize: '14px' }}>₹{item.price * item.quantity}</div>
                   </div>
-                  <div style={{ fontSize: '14px' }}>₹{item.price * item.quantity}</div>
+                  {(item.sankalpName || item.sankalpGotra) && (
+                    <div style={{ fontSize: '11.5px', color: '#4A3E31', background: '#EFE7DA', padding: '6px 10px', borderRadius: '3px', borderLeft: '2px solid #B18F52' }}>
+                      📿 <strong>Sankalp Card:</strong> {item.sankalpName} {item.sankalpGotra ? `(Gotra: ${item.sankalpGotra})` : ''}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
 
-            {sankalpNote.name && (
-              <div style={{ padding: '14px', background: '#EFE7DA', fontSize: '12.5px', color: '#5C5147', marginBottom: '20px' }}>
-                <strong>Sankalp:</strong> {sankalpNote.name} {sankalpNote.gotra && `(${sankalpNote.gotra})`}
+            {(sankalpNote.name || cartItems.some(i => i.sankalpName)) && (
+              <div style={{ padding: '14px', background: '#EFE7DA', fontSize: '12.5px', color: '#4A3E31', marginBottom: '20px', borderLeft: '3px solid #B18F52', borderRadius: '0 4px 4px 0' }}>
+                <strong>✓ Sankalp Card Included:</strong> Personalised Devotee Sankalp Card will be prepared in Kashi and delivered with your order.
               </div>
             )}
 

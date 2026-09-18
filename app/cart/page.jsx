@@ -52,6 +52,12 @@ export default function CartPage() {
                     <span style={{ fontSize: '12.5px', letterSpacing: '.14em', textTransform: 'uppercase', color: '#8A7B6B' }}>
                       {item.subtitle}
                     </span>
+                    {(item.sankalpName || item.sankalpGotra) && (
+                      <div style={{ fontSize: '12.5px', color: '#4A3E31', background: '#EFE7DA', padding: '6px 12px', borderRadius: '4px', borderLeft: '3px solid #B18F52', marginTop: '2px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <span>📿</span>
+                        <span><strong>Sankalp Card Engraving:</strong> {item.sankalpName} {item.sankalpGotra ? `(Gotra: ${item.sankalpGotra})` : ''}</span>
+                      </div>
+                    )}
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center', marginTop: '6px' }}>
                       <div style={{ display: 'flex', alignItems: 'center', border: '1px solid rgba(23,19,15,.22)', borderRadius: '2px' }}>
                         <button type="button" onClick={() => updateQuantity(item.id, -1)} aria-label="Decrease quantity" style={{ background: 'transparent', border: 'none', fontSize: '17px', color: '#17130F', width: '42px', height: '46px', cursor: 'pointer' }}>–</button>

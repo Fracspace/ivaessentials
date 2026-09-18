@@ -8,7 +8,7 @@ import { IMAGES } from '../../lib/images';
 import { useCart } from '../../context/CartContext';
 
 export default function BlessedKitPage() {
-  const { addItem } = useCart();
+  const { addItem, sankalpNote } = useCart();
 
   const handleClaim = () => {
     addItem({
@@ -18,7 +18,9 @@ export default function BlessedKitPage() {
       price: 1499,
       quantity: 1,
       image: IMAGES.products.blessedKit.heroUrl,
-      href: '/product/blessed-kit'
+      href: '/product/blessed-kit',
+      sankalpName: sankalpNote?.name,
+      sankalpGotra: sankalpNote?.gotra
     });
   };
 

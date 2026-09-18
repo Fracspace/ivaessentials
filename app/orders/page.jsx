@@ -244,6 +244,12 @@ export default function OrdersPage() {
                                   {item.subtitle}
                                 </p>
                               )}
+                              {(item.sankalpName || item.sankalpGotra) && (
+                                <div style={{ fontSize: '12px', color: '#4A3E31', background: '#F2EADD', padding: '4px 8px', borderRadius: '3px', display: 'inline-block', marginBottom: '4px', borderLeft: '2px solid #B18F52' }}>
+                                  📿 <strong>Sankalp Card Engraving:</strong> {item.sankalpName} {item.sankalpGotra ? `(Gotra: ${item.sankalpGotra})` : ''}
+                                </div>
+                              )}
+                              <br />
                               <span style={{ fontSize: '13px', color: '#5C5147' }}>Quantity: {item.quantity}</span>
                             </div>
                             <div style={{ fontSize: '15px', fontWeight: 500, color: '#17130F' }}>

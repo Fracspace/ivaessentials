@@ -75,7 +75,9 @@ export default function ProductDetailPage({ params }) {
       price: product.price,
       quantity: 1,
       image: selectedImg,
-      href: `/product/${id || 'blessed-kit'}`
+      href: `/product/${id || 'blessed-kit'}`,
+      sankalpName: sankalpNote.name,
+      sankalpGotra: sankalpNote.gotra
     });
   };
 

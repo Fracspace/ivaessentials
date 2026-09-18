@@ -1,6 +1,7 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import CartToast from '../components/CartToast';
 
 const CartContext = createContext();
 
@@ -8,6 +9,11 @@ export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [sankalpNote, setSankalpNote] = useState({ name: '', gotra: '', intention: '' });
+  const [toast, setToast] = useState({ visible: false, item: null });
+
+  const hideToast = useCallback(() => {
+    setToast(prev => ({ ...prev, visible: false }));
+  }, []);
 
   // Load cart from localStorage on client mount
   useEffect(() => {
@@ -45,6 +51,9 @@ export function CartProvider({ children }) {
       }
       return [...prev, { ...newItem, quantity: newItem.quantity || 1 }];
     });
+
+    // Trigger pop-up notification when item is added
+    setToast({ visible: true, item: newItem });
   };
 
   const removeItem = (id) => {
@@ -88,10 +97,13 @@ export function CartProvider({ children }) {
         subtotal,
         sankalpNote,
         setSankalpNote,
-        isLoaded
+        isLoaded,
+        toast,
+        hideToast
       }}
     >
       {children}
+      <CartToast />
     </CartContext.Provider>
   );
 }

@@ -8,7 +8,7 @@ import { IMAGES } from '../../lib/images';
 import { useCart } from '../../context/CartContext';
 
 export default function YatraKitPage() {
-  const { addItem } = useCart();
+  const { addItem, sankalpNote } = useCart();
 
   const handleAddToCart = () => {
     addItem({
@@ -18,7 +18,9 @@ export default function YatraKitPage() {
       price: 199,
       quantity: 1,
       image: IMAGES.products.yatraKit.secondaryUrl,
-      href: '/product/yatra-kit'
+      href: '/product/yatra-kit',
+      sankalpName: sankalpNote?.name,
+      sankalpGotra: sankalpNote?.gotra
     });
   };
 
