@@ -7,7 +7,7 @@ import RevealOnScroll from '../../components/RevealOnScroll';
 export default function AccountPage() {
   const [user, setUser] = useState(null);
   const [activeTab, setActiveTab] = useState('signin'); // 'signin' or 'signup'
-  
+
   // Sign In Form State
   const [signInData, setSignInData] = useState({
     email: '',
@@ -93,7 +93,7 @@ export default function AccountPage() {
 
       try {
         localStorage.setItem('iva_user', JSON.stringify(loggedInUser));
-      } catch (err) {}
+      } catch (err) { }
 
       setUser(loggedInUser);
       setMessage({ type: 'success', text: 'Welcome back! You are now signed in.' });
@@ -164,7 +164,7 @@ export default function AccountPage() {
 
       try {
         localStorage.setItem('iva_user', JSON.stringify(newUser));
-      } catch (err) {}
+      } catch (err) { }
 
       setUser(newUser);
       setMessage({ type: 'success', text: 'Account created successfully! Welcome to IVA Essentials.' });
@@ -180,7 +180,7 @@ export default function AccountPage() {
     try {
       localStorage.removeItem('iva_user');
       localStorage.removeItem('iva_token');
-    } catch (e) {}
+    } catch (e) { }
     setUser(null);
     setMessage({ type: 'info', text: 'You have been signed out.' });
   };
@@ -188,7 +188,7 @@ export default function AccountPage() {
   return (
     <div style={{ background: '#F7F2E9', minHeight: '85vh' }}>
       <section style={{ maxWidth: '1200px', margin: '0 auto', padding: 'clamp(110px,13vh,160px) clamp(20px,4vw,56px) clamp(60px,10vh,130px)' }}>
-        
+
         {/* Banner Notification */}
         {message && (
           <div style={{
@@ -213,7 +213,7 @@ export default function AccountPage() {
         {user ? (
           <RevealOnScroll style={{ maxWidth: '780px', margin: '0 auto' }}>
             <div style={{ background: '#EFE7DA', border: '1px solid rgba(23,19,15,.12)', borderRadius: '4px', overflow: 'hidden', boxShadow: '0 4px 20px rgba(23,19,15,.04)' }}>
-              
+
               {/* Header */}
               <div style={{ padding: 'clamp(28px,4vw,42px)', background: '#F2EADD', borderBottom: '1px solid rgba(23,19,15,.12)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}>
                 <div>
@@ -312,7 +312,7 @@ export default function AccountPage() {
         ) : (
           /* LOGGED OUT VIEW: Sign In & Sign Up Auth Tabs */
           <div style={{ maxWidth: '540px', margin: '0 auto' }}>
-            
+
             {/* Page Header */}
             <div style={{ textAlign: 'center', marginBottom: '32px' }}>
               <span style={{ fontSize: '11px', letterSpacing: '.3em', textTransform: 'uppercase', color: '#8A7B6B', display: 'block', marginBottom: '8px' }}>
@@ -367,7 +367,7 @@ export default function AccountPage() {
             {activeTab === 'signin' ? (
               <RevealOnScroll>
                 <form onSubmit={handleSignIn} style={{ background: '#EFE7DA', padding: 'clamp(28px,4vw,40px)', border: '1px solid rgba(23,19,15,.12)', borderRadius: '4px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                  
+
                   <div>
                     <label style={{ display: 'block', fontSize: '11.5px', letterSpacing: '.14em', textTransform: 'uppercase', color: '#5C5147', marginBottom: '8px' }}>
                       Email Address or Mobile Phone *
@@ -375,7 +375,7 @@ export default function AccountPage() {
                     <input
                       type="text"
                       required
-                      placeholder="devotee@example.com"
+                      placeholder="Enter your Mail Here"
                       value={signInData.email}
                       onChange={(e) => setSignInData({ ...signInData, email: e.target.value })}
                       style={{ width: '100%', background: '#F7F2E9', border: '1px solid rgba(23,19,15,.2)', padding: '14px 16px', fontSize: '14px', color: '#17130F', outline: 'none', borderRadius: '2px' }}
@@ -394,7 +394,7 @@ export default function AccountPage() {
                     <input
                       type="password"
                       required
-                      placeholder="••••••••"
+                      placeholder="Enter Your Password"
                       value={signInData.password}
                       onChange={(e) => setSignInData({ ...signInData, password: e.target.value })}
                       style={{ width: '100%', background: '#F7F2E9', border: '1px solid rgba(23,19,15,.2)', padding: '14px 16px', fontSize: '14px', color: '#17130F', outline: 'none', borderRadius: '2px' }}
@@ -442,7 +442,7 @@ export default function AccountPage() {
               /* SIGN UP FORM */
               <RevealOnScroll>
                 <form onSubmit={handleSignUp} style={{ background: '#EFE7DA', padding: 'clamp(28px,4vw,40px)', border: '1px solid rgba(23,19,15,.12)', borderRadius: '4px', display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                  
+
                   <div>
                     <label style={{ display: 'block', fontSize: '11.5px', letterSpacing: '.14em', textTransform: 'uppercase', color: '#5C5147', marginBottom: '6px' }}>
                       Full Name *
@@ -450,7 +450,7 @@ export default function AccountPage() {
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Akhil Sharma"
+                      placeholder="Enter your Name Here"
                       value={signUpData.fullName}
                       onChange={(e) => setSignUpData({ ...signUpData, fullName: e.target.value })}
                       style={{ width: '100%', background: '#F7F2E9', border: '1px solid rgba(23,19,15,.2)', padding: '14px 16px', fontSize: '14px', color: '#17130F', outline: 'none', borderRadius: '2px' }}
@@ -464,7 +464,7 @@ export default function AccountPage() {
                     <input
                       type="email"
                       required
-                      placeholder="devotee@example.com"
+                      placeholder="Enter Your Mail"
                       value={signUpData.email}
                       onChange={(e) => setSignUpData({ ...signUpData, email: e.target.value })}
                       style={{ width: '100%', background: '#F7F2E9', border: '1px solid rgba(23,19,15,.2)', padding: '14px 16px', fontSize: '14px', color: '#17130F', outline: 'none', borderRadius: '2px' }}
@@ -477,7 +477,7 @@ export default function AccountPage() {
                     </label>
                     <input
                       type="tel"
-                      placeholder="+91 98765 43210"
+                      placeholder="Enter Your Number Here"
                       value={signUpData.phone}
                       onChange={(e) => setSignUpData({ ...signUpData, phone: e.target.value })}
                       style={{ width: '100%', background: '#F7F2E9', border: '1px solid rgba(23,19,15,.2)', padding: '14px 16px', fontSize: '14px', color: '#17130F', outline: 'none', borderRadius: '2px' }}
