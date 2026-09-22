@@ -358,12 +358,15 @@ export default function SiteNav({ active }) {
                 borderRadius: '20px',
                 display: 'none',
                 alignItems: 'center',
-                gap: '6px'
+                gap: '6px',
+                transition: 'all 0.3s cubic-bezier(.16,1,.3,1)'
               }}
               className="mobile-menu-btn"
               aria-label="Toggle Mobile Navigation Menu"
             >
-              <span style={{ fontSize: '15px', lineHeight: 1 }}>{isMobileMenuOpen ? '✕' : '☰'}</span>
+              <span style={{ fontSize: '15px', lineHeight: 1, display: 'inline-block', transition: 'transform 0.35s cubic-bezier(.16,1,.3,1)', transform: isMobileMenuOpen ? 'rotate(90deg)' : 'rotate(0deg)' }}>
+                {isMobileMenuOpen ? '✕' : '☰'}
+              </span>
               <span style={{ fontSize: '11px' }}>{isMobileMenuOpen ? 'Close' : 'Menu'}</span>
             </button>
           </div>
@@ -580,11 +583,12 @@ export default function SiteNav({ active }) {
               zIndex: 999,
               background: 'rgba(0, 0, 0, 0.3)',
               backdropFilter: 'blur(3px)',
-              WebkitBackdropFilter: 'blur(3px)'
+              WebkitBackdropFilter: 'blur(3px)',
+              animation: 'ivaBackdropFade 0.3s cubic-bezier(.16,1,.3,1) forwards'
             }}
           />
 
-          {/* Floating Top-Right Window */}
+          {/* Floating Top-Right Window with Smooth Spring Entrance */}
           <div
             style={{
               position: 'fixed',
@@ -605,7 +609,9 @@ export default function SiteNav({ active }) {
               display: 'flex',
               flexDirection: 'column',
               gap: '12px',
-              overflowY: 'auto'
+              overflowY: 'auto',
+              animation: 'ivaPopoverEnter 0.38s cubic-bezier(.16,1,.3,1) forwards',
+              transformOrigin: 'top right'
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: activeNavTheme === 'dark' ? '1px solid rgba(177, 143, 82, 0.2)' : '1px solid rgba(23, 19, 15, 0.08)', paddingBottom: '10px' }}>
@@ -631,7 +637,7 @@ export default function SiteNav({ active }) {
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-              {links.map((link) => (
+              {links.map((link, idx) => (
                 <Link
                   key={link.key}
                   href={link.href}
@@ -649,7 +655,9 @@ export default function SiteNav({ active }) {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    transition: 'background 0.2s ease, transform 0.2s ease'
+                    transition: 'background 0.2s ease, transform 0.2s ease',
+                    animation: `ivaMenuItemEnter 0.35s cubic-bezier(.16,1,.3,1) ${0.04 * (idx + 1)}s forwards`,
+                    opacity: 0
                   }}
                   className="mobile-popover-item"
                 >
@@ -674,7 +682,9 @@ export default function SiteNav({ active }) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  transition: 'background 0.2s ease, transform 0.2s ease'
+                  transition: 'background 0.2s ease, transform 0.2s ease',
+                  animation: 'ivaMenuItemEnter 0.35s cubic-bezier(.16,1,.3,1) 0.22s forwards',
+                  opacity: 0
                 }}
                 className="mobile-popover-item"
               >
@@ -698,7 +708,9 @@ export default function SiteNav({ active }) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  transition: 'background 0.2s ease, transform 0.2s ease'
+                  transition: 'background 0.2s ease, transform 0.2s ease',
+                  animation: 'ivaMenuItemEnter 0.35s cubic-bezier(.16,1,.3,1) 0.26s forwards',
+                  opacity: 0
                 }}
                 className="mobile-popover-item"
               >
@@ -722,7 +734,9 @@ export default function SiteNav({ active }) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  transition: 'background 0.2s ease, transform 0.2s ease'
+                  transition: 'background 0.2s ease, transform 0.2s ease',
+                  animation: 'ivaMenuItemEnter 0.35s cubic-bezier(.16,1,.3,1) 0.30s forwards',
+                  opacity: 0
                 }}
                 className="mobile-popover-item"
               >
@@ -733,7 +747,7 @@ export default function SiteNav({ active }) {
               </Link>
             </div>
 
-            <div style={{ paddingTop: '8px', borderTop: activeNavTheme === 'dark' ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(23,19,15,0.08)' }}>
+            <div style={{ paddingTop: '8px', borderTop: activeNavTheme === 'dark' ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(23,19,15,0.08)', animation: 'ivaMenuItemEnter 0.35s cubic-bezier(.16,1,.3,1) 0.34s forwards', opacity: 0 }}>
               <button
                 type="button"
                 onClick={() => { setIsMobileMenuOpen(false); openSearch(); }}
