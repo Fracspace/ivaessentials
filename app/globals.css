@@ -97,10 +97,26 @@ img {
   text-shadow: none !important;
 }
 
-/* Responsive Desktop Nav */
-@media (max-width: 768px) {
-  .desktop-nav {
-    flex-wrap: wrap;
-    justify-content: flex-start !important;
+/* Responsive Navigation Rules */
+@media (min-width: 1081px) {
+  .mobile-menu-btn {
+    display: none !important;
   }
+}
+
+@media (max-width: 1080px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .desktop-actions {
+    display: none !important;
+  }
+  .mobile-menu-btn {
+    display: inline-flex !important;
+  }
+}
+
+.mobile-popover-item:hover {
+  background: rgba(177, 143, 82, 0.18) !important;
+  transform: translateX(3px);
 }

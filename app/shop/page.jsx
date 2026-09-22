@@ -80,7 +80,7 @@ export default function ShopPage() {
   return (
     <div style={{ background: '#F7F2E9' }}>
       {/* Header Breadcrumbs */}
-      <section style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(48px,9vh,110px) clamp(20px,4vw,56px) clamp(30px,5vh,56px)' }}>
+      <section style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(110px,13vh,160px) clamp(20px,4vw,56px) clamp(30px,5vh,56px)' }}>
         <div style={{ display: 'flex', gap: '10px', alignItems: 'center', fontSize: '10.5px', letterSpacing: '.2em', textTransform: 'uppercase', color: '#8A7B6B', marginBottom: 'clamp(28px,4vh,48px)' }}>
           <Link href="/" style={{ color: '#8A7B6B', textDecoration: 'none' }}>Home</Link>
           <span>/</span>

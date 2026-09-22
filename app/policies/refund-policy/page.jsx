@@ -7,7 +7,7 @@ import RevealOnScroll from '../../../components/RevealOnScroll';
 export default function RefundPolicyPage() {
   return (
     <div style={{ background: '#F7F2E9', minHeight: '100vh', color: '#17130F' }}>
-      <main style={{ maxWidth: '980px', margin: '0 auto', padding: 'clamp(48px,8vh,96px) clamp(20px,4vw,56px) clamp(70px,11vh,130px)' }}>
+      <main style={{ maxWidth: '980px', margin: '0 auto', padding: 'clamp(110px,13vh,160px) clamp(20px,4vw,56px) clamp(70px,11vh,130px)' }}>
         
         {/* Main Title */}
         <RevealOnScroll>

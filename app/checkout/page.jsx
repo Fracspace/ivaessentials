@@ -92,7 +92,7 @@ export default function CheckoutPage() {
 
   return (
     <div style={{ background: '#F7F2E9' }}>
-      <section style={{ maxWidth: '1200px', margin: '0 auto', padding: 'clamp(40px,7vh,80px) clamp(20px,4vw,56px) clamp(60px,10vh,120px)' }}>
+      <section style={{ maxWidth: '1200px', margin: '0 auto', padding: 'clamp(110px,13vh,160px) clamp(20px,4vw,56px) clamp(60px,10vh,120px)' }}>
         <div style={{ marginBottom: '36px' }}>
           <div style={{ display: 'flex', gap: '10px', alignItems: 'center', fontSize: '10.5px', letterSpacing: '.2em', textTransform: 'uppercase', color: '#8A7B6B', marginBottom: '20px' }}>
             <Link href="/cart" style={{ color: '#8A7B6B', textDecoration: 'none' }}>Cart</Link>

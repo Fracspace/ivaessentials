@@ -66,7 +66,7 @@ export default function OrdersPage() {
 
   return (
     <div style={{ background: '#F7F2E9', minHeight: '85vh' }}>
-      <section style={{ maxWidth: '1300px', margin: '0 auto', padding: 'clamp(40px,7vh,90px) clamp(20px,4vw,56px) clamp(60px,10vh,130px)' }}>
+      <section style={{ maxWidth: '1300px', margin: '0 auto', padding: 'clamp(110px,13vh,160px) clamp(20px,4vw,56px) clamp(60px,10vh,130px)' }}>
         
         {/* Header */}
         <div style={{ marginBottom: 'clamp(30px,5vh,48px)' }}>

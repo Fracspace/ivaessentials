@@ -10,6 +10,7 @@ export default function SiteNav({ active }) {
   const pathname = usePathname();
   const { itemCount } = useCart();
   const [compact, setCompact] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchMounted, setIsSearchMounted] = useState(false);
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -145,6 +146,10 @@ export default function SiteNav({ active }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isSearchActive]);
 
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
   const links = [
     { label: 'Shop', href: '/shop', key: 'shop' },
     { label: 'Blessed Kit', href: '/blessed-kit', key: 'blessed' },
@@ -164,9 +169,9 @@ export default function SiteNav({ active }) {
   const isDarkCurrentNav = isTopDarkHero || (scrolled && activeNavTheme === 'dark');
 
   const textColor = isDarkCurrentNav ? '#F8F2E6' : '#17130F';
-  const subTextColor = isDarkCurrentNav ? '#E8CFA3' : '#8A7B6B';
-  const actionColor = isDarkCurrentNav ? '#E8CFA3' : '#5C5147';
-  const textShadowStyle = isTopDarkHero ? '0 1px 3px rgba(0,0,0,0.4)' : 'none';
+  const subTextColor = isDarkCurrentNav ? '#F8F2E6' : '#8A7B6B';
+  const actionColor = isDarkCurrentNav ? '#F8F2E6' : '#17130F';
+  const textShadowStyle = isTopDarkHero ? '0 1px 4px rgba(0,0,0,0.95), 0 2px 10px rgba(0,0,0,0.85)' : 'none';
 
   return (
     <div
@@ -175,7 +180,7 @@ export default function SiteNav({ active }) {
         top: 0,
         left: 0,
         right: 0,
-        zIndex: 50,
+        zIndex: 1000,
         width: '100%',
         background: 'transparent'
       }}
@@ -184,7 +189,7 @@ export default function SiteNav({ active }) {
       <header
         style={{
           background: scrolled
-            ? (activeNavTheme === 'dark' ? 'rgba(20,16,13,.88)' : 'rgba(250,245,236,.90)')
+            ? (activeNavTheme === 'dark' ? 'rgba(20,16,13,.90)' : 'rgba(250,245,236,.92)')
             : 'transparent',
           backdropFilter: scrolled ? 'blur(20px) saturate(140%)' : 'none',
           WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(140%)' : 'none',
@@ -245,7 +250,7 @@ export default function SiteNav({ active }) {
                     letterSpacing: '.16em',
                     textTransform: 'uppercase',
                     whiteSpace: 'nowrap',
-                    fontWeight: 500,
+                    fontWeight: 600,
                     color: textColor,
                     textShadow: textShadowStyle,
                     borderBottom: isCurrent ? `1px solid ${isDarkCurrentNav ? '#E8CFA3' : '#17130F'}` : '1px solid transparent',
@@ -272,7 +277,7 @@ export default function SiteNav({ active }) {
                 fontSize: '11.5px',
                 letterSpacing: '.14em',
                 textTransform: 'uppercase',
-                fontWeight: 500,
+                fontWeight: 600,
                 color: isSearchActive ? textColor : actionColor,
                 textShadow: textShadowStyle,
                 cursor: 'pointer',
@@ -291,12 +296,12 @@ export default function SiteNav({ active }) {
                 fontSize: '11.5px',
                 letterSpacing: '.14em',
                 textTransform: 'uppercase',
-                fontWeight: 500,
+                fontWeight: 600,
                 color: pathname === '/account' ? textColor : actionColor,
                 textShadow: textShadowStyle,
                 textDecoration: 'none'
               }}
-              className="nav-pill-item"
+              className="nav-pill-item desktop-actions"
             >
               Account
             </Link>
@@ -307,12 +312,12 @@ export default function SiteNav({ active }) {
                 fontSize: '11.5px',
                 letterSpacing: '.14em',
                 textTransform: 'uppercase',
-                fontWeight: 500,
+                fontWeight: 600,
                 color: pathname === '/orders' ? textColor : actionColor,
                 textShadow: textShadowStyle,
                 textDecoration: 'none'
               }}
-              className="nav-pill-item"
+              className="nav-pill-item desktop-actions"
             >
               Your Orders
             </Link>
@@ -323,17 +328,44 @@ export default function SiteNav({ active }) {
                 fontSize: '11.5px',
                 letterSpacing: '.14em',
                 textTransform: 'uppercase',
-                fontWeight: 500,
-                border: isDarkCurrentNav ? '1px solid rgba(177,143,82,.5)' : '1px solid rgba(23,19,15,.25)',
+                fontWeight: 600,
+                border: isDarkCurrentNav ? '1px solid rgba(248,242,230,.7)' : '1px solid rgba(23,19,15,.35)',
                 color: textColor,
                 textShadow: textShadowStyle,
                 textDecoration: 'none',
-                background: isDarkCurrentNav ? 'rgba(28,20,16,.6)' : 'transparent'
+                background: isDarkCurrentNav ? 'rgba(20,16,13,.5)' : 'transparent'
               }}
               className="cart-btn nav-pill-item"
             >
               Cart ({itemCount})
             </Link>
+
+            {/* Mobile Hamburger Menu Toggle Button */}
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              style={{
+                background: isDarkCurrentNav ? 'rgba(20,16,13,.6)' : 'rgba(250,245,236,.8)',
+                border: isDarkCurrentNav ? '1px solid rgba(248,242,230,.6)' : '1px solid rgba(23,19,15,.35)',
+                fontSize: '12px',
+                letterSpacing: '.12em',
+                textTransform: 'uppercase',
+                fontWeight: 600,
+                color: textColor,
+                textShadow: textShadowStyle,
+                cursor: 'pointer',
+                padding: '8px 14px',
+                borderRadius: '20px',
+                display: 'none',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+              className="mobile-menu-btn"
+              aria-label="Toggle Mobile Navigation Menu"
+            >
+              <span style={{ fontSize: '15px', lineHeight: 1 }}>{isMobileMenuOpen ? '✕' : '☰'}</span>
+              <span style={{ fontSize: '11px' }}>{isMobileMenuOpen ? 'Close' : 'Menu'}</span>
+            </button>
           </div>
         </div>
       </header>
@@ -531,6 +563,204 @@ export default function SiteNav({ active }) {
 
           </div>
         </div>
+      )}
+
+      {/* MOBILE FLOATING POPOVER MENU WINDOW (TOP RIGHT) */}
+      {isMobileMenuOpen && (
+        <>
+          {/* Backdrop overlay to close when clicking outside */}
+          <div
+            onClick={() => setIsMobileMenuOpen(false)}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 999,
+              background: 'rgba(0, 0, 0, 0.3)',
+              backdropFilter: 'blur(3px)',
+              WebkitBackdropFilter: 'blur(3px)'
+            }}
+          />
+
+          {/* Floating Top-Right Window */}
+          <div
+            style={{
+              position: 'fixed',
+              top: compact ? '58px' : '72px',
+              right: 'clamp(12px, 3vw, 36px)',
+              width: 'min(310px, calc(100vw - 24px))',
+              maxHeight: 'calc(100vh - 90px)',
+              background: activeNavTheme === 'dark' ? 'rgba(20, 16, 13, 0.96)' : 'rgba(252, 248, 240, 0.97)',
+              backdropFilter: 'blur(24px) saturate(140%)',
+              WebkitBackdropFilter: 'blur(24px) saturate(140%)',
+              zIndex: 1001,
+              padding: '16px 18px',
+              borderRadius: '14px',
+              boxShadow: activeNavTheme === 'dark'
+                ? '0 20px 48px -6px rgba(0, 0, 0, 0.65), 0 4px 20px rgba(177, 143, 82, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                : '0 16px 40px -6px rgba(23, 19, 15, 0.25), 0 4px 16px rgba(177, 143, 82, 0.15)',
+              border: activeNavTheme === 'dark' ? '1px solid rgba(177, 143, 82, 0.35)' : '1px solid rgba(177, 143, 82, 0.25)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '12px',
+              overflowY: 'auto'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: activeNavTheme === 'dark' ? '1px solid rgba(177, 143, 82, 0.2)' : '1px solid rgba(23, 19, 15, 0.08)', paddingBottom: '10px' }}>
+              <span style={{ fontSize: '10px', letterSpacing: '.24em', textTransform: 'uppercase', fontWeight: 600, color: activeNavTheme === 'dark' ? '#E8CFA3' : '#8A7B6B' }}>
+                Sacred Menu
+              </span>
+              <button
+                type="button"
+                onClick={() => setIsMobileMenuOpen(false)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '11px',
+                  color: activeNavTheme === 'dark' ? '#E8CFA3' : '#8A7B6B',
+                  cursor: 'pointer',
+                  padding: '2px 6px',
+                  letterSpacing: '.12em',
+                  textTransform: 'uppercase'
+                }}
+              >
+                ✕ Close
+              </button>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+              {links.map((link) => (
+                <Link
+                  key={link.key}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '13px',
+                    fontWeight: 600,
+                    letterSpacing: '.1em',
+                    textTransform: 'uppercase',
+                    color: activeNavTheme === 'dark' ? '#F8F2E6' : '#17130F',
+                    padding: '9px 12px',
+                    borderRadius: '8px',
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    transition: 'background 0.2s ease, transform 0.2s ease'
+                  }}
+                  className="mobile-popover-item"
+                >
+                  <span>{link.label}</span>
+                  <span style={{ fontSize: '12px', opacity: 0.6, color: activeNavTheme === 'dark' ? '#E8CFA3' : '#A2543A' }}>→</span>
+                </Link>
+              ))}
+
+              <Link
+                href="/account"
+                onClick={() => setIsMobileMenuOpen(false)}
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  letterSpacing: '.1em',
+                  textTransform: 'uppercase',
+                  color: activeNavTheme === 'dark' ? '#F8F2E6' : '#17130F',
+                  padding: '9px 12px',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  transition: 'background 0.2s ease, transform 0.2s ease'
+                }}
+                className="mobile-popover-item"
+              >
+                <span>Account / Sign In</span>
+                <span style={{ fontSize: '13px', opacity: 0.7 }}>👤</span>
+              </Link>
+
+              <Link
+                href="/orders"
+                onClick={() => setIsMobileMenuOpen(false)}
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  letterSpacing: '.1em',
+                  textTransform: 'uppercase',
+                  color: activeNavTheme === 'dark' ? '#F8F2E6' : '#17130F',
+                  padding: '9px 12px',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  transition: 'background 0.2s ease, transform 0.2s ease'
+                }}
+                className="mobile-popover-item"
+              >
+                <span>Your Orders</span>
+                <span style={{ fontSize: '13px', opacity: 0.7 }}>📦</span>
+              </Link>
+
+              <Link
+                href="/cart"
+                onClick={() => setIsMobileMenuOpen(false)}
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  letterSpacing: '.1em',
+                  textTransform: 'uppercase',
+                  color: activeNavTheme === 'dark' ? '#F8F2E6' : '#17130F',
+                  padding: '9px 12px',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  transition: 'background 0.2s ease, transform 0.2s ease'
+                }}
+                className="mobile-popover-item"
+              >
+                <span>Cart</span>
+                <span style={{ fontSize: '11px', fontWeight: 600, background: activeNavTheme === 'dark' ? '#E8CFA3' : '#17130F', color: activeNavTheme === 'dark' ? '#17130F' : '#F7F2E9', padding: '2px 8px', borderRadius: '10px' }}>
+                  {itemCount} {itemCount === 1 ? 'item' : 'items'}
+                </span>
+              </Link>
+            </div>
+
+            <div style={{ paddingTop: '8px', borderTop: activeNavTheme === 'dark' ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(23,19,15,0.08)' }}>
+              <button
+                type="button"
+                onClick={() => { setIsMobileMenuOpen(false); openSearch(); }}
+                style={{
+                  width: '100%',
+                  background: activeNavTheme === 'dark' ? 'rgba(255,255,255,0.08)' : 'rgba(23,19,15,0.05)',
+                  border: '1px solid rgba(177,143,82,0.25)',
+                  color: activeNavTheme === 'dark' ? '#E8CFA3' : '#17130F',
+                  padding: '10px 14px',
+                  fontSize: '11px',
+                  fontWeight: 600,
+                  letterSpacing: '.14em',
+                  textTransform: 'uppercase',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '6px'
+                }}
+              >
+                <span>🔍</span>
+                <span>Search Essentials</span>
+              </button>
+            </div>
+          </div>
+        </>
       )}
 
     </div>

@@ -10,7 +10,7 @@ export default function CartPage() {
 
   return (
     <div style={{ background: '#F7F2E9' }}>
-      <section style={{ maxWidth: '1300px', margin: '0 auto', padding: 'clamp(40px,7vh,90px) clamp(20px,4vw,56px) clamp(60px,10vh,130px)' }}>
+      <section style={{ maxWidth: '1300px', margin: '0 auto', padding: 'clamp(110px,13vh,160px) clamp(20px,4vw,56px) clamp(60px,10vh,130px)' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '18px', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 'clamp(30px,5vh,56px)' }}>
           <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(34px,5.2vw,68px)', lineHeight: 1, margin: 0 }}>
             Your cart ({itemCount})

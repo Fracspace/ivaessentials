@@ -7,15 +7,24 @@ import RevealOnScroll from '../../components/RevealOnScroll';
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrorMessage(null);
+
+    // Validate mandatory fields
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setErrorMessage('Please fill in all mandatory fields before sending your message.');
+      return;
+    }
+
     setSubmitted(true);
   };
 
   return (
     <div style={{ background: '#F7F2E9' }}>
-      <section style={{ maxWidth: '1200px', margin: '0 auto', padding: 'clamp(50px,8vh,110px) clamp(20px,4vw,56px) clamp(70px,11vh,140px)' }}>
+      <section style={{ maxWidth: '1200px', margin: '0 auto', padding: 'clamp(110px,13vh,160px) clamp(20px,4vw,56px) clamp(70px,11vh,140px)' }}>
         <RevealOnScroll style={{ marginBottom: 'clamp(40px,6vh,70px)' }}>
           <span style={{ fontSize: '10.5px', letterSpacing: '.32em', textTransform: 'uppercase', color: '#A2543A' }}>Contact Us</span>
           <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(36px,5.4vw,76px)', lineHeight: 1.05, margin: '16px 0 0' }}>
@@ -27,42 +36,60 @@ export default function ContactPage() {
           {/* Contact Form */}
           <RevealOnScroll>
             {submitted ? (
-              <div style={{ padding: '36px', background: '#EFE7DA', borderRadius: '2px' }}>
-                <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '26px', margin: '0 0 12px' }}>Thank you</h3>
+              <div style={{ padding: '36px', background: '#EFE7DA', borderRadius: '2px', borderLeft: '4px solid #2E5A36' }}>
+                <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '26px', margin: '0 0 12px', color: '#17130F' }}>Thank you 🙏</h3>
                 <p style={{ fontSize: '14.5px', color: '#5C5147', lineHeight: 1.7, margin: 0 }}>
                   Your message has been received. Our team will reach out to you within 24 hours.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                {errorMessage && (
+                  <div style={{ padding: '12px 16px', background: '#FDF3E7', borderLeft: '4px solid #A2543A', color: '#8A5239', fontSize: '13.5px', borderRadius: '2px' }}>
+                    {errorMessage}
+                  </div>
+                )}
+
                 <div>
-                  <label style={{ display: 'block', fontSize: '11px', letterSpacing: '.18em', textTransform: 'uppercase', color: '#8A7B6B', marginBottom: '8px' }}>Your Name</label>
+                  <label style={{ display: 'block', fontSize: '11px', letterSpacing: '.18em', textTransform: 'uppercase', color: '#8A7B6B', marginBottom: '8px' }}>
+                    Your Name <span style={{ color: '#A2543A', fontWeight: 600 }}>*</span>
+                  </label>
                   <input
                     type="text"
                     required
+                    aria-required="true"
+                    placeholder="Enter your name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    style={{ width: '100%', background: 'transparent', border: '1px solid rgba(23,19,15,.2)', padding: '14px 16px', fontSize: '14px', outline: 'none' }}
+                    style={{ width: '100%', background: 'transparent', border: '1px solid rgba(23,19,15,.2)', padding: '14px 16px', fontSize: '14px', color: '#17130F', outline: 'none' }}
                   />
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: '11px', letterSpacing: '.18em', textTransform: 'uppercase', color: '#8A7B6B', marginBottom: '8px' }}>Email Address</label>
+                  <label style={{ display: 'block', fontSize: '11px', letterSpacing: '.18em', textTransform: 'uppercase', color: '#8A7B6B', marginBottom: '8px' }}>
+                    Email Address <span style={{ color: '#A2543A', fontWeight: 600 }}>*</span>
+                  </label>
                   <input
                     type="email"
                     required
+                    aria-required="true"
+                    placeholder="devotee@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    style={{ width: '100%', background: 'transparent', border: '1px solid rgba(23,19,15,.2)', padding: '14px 16px', fontSize: '14px', outline: 'none' }}
+                    style={{ width: '100%', background: 'transparent', border: '1px solid rgba(23,19,15,.2)', padding: '14px 16px', fontSize: '14px', color: '#17130F', outline: 'none' }}
                   />
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: '11px', letterSpacing: '.18em', textTransform: 'uppercase', color: '#8A7B6B', marginBottom: '8px' }}>Message</label>
+                  <label style={{ display: 'block', fontSize: '11px', letterSpacing: '.18em', textTransform: 'uppercase', color: '#8A7B6B', marginBottom: '8px' }}>
+                    Message <span style={{ color: '#A2543A', fontWeight: 600 }}>*</span>
+                  </label>
                   <textarea
                     rows={5}
                     required
+                    aria-required="true"
+                    placeholder="Write your message or inquiry here..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    style={{ width: '100%', background: 'transparent', border: '1px solid rgba(23,19,15,.2)', padding: '14px 16px', fontSize: '14px', outline: 'none', resize: 'vertical' }}
+                    style={{ width: '100%', background: 'transparent', border: '1px solid rgba(23,19,15,.2)', padding: '14px 16px', fontSize: '14px', color: '#17130F', outline: 'none', resize: 'vertical' }}
                   />
                 </div>
                 <button
