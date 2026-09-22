@@ -25,6 +25,7 @@ export default function AccountPage() {
     gotra: ''
   });
 
+  const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState(null);
 
   // Check if user is logged in from localStorage
@@ -34,35 +35,83 @@ export default function AccountPage() {
       if (stored) {
         setUser(JSON.parse(stored));
       }
-    } catch (e) {}
+    } catch (e) {
+      console.error('Failed to load user state from localStorage', e);
+    }
   }, []);
 
-  const handleSignIn = (e) => {
+  // ----------------------------------------------------
+  // SIGN IN API HANDLER (Async / API Integration Ready)
+  // ----------------------------------------------------
+  const handleSignIn = async (e) => {
     e.preventDefault();
+    setMessage(null);
+
     if (!signInData.email || !signInData.password) {
       setMessage({ type: 'error', text: 'Please enter your email and password.' });
       return;
     }
 
-    // Simulate successful authentication
-    const loggedInUser = {
-      name: signInData.email.split('@')[0] || 'Devotee',
-      email: signInData.email,
-      phone: '+91 98765 43210',
-      gotra: 'Kashyap',
-      joinedDate: new Date().toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })
-    };
+    setIsLoading(true);
 
     try {
-      localStorage.setItem('iva_user', JSON.stringify(loggedInUser));
-    } catch (err) {}
+      /* 
+        ====================================================
+        🔌 API INTEGRATION INSTRUCTIONS:
+        Replace the code below with your actual API endpoint call:
 
-    setUser(loggedInUser);
-    setMessage({ type: 'success', text: 'Welcome back! You are now signed in.' });
+        const response = await fetch('YOUR_API_URL/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: signInData.email,
+            password: signInData.password
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Invalid email or password.');
+        }
+
+        // Save session token & user profile from API response:
+        localStorage.setItem('iva_token', data.token);
+        localStorage.setItem('iva_user', JSON.stringify(data.user));
+        setUser(data.user);
+        ====================================================
+      */
+
+      // Fallback local authentication flow until backend API URL is attached:
+      const loggedInUser = {
+        name: signInData.email.split('@')[0] || 'Devotee',
+        email: signInData.email,
+        phone: '+91 98765 43210',
+        gotra: 'Kashyap',
+        joinedDate: new Date().toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })
+      };
+
+      try {
+        localStorage.setItem('iva_user', JSON.stringify(loggedInUser));
+      } catch (err) {}
+
+      setUser(loggedInUser);
+      setMessage({ type: 'success', text: 'Welcome back! You are now signed in.' });
+
+    } catch (err) {
+      setMessage({ type: 'error', text: err.message || 'Authentication failed. Please check your credentials.' });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleSignUp = (e) => {
+  // ----------------------------------------------------
+  // SIGN UP API HANDLER (Async / API Integration Ready)
+  // ----------------------------------------------------
+  const handleSignUp = async (e) => {
     e.preventDefault();
+    setMessage(null);
+
     if (!signUpData.fullName || !signUpData.email || !signUpData.password) {
       setMessage({ type: 'error', text: 'Please fill in all required fields.' });
       return;
@@ -72,43 +121,68 @@ export default function AccountPage() {
       return;
     }
 
-    const newUser = {
-      name: signUpData.fullName,
-      email: signUpData.email,
-      phone: signUpData.phone || '+91 98765 43210',
-      gotra: signUpData.gotra || 'N/A',
-      joinedDate: new Date().toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })
-    };
+    setIsLoading(true);
 
     try {
-      localStorage.setItem('iva_user', JSON.stringify(newUser));
-    } catch (err) {}
+      /* 
+        ====================================================
+        🔌 API INTEGRATION INSTRUCTIONS:
+        Replace the code below with your actual API endpoint call:
 
-    setUser(newUser);
-    setMessage({ type: 'success', text: 'Account created successfully! Welcome to IVA Essentials.' });
+        const response = await fetch('YOUR_API_URL/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: signUpData.fullName,
+            email: signUpData.email,
+            phone: signUpData.phone,
+            gotra: signUpData.gotra,
+            password: signUpData.password
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Registration failed.');
+        }
+
+        // Save session token & user profile from API response:
+        localStorage.setItem('iva_token', data.token);
+        localStorage.setItem('iva_user', JSON.stringify(data.user));
+        setUser(data.user);
+        ====================================================
+      */
+
+      const newUser = {
+        name: signUpData.fullName,
+        email: signUpData.email,
+        phone: signUpData.phone || '+91 98765 43210',
+        gotra: signUpData.gotra || 'N/A',
+        joinedDate: new Date().toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })
+      };
+
+      try {
+        localStorage.setItem('iva_user', JSON.stringify(newUser));
+      } catch (err) {}
+
+      setUser(newUser);
+      setMessage({ type: 'success', text: 'Account created successfully! Welcome to IVA Essentials.' });
+
+    } catch (err) {
+      setMessage({ type: 'error', text: err.message || 'Failed to create account. Please try again.' });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleSignOut = () => {
     try {
       localStorage.removeItem('iva_user');
+      localStorage.removeItem('iva_token');
     } catch (e) {}
     setUser(null);
     setMessage({ type: 'info', text: 'You have been signed out.' });
-  };
-
-  const quickDemoLogin = () => {
-    const demoUser = {
-      name: 'Akhil Sharma',
-      email: 'akhil.sharma@example.com',
-      phone: '+91 98765 43210',
-      gotra: 'Kashyap',
-      joinedDate: 'Sep 2026'
-    };
-    try {
-      localStorage.setItem('iva_user', JSON.stringify(demoUser));
-    } catch (e) {}
-    setUser(demoUser);
-    setMessage({ type: 'success', text: 'Signed in as Demo Devotee.' });
   };
 
   return (
@@ -342,8 +416,9 @@ export default function AccountPage() {
 
                   <button
                     type="submit"
+                    disabled={isLoading}
                     style={{
-                      background: '#17130F',
+                      background: isLoading ? '#5C5147' : '#17130F',
                       color: '#F7F2E9',
                       border: 'none',
                       fontSize: '11.5px',
@@ -351,24 +426,15 @@ export default function AccountPage() {
                       textTransform: 'uppercase',
                       padding: '18px 28px',
                       borderRadius: '2px',
-                      cursor: 'pointer',
+                      cursor: isLoading ? 'not-allowed' : 'pointer',
                       marginTop: '6px',
-                      transition: 'background .3s'
+                      transition: 'background .3s',
+                      opacity: isLoading ? 0.75 : 1
                     }}
                     className="cart-btn"
                   >
-                    Sign In
+                    {isLoading ? 'Signing In...' : 'Sign In'}
                   </button>
-
-                  <div style={{ textAlign: 'center', paddingTop: '10px', borderTop: '1px solid rgba(23,19,15,.1)' }}>
-                    <button
-                      type="button"
-                      onClick={quickDemoLogin}
-                      style={{ background: 'none', border: 'none', color: '#A2543A', fontSize: '12px', letterSpacing: '.12em', textTransform: 'uppercase', cursor: 'pointer', textDecoration: 'underline' }}
-                    >
-                      ⚡ Quick Demo Sign In
-                    </button>
-                  </div>
 
                 </form>
               </RevealOnScroll>
@@ -461,8 +527,9 @@ export default function AccountPage() {
 
                   <button
                     type="submit"
+                    disabled={isLoading}
                     style={{
-                      background: '#17130F',
+                      background: isLoading ? '#5C5147' : '#17130F',
                       color: '#F7F2E9',
                       border: 'none',
                       fontSize: '11.5px',
@@ -470,13 +537,14 @@ export default function AccountPage() {
                       textTransform: 'uppercase',
                       padding: '18px 28px',
                       borderRadius: '2px',
-                      cursor: 'pointer',
+                      cursor: isLoading ? 'not-allowed' : 'pointer',
                       marginTop: '6px',
-                      transition: 'background .3s'
+                      transition: 'background .3s',
+                      opacity: isLoading ? 0.75 : 1
                     }}
                     className="cart-btn"
                   >
-                    Create Account
+                    {isLoading ? 'Creating Account...' : 'Create Account'}
                   </button>
 
                 </form>
