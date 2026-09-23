@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import RevealOnScroll from '../../../components/RevealOnScroll';
+import SankalpForm from '../../../components/SankalpForm';
+import ProductGallery from '../../../components/ProductGallery';
 import { IMAGES } from '../../../lib/images';
 import { useCart } from '../../../context/CartContext';
 
@@ -76,15 +78,16 @@ export default function ProductDetailPage({ params }) {
       quantity: 1,
       image: selectedImg,
       href: `/product/${id || 'blessed-kit'}`,
-      sankalpName: sankalpNote.name,
-      sankalpGotra: sankalpNote.gotra
+      sankalpName: sankalpNote?.name,
+      sankalpGotra: sankalpNote?.gotram,
+      sankalp: sankalpNote
     });
   };
 
   return (
     <div style={{ background: '#F7F2E9' }}>
       {/* Breadcrumb */}
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '30px clamp(20px,4vw,56px) 0' }}>
+      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(110px,13vh,140px) clamp(20px,4vw,56px) 0' }}>
         <div style={{ display: 'flex', gap: '10px', alignItems: 'center', fontSize: '10.5px', letterSpacing: '.2em', textTransform: 'uppercase', color: '#8A7B6B' }}>
           <Link href="/" style={{ color: '#8A7B6B', textDecoration: 'none' }}>Home</Link>
           <span>/</span>
@@ -97,39 +100,9 @@ export default function ProductDetailPage({ params }) {
       {/* Main Product Layout */}
       <section style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(30px,4vh,56px) clamp(20px,4vw,56px) clamp(70px,11vh,140px)' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,360px), 1fr))', gap: 'clamp(36px,6vw,90px)', alignItems: 'start' }}>
-          {/* Left Gallery */}
+          {/* Left Gallery (Auto-sliding Carousel) */}
           <RevealOnScroll>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <div style={{ overflow: 'hidden', background: '#E3D9C8', aspectRatio: '4/5' }}>
-                <img
-                  src={selectedImg}
-                  alt={product.name}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              </div>
-              {product.images.length > 1 && (
-                <div style={{ display: 'flex', gap: '12px' }}>
-                  {product.images.map((img, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={() => setSelectedImg(img)}
-                      style={{
-                        width: '80px',
-                        height: '80px',
-                        border: selectedImg === img ? '2px solid #17130F' : '1px solid rgba(23,19,15,.2)',
-                        padding: 0,
-                        cursor: 'pointer',
-                        overflow: 'hidden',
-                        background: '#E3D9C8'
-                      }}
-                    >
-                      <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+            <ProductGallery images={product.images} name={product.name} />
           </RevealOnScroll>
 
           {/* Right Info & Sankalp Form */}
@@ -149,30 +122,7 @@ export default function ProductDetailPage({ params }) {
             </p>
 
             {/* Sankalp Details Form */}
-            <div style={{ background: '#EFE7DA', padding: '24px 26px', marginBottom: '30px', borderLeft: '3px solid #B18F52' }}>
-              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '20px', margin: '0 0 10px' }}>
-                Add your Sankalp Details
-              </h3>
-              <p style={{ fontSize: '12.5px', color: '#6B5F52', margin: '0 0 16px', lineHeight: 1.6 }}>
-                Your name &amp; gotra will be written on your sankalp card and included in archana in Kashi.
-              </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <input
-                  type="text"
-                  placeholder="Devotee Name (e.g. Ramesh Sharma)"
-                  value={sankalpNote.name}
-                  onChange={(e) => setSankalpNote({ ...sankalpNote, name: e.target.value })}
-                  style={{ background: '#F7F2E9', border: '1px solid rgba(23,19,15,.2)', padding: '12px 14px', fontSize: '13.5px', outline: 'none' }}
-                />
-                <input
-                  type="text"
-                  placeholder="Gotra (e.g. Kashyapa / Optional)"
-                  value={sankalpNote.gotra}
-                  onChange={(e) => setSankalpNote({ ...sankalpNote, gotra: e.target.value })}
-                  style={{ background: '#F7F2E9', border: '1px solid rgba(23,19,15,.2)', padding: '12px 14px', fontSize: '13.5px', outline: 'none' }}
-                />
-              </div>
-            </div>
+            <SankalpForm style={{ marginBottom: '30px' }} />
 
             {/* Actions */}
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '36px' }}>

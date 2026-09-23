@@ -6,6 +6,7 @@ import RevealOnScroll from '../../components/RevealOnScroll';
 import ScrollBackgroundSection from '../../components/ScrollBackgroundSection';
 import ParallaxImage from '../../components/ParallaxImage';
 import DevotionalFrame from '../../components/DevotionalFrame';
+import SankalpForm from '../../components/SankalpForm';
 import { IMAGES } from '../../lib/images';
 import { useCart } from '../../context/CartContext';
 
@@ -197,6 +198,8 @@ export default function BlessedKitPage() {
                 <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#5C5147', margin: 0 }}>Sealed Gangajal containers and moisture-proof protective packaging.</p>
               </div>
             </div>
+
+            <SankalpForm style={{ maxWidth: '780px', margin: '0 auto 40px', textAlign: 'left' }} lightTheme />
 
             <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
               <button

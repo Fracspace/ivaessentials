@@ -104,8 +104,15 @@ export default function SiteNav({ active }) {
     );
   });
 
+  const isShopPage = pathname === '/shop';
+  const isDarkHeroPage = pathname === '/' || pathname === '/blessed-kit' || pathname === '/yatra-kit';
+  const defaultPageTheme = isDarkHeroPage ? 'dark' : 'light';
   const [scrolled, setScrolled] = useState(false);
-  const [activeNavTheme, setActiveNavTheme] = useState('dark');
+  const [activeNavTheme, setActiveNavTheme] = useState(defaultPageTheme);
+
+  useEffect(() => {
+    setActiveNavTheme(defaultPageTheme);
+  }, [pathname, defaultPageTheme]);
 
   useEffect(() => {
     let ticking = false;
@@ -113,17 +120,17 @@ export default function SiteNav({ active }) {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
-        const isScrolledNow = window.scrollY > 260;
+        const isScrolledNow = window.scrollY > 15;
         setScrolled(isScrolledNow);
-        setCompact(window.scrollY > 280);
+        setCompact(window.scrollY > 60);
 
         // Detect section navTheme near top header (y = 80px)
         const sections = document.querySelectorAll('[data-nav-theme]');
-        let currentTheme = 'dark';
+        let currentTheme = defaultPageTheme;
         sections.forEach(sec => {
           const rect = sec.getBoundingClientRect();
           if (rect.top <= 140 && rect.bottom >= 40) {
-            currentTheme = sec.getAttribute('data-nav-theme') || 'dark';
+            currentTheme = sec.getAttribute('data-nav-theme') || defaultPageTheme;
           }
         });
         setActiveNavTheme(currentTheme);
@@ -134,7 +141,7 @@ export default function SiteNav({ active }) {
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [defaultPageTheme]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -164,14 +171,13 @@ export default function SiteNav({ active }) {
     return false;
   };
 
-  const isDarkHeroPage = pathname === '/' || pathname === '/blessed-kit' || pathname === '/yatra-kit';
-  const isTopDarkHero = isDarkHeroPage && !scrolled;
-  const isDarkCurrentNav = isTopDarkHero || (scrolled && activeNavTheme === 'dark');
+  const isUnscrolledAtTop = !scrolled;
+  const isDarkCurrentNav = (isDarkHeroPage && isUnscrolledAtTop) || (activeNavTheme === 'dark');
 
   const textColor = isDarkCurrentNav ? '#F8F2E6' : '#17130F';
   const subTextColor = isDarkCurrentNav ? '#F8F2E6' : '#8A7B6B';
   const actionColor = isDarkCurrentNav ? '#F8F2E6' : '#17130F';
-  const textShadowStyle = isTopDarkHero ? '0 1px 4px rgba(0,0,0,0.95), 0 2px 10px rgba(0,0,0,0.85)' : 'none';
+  const textShadowStyle = (isDarkHeroPage && isUnscrolledAtTop) ? '0 1px 4px rgba(0,0,0,0.95), 0 2px 10px rgba(0,0,0,0.85)' : 'none';
 
   return (
     <div
@@ -188,18 +194,22 @@ export default function SiteNav({ active }) {
       {/* Main Header */}
       <header
         style={{
-          background: scrolled
-            ? (activeNavTheme === 'dark' ? 'rgba(20,16,13,.90)' : 'rgba(250,245,236,.92)')
-            : 'transparent',
-          backdropFilter: scrolled ? 'blur(20px) saturate(140%)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(140%)' : 'none',
-          borderBottom: scrolled
-            ? (activeNavTheme === 'dark' ? '1px solid rgba(177,143,82,.25)' : '1px solid rgba(177,143,82,.18)')
-            : 'none',
-          boxShadow: scrolled
-            ? (activeNavTheme === 'dark' ? '0 8px 32px rgba(0,0,0,.45)' : '0 4px 20px rgba(23,19,15,.05)')
-            : 'none',
-          transition: 'background .65s cubic-bezier(.16,1,.3,1), backdrop-filter .65s cubic-bezier(.16,1,.3,1), -webkit-backdrop-filter .65s cubic-bezier(.16,1,.3,1), border-color .65s ease, box-shadow .65s ease, padding .4s ease'
+          background: isUnscrolledAtTop
+            ? 'transparent'
+            : (activeNavTheme === 'dark' ? 'rgba(20,16,13,.78)' : 'rgba(247,242,233,.80)'),
+          backdropFilter: isUnscrolledAtTop
+            ? 'none'
+            : 'blur(20px) saturate(160%)',
+          WebkitBackdropFilter: isUnscrolledAtTop
+            ? 'none'
+            : 'blur(20px) saturate(160%)',
+          borderBottom: isUnscrolledAtTop
+            ? 'none'
+            : (activeNavTheme === 'dark' ? '1px solid rgba(177,143,82,.25)' : '1px solid rgba(177,143,82,.18)'),
+          boxShadow: isUnscrolledAtTop
+            ? 'none'
+            : (activeNavTheme === 'dark' ? '0 8px 32px rgba(0,0,0,.35)' : '0 4px 20px rgba(23,19,15,.06)'),
+          transition: 'background .4s cubic-bezier(.16,1,.3,1), backdrop-filter .4s ease, -webkit-backdrop-filter .4s ease, border-color .4s ease, box-shadow .4s ease, padding .4s ease'
         }}
       >
         <div

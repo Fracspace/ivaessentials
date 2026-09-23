@@ -8,7 +8,17 @@ const CartContext = createContext();
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [sankalpNote, setSankalpNote] = useState({ name: '', gotra: '', intention: '' });
+  const [sankalpNote, setSankalpNote] = useState({
+    name: '',
+    email: '',
+    phoneCode: '+91',
+    phone: '',
+    gotram: '',
+    nakshatra: '',
+    rasi: '',
+    poojaDate: 'August 3, 2026',
+    prayers: ''
+  });
   const [toast, setToast] = useState({ visible: false, item: null });
 
   const hideToast = useCallback(() => {

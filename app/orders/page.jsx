@@ -291,15 +291,20 @@ export default function OrdersPage() {
                           </div>
 
                           {/* Sankalp Details */}
-                          {order.sankalp && (order.sankalp.name || order.sankalp.gotra) && (
+                          {order.sankalp && (order.sankalp.name || order.sankalp.gotram || order.sankalp.gotra) && (
                             <div style={{ background: '#F2EADD', padding: '18px 20px', borderRadius: '2px' }}>
                               <h4 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '18px', margin: '0 0 10px', color: '#17130F' }}>
-                                Sankalp Details
+                                📿 Sacred Sankalp Details
                               </h4>
                               <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#5C5147', margin: 0 }}>
                                 <strong>Name:</strong> {order.sankalp.name}<br />
-                                {order.sankalp.gotra && <span><strong>Gotra:</strong> {order.sankalp.gotra}<br /></span>}
-                                {order.sankalp.intention && <span><strong>Intention:</strong> {order.sankalp.intention}</span>}
+                                {order.sankalp.email && <span><strong>Email:</strong> {order.sankalp.email}<br /></span>}
+                                {order.sankalp.phone && <span><strong>Phone:</strong> {order.sankalp.phoneCode || ''} {order.sankalp.phone}<br /></span>}
+                                {(order.sankalp.gotram || order.sankalp.gotra) && <span><strong>Gotram:</strong> {order.sankalp.gotram || order.sankalp.gotra}<br /></span>}
+                                {order.sankalp.nakshatra && <span><strong>Nakshatra:</strong> {order.sankalp.nakshatra}<br /></span>}
+                                {order.sankalp.rasi && <span><strong>Rasi:</strong> {order.sankalp.rasi}<br /></span>}
+                                {order.sankalp.poojaDate && <span><strong>Pooja Date:</strong> {order.sankalp.poojaDate}<br /></span>}
+                                {(order.sankalp.prayers || order.sankalp.intention) && <span><strong>Sankalp / Prayers:</strong> {order.sankalp.prayers || order.sankalp.intention}</span>}
                               </p>
                             </div>
                           )}
