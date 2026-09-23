@@ -76,20 +76,20 @@ export default function SiteFooter() {
 
       {/* Main Footer Links */}
       <footer style={{ background: '#100C0A', color: 'rgba(242,235,224,.82)' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(56px,9vh,104px) clamp(20px,4vw,56px) clamp(30px,4vh,48px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,200px),1fr))', gap: 'clamp(32px,4vw,64px)' }}>
-          <div style={{ maxWidth: '300px' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(56px,9vh,104px) clamp(20px,4vw,56px) clamp(30px,4vh,48px)' }} className="site-footer-grid">
+          <div className="site-footer-brand">
             <img
               src="/images/iva-logo-light.png"
               alt="IVA Essentials"
-              style={{ height: '46px', width: 'auto', marginBottom: '16px', objectFit: 'contain' }}
+              style={{ height: '42px', width: 'auto', marginBottom: '14px', objectFit: 'contain' }}
             />
-            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontSize: '17px', lineHeight: 1.5, color: 'rgba(242,235,224,.72)', margin: 0 }}>
+            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontSize: '16.5px', lineHeight: 1.5, color: 'rgba(242,235,224,.72)', margin: 0, maxWidth: '280px' }}>
               Ancient rituals. Reimagined for modern life.
             </p>
           </div>
           <div>
-            <h5 style={{ fontSize: '10.5px', letterSpacing: '.24em', textTransform: 'uppercase', color: '#8A7B6B', margin: '0 0 20px', fontWeight: 400 }}>Explore</h5>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '13.5px', fontWeight: 300 }}>
+            <h5 style={{ fontSize: '10.5px', letterSpacing: '.24em', textTransform: 'uppercase', color: '#8A7B6B', margin: '0 0 18px', fontWeight: 400 }}>Explore</h5>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '11px', fontSize: '13.5px', fontWeight: 300 }}>
               <Link href="/" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Home</Link>
               <Link href="/shop" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Shop</Link>
               <Link href="/blessed-kit" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Blessed Kit</Link>
@@ -97,8 +97,8 @@ export default function SiteFooter() {
             </div>
           </div>
           <div>
-            <h5 style={{ fontSize: '10.5px', letterSpacing: '.24em', textTransform: 'uppercase', color: '#8A7B6B', margin: '0 0 20px', fontWeight: 400 }}>Help</h5>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '13.5px', fontWeight: 300 }}>
+            <h5 style={{ fontSize: '10.5px', letterSpacing: '.24em', textTransform: 'uppercase', color: '#8A7B6B', margin: '0 0 18px', fontWeight: 400 }}>Help</h5>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '11px', fontSize: '13.5px', fontWeight: 300 }}>
               <Link href="/contact" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Contact</Link>
               <Link href="/shipping-policy" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Shipping</Link>
               <Link href="/refund-policy" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Refund Policy</Link>
@@ -106,11 +106,10 @@ export default function SiteFooter() {
               <Link href="/terms-of-service" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Terms</Link>
             </div>
           </div>
-          <div>
-            <h5 style={{ fontSize: '10.5px', letterSpacing: '.24em', textTransform: 'uppercase', color: '#8A7B6B', margin: '0 0 20px', fontWeight: 400 }}>Follow</h5>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '13.5px', fontWeight: 300, marginBottom: '28px' }}>
+          <div className="site-footer-contact">
+            <h5 style={{ fontSize: '10.5px', letterSpacing: '.24em', textTransform: 'uppercase', color: '#8A7B6B', margin: '0 0 18px', fontWeight: 400 }}>Follow &amp; Contact</h5>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13.5px', fontWeight: 300, marginBottom: '20px' }}>
               <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Instagram</a>
-              <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Facebook</a>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '9px', fontSize: '13.5px', fontWeight: 300 }}>
               <a href="mailto:support@ivaessentials.com" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">support@ivaessentials.com</a>
@@ -118,7 +117,7 @@ export default function SiteFooter() {
             </div>
           </div>
         </div>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '22px clamp(20px,4vw,56px) 34px', borderTop: '1px solid rgba(242,235,224,.12)', display: 'flex', flexWrap: 'wrap', gap: '14px', justifyContent: 'space-between', fontSize: '11px', letterSpacing: '.12em', color: '#7A6D5E' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '22px clamp(20px,4vw,56px) 34px', borderTop: '1px solid rgba(242,235,224,.12)', display: 'flex', flexWrap: 'wrap', gap: '14px', justifyContent: 'space-between', fontSize: '11px', letterSpacing: '.12em', color: '#7A6D5E' }} className="site-footer-bottom">
           <span>© 2026 IVA Essentials · Banjara Hills, Hyderabad</span>
           <span>Presented respectfully. Spiritual experiences vary by individual faith.</span>
         </div>

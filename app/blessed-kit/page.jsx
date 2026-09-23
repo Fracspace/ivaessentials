@@ -5,6 +5,7 @@ import Link from 'next/link';
 import RevealOnScroll from '../../components/RevealOnScroll';
 import ScrollBackgroundSection from '../../components/ScrollBackgroundSection';
 import ParallaxImage from '../../components/ParallaxImage';
+import DevotionalFrame from '../../components/DevotionalFrame';
 import { IMAGES } from '../../lib/images';
 import { useCart } from '../../context/CartContext';
 
@@ -131,9 +132,11 @@ export default function BlessedKitPage() {
       {/* 3. Inside the Kit Breakdown (Kashi Obsidian Theme - Dark Nav Theme) */}
       <ScrollBackgroundSection navTheme="dark" defaultBg="#FAF5EC" activeBg="#1C1410">
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(66px,11vh,140px) clamp(20px,4vw,56px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,340px), 1fr))', gap: 'clamp(36px,6vw,88px)', alignItems: 'center' }}>
-          {/* SELECTIVE BOLD GOLD BORDER around Inside the Kit showcase image */}
-          <RevealOnScroll variant="zoom" style={{ overflow: 'hidden', background: '#14100D', borderRadius: '3px', border: '2px solid #B18F52', boxShadow: '0 20px 48px rgba(0,0,0,0.6)' }}>
-            <img src={IMAGES.products.blessedKit.insideUrl} alt="What is inside a Blessed Kit" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.2s cubic-bezier(.2,.7,.2,1)' }} className="product-card-img" />
+          {/* AUTHENTIC DEVOTIONAL BRASS MANDAP FRAME */}
+          <RevealOnScroll variant="zoom">
+            <DevotionalFrame variant="brass-mandap">
+              <img src={IMAGES.products.blessedKit.insideUrl} alt="What is inside a Blessed Kit" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.2s cubic-bezier(.2,.7,.2,1)' }} className="product-card-img" />
+            </DevotionalFrame>
           </RevealOnScroll>
           <RevealOnScroll delay={150}>
             <span style={{ fontSize: '10.5px', letterSpacing: '.32em', textTransform: 'uppercase', color: '#E8CFA3' }}>Inside the kit</span>

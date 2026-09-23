@@ -5,6 +5,7 @@ import Link from 'next/link';
 import RevealOnScroll from '../components/RevealOnScroll';
 import ScrollBackgroundSection from '../components/ScrollBackgroundSection';
 import ParallaxImage from '../components/ParallaxImage';
+import DevotionalFrame from '../components/DevotionalFrame';
 import { IMAGES } from '../lib/images';
 
 export default function HomePage() {
@@ -155,24 +156,24 @@ export default function HomePage() {
             </RevealOnScroll>
 
             <RevealOnScroll delay={200} variant="zoom" style={{ display: 'grid', gridTemplateColumns: '1.1fr .9fr', gap: 'clamp(12px,1.6vw,20px)', alignItems: 'end' }}>
-              {/* SELECTIVE GOLD BORDER around feature image */}
-              <div style={{ overflow: 'hidden', background: '#1C1410', borderRadius: '3px', border: '2px solid #B18F52', boxShadow: '0 16px 40px rgba(0,0,0,0.5)' }}>
+              {/* AUTHENTIC BRASS MANDAP FRAME with SVG Filigree Corners */}
+              <DevotionalFrame variant="brass-mandap">
                 <img
                   src={IMAGES.hero.fallbackHands}
                   alt="Hands arranging pooja essentials"
                   style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', transition: 'transform 1.1s cubic-bezier(.2,.7,.2,1)' }}
                   className="product-card-img"
                 />
-              </div>
+              </DevotionalFrame>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,1.6vw,20px)' }}>
-                <div style={{ overflow: 'hidden', background: '#1C1410', borderRadius: '3px', border: '1px solid rgba(177,143,82,0.3)' }}>
+                <DevotionalFrame variant="temple-arch">
                   <img
                     src={IMAGES.products.vishnuSamagri.url}
                     alt="Curated pooja kit contents"
                     style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.1s cubic-bezier(.2,.7,.2,1)' }}
                     className="product-card-img"
                   />
-                </div>
+                </DevotionalFrame>
                 <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontSize: 'clamp(15px,1.4vw,19px)', lineHeight: 1.55, color: '#E8CFA3', margin: 0 }}>
                   Assembled in Hyderabad. Rooted in Kashi.
                 </p>
