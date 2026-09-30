@@ -51,34 +51,34 @@ export default function HomePage() {
             alignItems: 'end'
           }}
         >
-          <RevealOnScroll style={{ maxWidth: '660px' }}>
+          <RevealOnScroll style={{ maxWidth: '960px', paddingTop: 'clamp(30px, 4vh, 60px)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: 'clamp(20px,3vh,34px)' }}>
               <span style={{ width: '34px', height: '2px', background: '#17130F', display: 'block' }} />
               <span style={{ fontSize: '10.5px', letterSpacing: '.34em', textTransform: 'uppercase', color: '#17130F', fontWeight: 600 }}>
-                Sacred essentials since Kashi
+                AUTHENTIC PUJA ESSENTIALS FROM KASHI
               </span>
             </div>
             <h1
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 300,
-                fontSize: 'clamp(44px,7.4vw,104px)',
-                lineHeight: .98,
-                letterSpacing: '-.01em',
+                fontSize: 'clamp(52px, 7.2vw, 108px)',
+                lineHeight: 0.95,
+                letterSpacing: '-.018em',
                 color: '#F8F2E6',
-                margin: '0 0 clamp(18px,3vh,28px)',
-                textWrap: 'balance'
+                margin: '0 0 clamp(18px,3vh,28px)'
               }}
             >
-              Rituals.<br />
-              <em style={{ fontStyle: 'italic', color: '#E8CFA3' }}>Reimagined</em> for Modern Life.
+              <span style={{ whiteSpace: 'nowrap' }}>Ancient Rituals.</span><br />
+              <em style={{ fontStyle: 'italic', color: '#E8CFA3' }}>Curated For</em><br />
+              <span style={{ whiteSpace: 'nowrap' }}>Modern Devotion.</span>
             </h1>
             <p
               style={{
-                fontSize: 'clamp(14.5px,1.35vw,18px)',
+                fontSize: 'clamp(16px, 1.45vw, 19px)',
                 lineHeight: 1.75,
-                color: 'rgba(245,238,226,.86)',
-                maxWidth: '44ch',
+                color: 'rgba(245,238,226,.88)',
+                maxWidth: '46ch',
                 margin: '0 0 clamp(28px,4vh,44px)',
                 fontWeight: 300,
                 textWrap: 'pretty'
@@ -141,18 +141,15 @@ export default function HomePage() {
                 Ancient rituals. A contemporary expression.
               </h2>
               <p style={{ fontSize: 'clamp(14.5px,1.2vw,17px)', lineHeight: 1.85, color: 'rgba(248,242,230,.82)', maxWidth: '52ch', margin: '0 0 22px', fontWeight: 300, textWrap: 'pretty' }}>
-                IVA Essentials brings together timeless Indian tradition and thoughtful modern design. Each kit is assembled by hand — pure samagri, honest materials, nothing missing and nothing superfluous — so that devotion asks nothing of you but presence.
-              </p>
+                IVA Essentials brings together timeless Indian traditions and thoughtful modern design. Each kit is assembled by hand with carefully selected samagri and materials chosen with purpose — bringing together what you need for a meaningful ritual, without the hassle of sourcing everything yourself.              </p>
               <p style={{ fontSize: 'clamp(14.5px,1.2vw,17px)', lineHeight: 1.85, color: 'rgba(248,242,230,.82)', maxWidth: '52ch', margin: '0 0 34px', fontWeight: 300, textWrap: 'pretty' }}>
-                We believe a ritual should feel unhurried. Everything we make exists to remove the friction between you and that quiet moment.
-              </p>
+                We believe ritual should feel unhurried. That's why we bring the essentials together, so you can spend less time preparing and more time being present.              </p>
               <a
                 href="#collections"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '11.5px', letterSpacing: '.2em', textTransform: 'uppercase', color: '#E8CFA3', borderBottom: '1px solid #B18F52', paddingBottom: '8px', transition: 'color .3s, border-color .3s', textDecoration: 'none' }}
                 className="hover-color"
               >
-                View the collections
-              </a>
+                DISCOVER IVA ESSENTIALS              </a>
             </RevealOnScroll>
 
             <RevealOnScroll delay={200} variant="zoom" style={{ display: 'grid', gridTemplateColumns: '1.1fr .9fr', gap: 'clamp(12px,1.6vw,20px)', alignItems: 'end' }}>
@@ -216,19 +213,19 @@ export default function HomePage() {
             </RevealOnScroll>
 
             <RevealOnScroll delay={100} variant="float">
-              <Link href="/shop" style={{ display: 'block', position: 'relative', overflow: 'hidden', background: '#DFD3C0', borderRadius: '3px' }}>
+              <Link href="/rudraksha" style={{ display: 'block', position: 'relative', overflow: 'hidden', background: '#DFD3C0', borderRadius: '3px' }}>
                 <img
-                  src={IMAGES.products.lakshmiSamagri.url}
-                  alt="Pooja essentials"
+                  src="/assets/rudraksha-heroimg.png"
+                  alt="Rudraksha Band"
                   style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover', transition: 'transform 1.2s cubic-bezier(.2,.7,.2,1)' }}
                   className="product-card-img"
                 />
                 <div style={{ position: 'absolute', inset: 'auto 0 0 0', padding: 'clamp(22px,3vw,34px)', background: 'linear-gradient(to top, rgba(18,13,10,.82), rgba(18,13,10,0))' }}>
                   <h3 style={{ fontSize: '11.5px', letterSpacing: '.26em', textTransform: 'uppercase', color: '#E8CFA3', margin: '0 0 10px', fontWeight: 400 }}>
-                    Pooja Essentials
+                    Rudraksha Band
                   </h3>
                   <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(19px,1.9vw,26px)', lineHeight: 1.3, color: '#F8F2E6', margin: 0, maxWidth: '22ch' }}>
-                    Thoughtfully selected for everyday devotion.
+                    12-Bead Rudraksha Band — strength, stillness & intention.
                   </p>
                 </div>
               </Link>
@@ -297,12 +294,11 @@ export default function HomePage() {
                 The Blessed Kit
               </h2>
               <p style={{ fontSize: 'clamp(15px,1.25vw,18px)', lineHeight: 1.8, color: 'rgba(248,242,230,.84)', fontWeight: 300, margin: '0 0 30px', maxWidth: '46ch', textWrap: 'pretty' }}>
-                Everything you need for a sacred ritual, thoughtfully brought together — with your sankalp card placed inside, and offerings prepared with reverence near Kashi Vishwanath.
-              </p>
+                A thoughtfully curated puja kit with complete samagri, a personalized sankalp card, and offerings prepared near Kashi Vishwanath.              </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', margin: '0 0 36px', padding: '26px 0', borderTop: '1px solid rgba(177,143,82,.25)', borderBottom: '1px solid rgba(177,143,82,.25)' }}>
                 <div style={{ display: 'flex', gap: '14px', alignItems: 'baseline' }}>
                   <span style={{ width: '6px', height: '6px', background: '#B18F52', borderRadius: '50%', flex: 'none', transform: 'translateY(-3px)' }} />
-                  <span style={{ fontSize: '14px', color: '#F8F2E6', fontWeight: 300 }}>Complete samagri — nothing missing, everything in its place</span>
+                  <span style={{ fontSize: '14px', color: '#F8F2E6', fontWeight: 300 }}>Complete ritual samagri — thoughtfully assembled for your puja</span>
                 </div>
                 <div style={{ display: 'flex', gap: '14px', alignItems: 'baseline' }}>
                   <span style={{ width: '6px', height: '6px', background: '#B18F52', borderRadius: '50%', flex: 'none', transform: 'translateY(-3px)' }} />
@@ -390,13 +386,13 @@ export default function HomePage() {
               <span style={{ fontSize: '10.5px', letterSpacing: '.34em', textTransform: 'uppercase', color: '#D9BE8B' }}>Kashi</span>
             </div>
             <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(34px,5.6vw,80px)', lineHeight: 1.03, color: '#F5EEE2', margin: '0 0 26px', maxWidth: '20ch' }}>
-              Rooted in Sacred Traditions
+              From Your Sankalp to Your Home
             </h2>
             <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontSize: 'clamp(18px,2vw,27px)', lineHeight: 1.5, color: '#E8CFA3', margin: '0 0 34px', maxWidth: '32ch' }}>
-              Where devotion, ritual and intention come together.
+              Your intention begins the ritual. We take care of the sacred preparations in Kashi and bring them home to you.
             </p>
             <p style={{ fontSize: 'clamp(14px,1.2vw,16.5px)', lineHeight: 1.85, color: 'rgba(242,235,224,.78)', fontWeight: 300, maxWidth: '50ch', margin: '0 0 40px', textWrap: 'pretty' }}>
-              Each Blessed Kit begins with your sankalp — your name, your gotra, your intention. Selected offerings are included in rituals performed near Kashi Vishwanath, and the kit reaches you with the sankalp card placed inside.
+              Each Blessed Kit begins with your sankalp — Share your name, gotra, and prayer intention with us. From there, your sankalp becomes part of the ritual journey in Kashi before your prepared kit reaches your home.
             </p>
             <Link href="/blessed-kit" style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '11.5px', letterSpacing: '.2em', textTransform: 'uppercase', color: '#E8CFA3', borderBottom: '1px solid rgba(232,207,163,.5)', paddingBottom: '9px', textDecoration: 'none' }} className="footer-link">
               Discover the Blessed Kit

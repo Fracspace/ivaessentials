@@ -61,7 +61,7 @@ export default function BlessedKitPage() {
               <em style={{ fontStyle: 'italic', color: '#E8CFA3' }}>To Divine Blessings.</em>
             </h1>
             <p style={{ fontSize: 'clamp(14.5px,1.3vw,17.5px)', lineHeight: 1.8, color: 'rgba(245,238,226,.85)', fontWeight: 300, maxWidth: '50ch', margin: '0 0 36px', textWrap: 'pretty' }}>
-              Every Blessed Kit carries your sankalp through sacred rituals performed near Kashi Vishwanath — a connection between your devotion and the energy of Kashi, delivered to your home.
+              Every Blessed Kit carries your sankalp through sacred rituals performed near Kashi Vishwanath, with the prepared offerings and essentials delivered to your home.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center' }}>
               <button
@@ -173,11 +173,10 @@ export default function BlessedKitPage() {
           <RevealOnScroll style={{ maxWidth: '840px', margin: '0 auto' }}>
             <span style={{ fontSize: '10.5px', letterSpacing: '.34em', textTransform: 'uppercase', color: '#8A7B6B' }}>Sacred Promise</span>
             <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(32px,4.5vw,62px)', lineHeight: 1.08, margin: '18px 0 24px', color: '#17130F' }}>
-              Prepared with reverence. Delivered with purity.
+              Prepared with Reverence. Delivered with Care.
             </h2>
             <p style={{ fontSize: 'clamp(14.5px,1.25vw,17.5px)', lineHeight: 1.85, color: '#5C5147', fontWeight: 300, marginBottom: '40px' }}>
-              Every item in the Blessed Kit is handled with sacred intent. From temple archana offering near Kashi Vishwanath to safe tamper-evident delivery, we ensure your devotion reaches home unhindered.
-            </p>
+              Every Blessed Kit is carefully prepared and packed to preserve the quality and integrity of its contents. From the sankalp and ritual offerings to tamper-evident packaging, each step is handled with care before your kit is delivered to your home.            </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,220px), 1fr))', gap: '24px', textAlign: 'left', marginBottom: '48px' }}>
               <div style={{ background: '#FAF5EC', padding: '28px 24px', borderRadius: '4px', border: '1px solid rgba(177,143,82,0.2)' }}>

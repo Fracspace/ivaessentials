@@ -159,6 +159,7 @@ export default function SiteNav({ active }) {
 
   const links = [
     { label: 'Shop', href: '/shop', key: 'shop' },
+    { label: 'Rudraksha', href: '/rudraksha', key: 'rudraksha' },
     { label: 'Blessed Kit', href: '/blessed-kit', key: 'blessed' },
     { label: 'Yatra Kit', href: '/yatra-kit', key: 'yatra' },
     { label: 'Contact', href: '/contact', key: 'contact' },
@@ -278,7 +279,7 @@ export default function SiteNav({ active }) {
           <div style={{ flex: 'none', display: 'flex', gap: 'clamp(10px,1.4vw,20px)', alignItems: 'center', whiteSpace: 'nowrap' }}>
 
             {/* Search Trigger Button */}
-            <button
+            {/* <button
               type="button"
               onClick={toggleSearch}
               style={{
@@ -298,7 +299,7 @@ export default function SiteNav({ active }) {
               className="nav-pill-item"
             >
               <span>{isSearchActive ? 'Close' : 'Search'}</span>
-            </button>
+            </button> */}
 
             <Link
               href="/account"
@@ -757,6 +758,7 @@ export default function SiteNav({ active }) {
               </Link>
             </div>
 
+            {/* Mobile Search Button (Commented out)
             <div style={{ paddingTop: '8px', borderTop: activeNavTheme === 'dark' ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(23,19,15,0.08)', animation: 'ivaMenuItemEnter 0.35s cubic-bezier(.16,1,.3,1) 0.34s forwards', opacity: 0 }}>
               <button
                 type="button"
@@ -783,6 +785,7 @@ export default function SiteNav({ active }) {
                 <span>Search Essentials</span>
               </button>
             </div>
+            */}
           </div>
         </>
       )}

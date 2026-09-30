@@ -24,7 +24,7 @@ export default function SiteFooter() {
             Stay close to what matters.
           </h2>
           <p style={{ fontSize: 'clamp(14px,1.2vw,16.5px)', lineHeight: 1.8, color: 'rgba(242,235,224,.7)', fontWeight: 300, maxWidth: '46ch', margin: '0 auto clamp(32px,5vh,46px)', textWrap: 'pretty' }}>
-            Receive stories, rituals, new collections and thoughtful offerings from IVA Essentials.
+            Be the first to discover new ritual collections, devotional stories, and special offerings from IVA Essentials.
           </p>
           <form onSubmit={handleSubscribe} style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', maxWidth: '520px', margin: '0 auto', justifyContent: 'center' }}>
             <input

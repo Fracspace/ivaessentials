@@ -199,3 +199,30 @@ img {
     gap: 10px !important;
   }
 }
+
+/* Landing Page Specific Animations & Helpers */
+@keyframes ivaGrainShift { 
+  0% { transform: translate(0,0); } 
+  100% { transform: translate(-40px,-30px); } 
+}
+@keyframes ivaAura { 
+  0% { transform: scale(1); opacity: .55; } 
+  50% { transform: scale(1.12); opacity: .8; } 
+  100% { transform: scale(1); opacity: .55; } 
+}
+@keyframes ivaRingPulse { 
+  0% { transform: scale(.94); opacity: .5; } 
+  50% { transform: scale(1.04); opacity: .85; } 
+  100% { transform: scale(.94); opacity: .5; } 
+}
+
+[data-beadtrack] { 
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
+[data-beadtrack]::-webkit-scrollbar { 
+  display: none; 
+  height: 0; 
+  width: 0; 
+}
+
