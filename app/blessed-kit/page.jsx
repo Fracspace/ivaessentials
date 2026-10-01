@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import RevealOnScroll from '../../components/RevealOnScroll';
 import ScrollBackgroundSection from '../../components/ScrollBackgroundSection';
@@ -9,9 +9,18 @@ import DevotionalFrame from '../../components/DevotionalFrame';
 import SankalpForm from '../../components/SankalpForm';
 import { IMAGES } from '../../lib/images';
 import { useCart } from '../../context/CartContext';
+import { trackViewItem } from '../../lib/gtm';
 
 export default function BlessedKitPage() {
   const { addItem, sankalpNote } = useCart();
+
+  useEffect(() => {
+    trackViewItem({
+      id: 'blessed-kit',
+      name: 'Blessed Kit',
+      price: 1499
+    });
+  }, []);
 
   const handleClaim = () => {
     addItem({

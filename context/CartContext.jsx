@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import CartToast from '../components/CartToast';
+import { trackAddToCart, trackRemoveFromCart } from '../lib/gtm';
 
 const CartContext = createContext();
 
@@ -50,6 +51,8 @@ export function CartProvider({ children }) {
   }, [cartItems, isLoaded]);
 
   const addItem = (newItem) => {
+    trackAddToCart(newItem, newItem.quantity || 1);
+
     setCartItems(prev => {
       const existing = prev.find(item => item.id === newItem.id);
       if (existing) {
@@ -67,6 +70,10 @@ export function CartProvider({ children }) {
   };
 
   const removeItem = (id) => {
+    const target = cartItems.find(item => item.id === id);
+    if (target) {
+      trackRemoveFromCart(target, target.quantity);
+    }
     setCartItems(prev => prev.filter(item => item.id !== id));
   };
 

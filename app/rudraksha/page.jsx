@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useCart } from '../../context/CartContext';
+import { trackViewItem } from '../../lib/gtm';
 
 // SVG icons helper
 const s = {
@@ -80,6 +81,14 @@ export default function RudrakshaPage() {
   const [isMobile, setIsMobile] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [addedNotice, setAddedNotice] = useState(false);
+
+  useEffect(() => {
+    trackViewItem({
+      id: 'rudraksha-band',
+      name: '12-Bead Rudraksha Band',
+      price: 499
+    });
+  }, []);
 
   const beadtrackRef = useRef(null);
   const containerRef = useRef(null);

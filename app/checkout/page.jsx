@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useCart } from '../../context/CartContext';
 import RevealOnScroll from '../../components/RevealOnScroll';
+import { trackBeginCheckout, trackPurchase } from '../../lib/gtm';
 
 export default function CheckoutPage() {
   const { cartItems, subtotal, sankalpNote, clearCart } = useCart();
@@ -21,15 +22,32 @@ export default function CheckoutPage() {
     email: ''
   });
 
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      trackBeginCheckout(cartItems, subtotal);
+    }
+  }, []);
+
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
 
+    const orderId = `IVA-${Math.floor(10000 + Math.random() * 90000)}`;
+
     const newOrderData = {
+      id: orderId,
       items: cartItems,
       total: subtotal,
       shippingInfo: shippingInfo,
       sankalp: sankalpNote
     };
+
+    // Track GTM purchase event
+    trackPurchase({
+      id: orderId,
+      total: subtotal,
+      items: cartItems,
+      shipping: 0
+    });
 
     // Save to backend API
     try {
@@ -46,7 +64,7 @@ export default function CheckoutPage() {
     try {
       const existing = JSON.parse(localStorage.getItem('iva_user_orders') || '[]');
       const createdOrder = {
-        id: `IVA-${Math.floor(10000 + Math.random() * 90000)}`,
+        id: orderId,
         date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
         status: 'Preparing in Kashi',
         trackingNumber: `AWB-IVA-${Math.floor(100000 + Math.random() * 900000)}`,

@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import RevealOnScroll from '../../../components/RevealOnScroll';
 import SankalpForm from '../../../components/SankalpForm';
 import ProductGallery from '../../../components/ProductGallery';
 import { IMAGES } from '../../../lib/images';
 import { useCart } from '../../../context/CartContext';
+import { trackViewItem } from '../../../lib/gtm';
 
 export default function ProductDetailPage({ params }) {
   const { id } = params;
@@ -68,6 +69,14 @@ export default function ProductDetailPage({ params }) {
 
   const product = productData[id] || productData['blessed-kit'];
   const [selectedImg, setSelectedImg] = useState(product.images[0]);
+
+  useEffect(() => {
+    trackViewItem({
+      id: id || 'blessed-kit',
+      name: product.name,
+      price: product.price
+    });
+  }, [id, product]);
 
   const handleAddToCart = () => {
     addItem({
