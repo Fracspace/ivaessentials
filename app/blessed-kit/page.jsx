@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { redirect, useRouter } from 'next/navigation';
 import RevealOnScroll from '../../components/RevealOnScroll';
 import ScrollBackgroundSection from '../../components/ScrollBackgroundSection';
 import ParallaxImage from '../../components/ParallaxImage';
@@ -10,30 +11,77 @@ import SankalpForm from '../../components/SankalpForm';
 import { IMAGES } from '../../lib/images';
 import { useCart } from '../../context/CartContext';
 import { trackViewItem } from '../../lib/gtm';
+import { fetchProductBySlugApi } from '../../lib/products';
 
 export default function BlessedKitPage() {
+  // Page is hidden as of now - redirect to home page
+  redirect('/');
+
+  const router = useRouter();
   const { addItem, sankalpNote } = useCart();
+  const [isAvailable, setIsAvailable] = useState(true);
+  const [stockInfo, setStockInfo] = useState({ stock: 10, isActive: true });
+
+  useEffect(() => {
+    async function checkAvailability() {
+      try {
+        const live = await fetchProductBySlugApi('blessed-kit');
+        if (live) {
+          const liveStock = Number(live.stock || 0);
+          const liveReserved = Number(live.reservedStock || 0);
+          const remainingStock = Math.max(0, liveStock - liveReserved);
+          const active = live.isActive !== false;
+          setIsAvailable(Boolean(active && remainingStock > 0));
+          setStockInfo({ stock: remainingStock, isActive: active });
+        }
+      } catch (e) {}
+    }
+    checkAvailability();
+  }, []);
 
   useEffect(() => {
     trackViewItem({
       id: 'blessed-kit',
       name: 'Blessed Kit',
-      price: 1499
+      price: 1
     });
   }, []);
 
   const handleClaim = () => {
+    if (!isAvailable) return;
     addItem({
       id: 'blessed-kit',
+      productId: 'c2dd34a4-a660-4329-aa3d-1a0616351bc1',
+      sku: 'IVA-RIT-BLKI-538',
       name: 'Blessed Kit',
-      subtitle: 'Shravan · sankalp included',
-      price: 1499,
+      subtitle: 'Shravan sankalp included',
+      price: 1,
       quantity: 1,
       image: IMAGES.products.blessedKit.heroUrl,
       href: '/product/blessed-kit',
       sankalpName: sankalpNote?.name,
-      sankalpGotra: sankalpNote?.gotra
+      sankalpGotra: sankalpNote?.gotram || sankalpNote?.gotra,
+      sankalp: sankalpNote
     });
+  };
+
+  const handleBuyNow = () => {
+    if (!isAvailable) return;
+    addItem({
+      id: 'blessed-kit',
+      productId: 'c2dd34a4-a660-4329-aa3d-1a0616351bc1',
+      sku: 'IVA-RIT-BLKI-538',
+      name: 'Blessed Kit',
+      subtitle: 'Shravan sankalp included',
+      price: 1,
+      quantity: 1,
+      image: IMAGES.products.blessedKit.heroUrl,
+      href: '/product/blessed-kit',
+      sankalpName: sankalpNote?.name,
+      sankalpGotra: sankalpNote?.gotram || sankalpNote?.gotra,
+      sankalp: sankalpNote
+    });
+    router.push('/checkout');
   };
 
   return (
@@ -62,7 +110,7 @@ export default function BlessedKitPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '26px' }}>
               <span style={{ width: '34px', height: '1px', background: '#B18F52', display: 'block' }} />
               <span style={{ fontSize: '10.5px', letterSpacing: '.34em', textTransform: 'uppercase', color: '#D9BE8B' }}>
-                Where devotion meets Kashi
+                Where devotion meets reverence
               </span>
             </div>
             <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(40px,6.6vw,92px)', lineHeight: 1, color: '#F8F2E6', margin: '0 0 22px', textWrap: 'balance' }}>
@@ -70,21 +118,72 @@ export default function BlessedKitPage() {
               <em style={{ fontStyle: 'italic', color: '#E8CFA3' }}>To Divine Blessings.</em>
             </h1>
             <p style={{ fontSize: 'clamp(14.5px,1.3vw,17.5px)', lineHeight: 1.8, color: 'rgba(245,238,226,.85)', fontWeight: 300, maxWidth: '50ch', margin: '0 0 36px', textWrap: 'pretty' }}>
-              Every Blessed Kit carries your sankalp through sacred rituals performed near Kashi Vishwanath, with the prepared offerings and essentials delivered to your home.
+              Every Blessed Kit carries your sankalp through sacred rituals, with the prepared offerings and essentials delivered to your home.
             </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center' }}>
-              <button
-                type="button"
-                onClick={handleClaim}
-                style={{ background: '#F7F2E9', color: '#17130F', border: 'none', fontSize: '12px', letterSpacing: '.2em', textTransform: 'uppercase', padding: '18px 34px', borderRadius: '2px', cursor: 'pointer', transition: 'background .35s' }}
-                className="btn-primary"
-              >
-                Claim your Blessed Kit
-              </button>
-              <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(20px,2vw,28px)', color: '#E8CFA3' }}>
-                ₹1,499
-              </span>
-            </div>
+            {isAvailable ? (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center' }}>
+                <button
+                  type="button"
+                  onClick={handleBuyNow}
+                  style={{
+                    background: '#F7F2E9',
+                    color: '#17130F',
+                    border: 'none',
+                    fontSize: '12px',
+                    letterSpacing: '.2em',
+                    textTransform: 'uppercase',
+                    fontWeight: 600,
+                    padding: '18px 36px',
+                    borderRadius: '2px',
+                    cursor: 'pointer',
+                    transition: 'background .35s, transform .2s',
+                    boxShadow: '0 4px 18px rgba(0,0,0,.25)'
+                  }}
+                  className="btn-primary"
+                >
+                  Buy Now Directly · ₹1
+                </button>
+                <button
+                  type="button"
+                  onClick={handleClaim}
+                  style={{
+                    background: 'transparent',
+                    color: '#F8F2E6',
+                    border: '1px solid rgba(248,242,230,.38)',
+                    fontSize: '12px',
+                    letterSpacing: '.2em',
+                    textTransform: 'uppercase',
+                    padding: '18px 30px',
+                    borderRadius: '2px',
+                    cursor: 'pointer',
+                    transition: 'all .35s'
+                  }}
+                >
+                  Add to Cart
+                </button>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center' }}>
+                <button
+                  type="button"
+                  disabled
+                  style={{
+                    background: 'rgba(247,242,233,0.2)',
+                    color: 'rgba(247,242,233,0.5)',
+                    border: 'none',
+                    fontSize: '12px',
+                    letterSpacing: '.2em',
+                    textTransform: 'uppercase',
+                    fontWeight: 600,
+                    padding: '18px 36px',
+                    borderRadius: '2px',
+                    cursor: 'not-allowed'
+                  }}
+                >
+                  Sold Out
+                </button>
+              </div>
+            )}
           </RevealOnScroll>
         </div>
       </section>
@@ -111,11 +210,11 @@ export default function BlessedKitPage() {
 
             <RevealOnScroll variant="fall" delay={180}>
               <div style={{ overflow: 'hidden', background: '#DFD3C0', borderRadius: '3px', marginBottom: '22px' }}>
-                <img src={IMAGES.journey.temple} alt="Rituals in Kashi" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.1s cubic-bezier(.2,.7,.2,1)' }} className="product-card-img" />
+                <img src={IMAGES.journey.temple} alt="Sacred Rituals" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.1s cubic-bezier(.2,.7,.2,1)' }} className="product-card-img" />
               </div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '13px', color: '#B18F52', letterSpacing: '.14em', marginBottom: '10px' }}>02</div>
-              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: 'clamp(19px,1.8vw,25px)', margin: '0 0 10px', color: '#17130F' }}>Rituals near Kashi Vishwanath</h3>
-              <p style={{ fontSize: '13.5px', lineHeight: 1.75, color: '#5C5147', fontWeight: 300, margin: 0 }}>Your sankalp card is offered in temple archana near Kashi Vishwanath.</p>
+              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: 'clamp(19px,1.8vw,25px)', margin: '0 0 10px', color: '#17130F' }}>Sacred Temple Consecration</h3>
+              <p style={{ fontSize: '13.5px', lineHeight: 1.75, color: '#5C5147', fontWeight: 300, margin: 0 }}>Your sankalp card is consecrated with traditional rituals and care.</p>
             </RevealOnScroll>
 
             <RevealOnScroll variant="fall" delay={360}>
@@ -139,7 +238,7 @@ export default function BlessedKitPage() {
         </div>
       </ScrollBackgroundSection>
 
-      {/* 3. Inside the Kit Breakdown (Kashi Obsidian Theme - Dark Nav Theme) */}
+      {/* 3. Inside the Kit Breakdown (Obsidian Theme - Dark Nav Theme) */}
       <ScrollBackgroundSection navTheme="dark" defaultBg="#FAF5EC" activeBg="#1C1410">
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(66px,11vh,140px) clamp(20px,4vw,56px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,340px), 1fr))', gap: 'clamp(36px,6vw,88px)', alignItems: 'center' }}>
           {/* AUTHENTIC DEVOTIONAL BRASS MANDAP FRAME */}
@@ -156,7 +255,7 @@ export default function BlessedKitPage() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,170px), 1fr))', gap: '2px 26px' }}>
               {[
                 'Sankalp card in your name',
-                'Kashi vibhuti',
+                'Sacred vibhuti',
                 'Sacred kumkum & pasupu',
                 'Pure chandanam',
                 'Cotton wicks & camphor',
@@ -209,16 +308,70 @@ export default function BlessedKitPage() {
 
             <SankalpForm style={{ maxWidth: '780px', margin: '0 auto 40px', textAlign: 'left' }} lightTheme />
 
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
-              <button
-                type="button"
-                onClick={handleClaim}
-                style={{ background: '#17130F', color: '#F7F2E9', border: 'none', fontSize: '12px', letterSpacing: '.2em', textTransform: 'uppercase', padding: '18px 36px', borderRadius: '2px', cursor: 'pointer', transition: 'background .35s' }}
-                className="cart-btn"
-              >
-                Claim your Blessed Kit (₹1,499)
-              </button>
-            </div>
+            {isAvailable ? (
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  onClick={handleBuyNow}
+                  style={{
+                    background: '#17130F',
+                    color: '#F7F2E9',
+                    border: 'none',
+                    fontSize: '12px',
+                    letterSpacing: '.2em',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    padding: '18px 36px',
+                    borderRadius: '2px',
+                    cursor: 'pointer',
+                    transition: 'background .35s',
+                    boxShadow: '0 4px 14px rgba(23,19,15,.2)'
+                  }}
+                  className="cart-btn"
+                >
+                  Buy Now Directly (₹1)
+                </button>
+                <button
+                  type="button"
+                  onClick={handleClaim}
+                  style={{
+                    background: 'transparent',
+                    color: '#17130F',
+                    border: '1px solid rgba(23,19,15,.3)',
+                    fontSize: '12px',
+                    letterSpacing: '.2em',
+                    textTransform: 'uppercase',
+                    padding: '18px 32px',
+                    borderRadius: '2px',
+                    cursor: 'pointer',
+                    transition: 'all .3s'
+                  }}
+                >
+                  Add to Cart
+                </button>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  disabled
+                  style={{
+                    background: '#D9D0C3',
+                    color: '#6E6152',
+                    border: 'none',
+                    fontSize: '12px',
+                    letterSpacing: '.2em',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    padding: '18px 36px',
+                    borderRadius: '2px',
+                    cursor: 'not-allowed'
+                  }}
+                >
+                  Sold Out
+                </button>
+              </div>
+            )}
           </RevealOnScroll>
         </div>
       </ScrollBackgroundSection>

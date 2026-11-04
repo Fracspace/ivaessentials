@@ -75,16 +75,7 @@ export default function CartPage() {
                 </div>
               ))}
 
-              {/* Sankalp Note Box */}
-              <div style={{ marginTop: '34px', padding: '24px 26px', background: '#EFE7DA', display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center', justifyContent: 'space-between' }}>
-                <div style={{ maxWidth: '40ch' }}>
-                  <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '20px', marginBottom: '5px' }}>Add a sankalp note</div>
-                  <div style={{ fontSize: '13px', lineHeight: 1.7, color: '#5C5147', fontWeight: 300 }}>Your name, gotra and prayer intention are collected for archana in Kashi.</div>
-                </div>
-                <Link href="/product/blessed-kit" style={{ fontSize: '11px', letterSpacing: '.2em', textTransform: 'uppercase', borderBottom: '1px solid #17130F', paddingBottom: '6px', textDecoration: 'none' }} className="hover-color">
-                  Add details
-                </Link>
-              </div>
+
             </div>
 
             {/* Order Summary Sidebar */}

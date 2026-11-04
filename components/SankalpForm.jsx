@@ -49,7 +49,7 @@ export default function SankalpForm({ title, subtitle, style, lightTheme = false
         }}
       >
         {subtitle ||
-          'Your name, gotra, nakshatra, and prayer intention will be written on your sacred sankalp card and included in archana in Kashi.'}
+          'Your name, gotra, nakshatra, and prayer intention will be written on your sacred sankalp card with utmost reverence.'}
       </p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>

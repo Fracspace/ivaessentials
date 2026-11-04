@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useCart } from '../../context/CartContext';
 import { trackViewItem } from '../../lib/gtm';
+import { fetchProductBySlugApi } from '../../lib/products';
 
 // SVG icons helper
 const s = {
@@ -81,31 +83,68 @@ export default function RudrakshaPage() {
   const [isMobile, setIsMobile] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [addedNotice, setAddedNotice] = useState(false);
+  const [isAvailable, setIsAvailable] = useState(true);
+  const [stockInfo, setStockInfo] = useState({ stock: 20, isActive: true });
 
   useEffect(() => {
     trackViewItem({
       id: 'rudraksha-band',
       name: '12-Bead Rudraksha Band',
-      price: 499
+      price: 1
     });
+
+    async function checkAvailability() {
+      try {
+        const live = await fetchProductBySlugApi('12-bead-rudraksha-band');
+        if (live) {
+          const liveStock = Number(live.stock || 0);
+          const liveReserved = Number(live.reservedStock || 0);
+          const remainingStock = Math.max(0, liveStock - liveReserved);
+          const active = live.isActive !== false;
+          setIsAvailable(Boolean(active && remainingStock > 0));
+          setStockInfo({ stock: remainingStock, isActive: active });
+        }
+      } catch (e) {}
+    }
+    checkAvailability();
   }, []);
 
+  const router = useRouter();
   const beadtrackRef = useRef(null);
   const containerRef = useRef(null);
   const stickyContainerRef = useRef(null);
 
   const handleAddToCart = () => {
+    if (!isAvailable) return;
     addItem({
-      id: 'rudraksha-band',
-      name: '12-Bead Rudraksha Band',
-      subtitle: 'Natural Rudraksha · Hand-strung',
-      price: 499,
+      id: '12-bead-rudraksha-band',
+      productId: 'eabdb7da-bdfe-4a48-a517-05c1144985bd',
+      sku: 'IVA-RIT-12BE-664',
+      name: '12 Bead Rudraksha Band',
+      subtitle: 'Natural Rudraksha Hand-strung',
+      price: 1,
       quantity: qty || 1,
       image: '/assets/rudrakshaImg1.png',
       href: '/rudraksha'
     });
     setAddedNotice(true);
     setTimeout(() => setAddedNotice(false), 2500);
+  };
+
+  const handleBuyNow = () => {
+    if (!isAvailable) return;
+    addItem({
+      id: '12-bead-rudraksha-band',
+      productId: 'eabdb7da-bdfe-4a48-a517-05c1144985bd',
+      sku: 'IVA-RIT-12BE-664',
+      name: '12 Bead Rudraksha Band',
+      subtitle: 'Natural Rudraksha Hand-strung',
+      price: 1,
+      quantity: qty || 1,
+      image: '/assets/rudrakshaImg1.png',
+      href: '/rudraksha'
+    });
+    router.push('/checkout');
   };
 
   const handleScrollToProduct = (e) => {
@@ -302,7 +341,7 @@ export default function RudrakshaPage() {
             </a>
 
             <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '11.5px', letterSpacing: '.16em', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(238, 230, 216, .6)', borderLeft: '1px solid rgba(238, 230, 216, .2)', paddingLeft: '22px' }}>
-              ₹499
+              ₹1
             </span>
           </div>
         </div>
@@ -666,7 +705,7 @@ export default function RudrakshaPage() {
 
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '14px', borderTop: '1px solid rgba(23, 19, 15, .16)', borderBottom: '1px solid rgba(23, 19, 15, .16)', padding: '20px 0', marginBottom: '28px' }}>
               <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(44px, 6vw, 72px)', lineHeight: 1, color: '#17130F', fontFeatureSettings: "'tnum'" }}>
-                ₹499
+                ₹1
               </span>
             </div>
 
@@ -691,35 +730,93 @@ export default function RudrakshaPage() {
                 </div>
               </div>
 
-              <button
-                onClick={handleAddToCart}
-                style={{
-                  width: '100%',
-                  background: '#17130F',
-                  color: '#F8F2E6',
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '11.5px',
-                  letterSpacing: '.24em',
-                  textTransform: 'uppercase',
-                  fontWeight: 600,
-                  padding: '18px 24px',
-                  borderRadius: '2px',
-                  border: '1px solid #17130F',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  boxShadow: '0 4px 14px rgba(0,0,0,0.15)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = '#A2543A';
-                  e.currentTarget.style.borderColor = '#A2543A';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = '#17130F';
-                  e.currentTarget.style.borderColor = '#17130F';
-                }}
-              >
-                {addedNotice ? 'Added to Bag ✓' : 'Add to Bag'}
-              </button>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
+                {isAvailable ? (
+                  <>
+                    <button
+                      type="button"
+                      onClick={handleBuyNow}
+                      style={{
+                        width: '100%',
+                        background: '#d7b06f',
+                        color: '#14100b',
+                        fontFamily: "'DM Sans', sans-serif",
+                        fontSize: '11.5px',
+                        letterSpacing: '.24em',
+                        textTransform: 'uppercase',
+                        fontWeight: 600,
+                        padding: '18px 24px',
+                        borderRadius: '2px',
+                        border: '1px solid #d7b06f',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 4px 14px rgba(215, 176, 111, 0.25)'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                        e.currentTarget.style.boxShadow = '0 8px 20px rgba(215, 176, 111, 0.35)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'none';
+                        e.currentTarget.style.boxShadow = '0 4px 14px rgba(215, 176, 111, 0.25)';
+                      }}
+                    >
+                      Buy Now Directly · ₹{1 * qty}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleAddToCart}
+                      style={{
+                        width: '100%',
+                        background: '#17130F',
+                        color: '#F8F2E6',
+                        fontFamily: "'DM Sans', sans-serif",
+                        fontSize: '11.5px',
+                        letterSpacing: '.24em',
+                        textTransform: 'uppercase',
+                        fontWeight: 600,
+                        padding: '16px 24px',
+                        borderRadius: '2px',
+                        border: '1px solid #17130F',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = '#A2543A';
+                        e.currentTarget.style.borderColor = '#A2543A';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = '#17130F';
+                        e.currentTarget.style.borderColor = '#17130F';
+                      }}
+                    >
+                      {addedNotice ? 'Added to Bag ✓' : 'Add to Bag'}
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    type="button"
+                    disabled
+                    style={{
+                      width: '100%',
+                      background: '#D9D0C3',
+                      color: '#6E6152',
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: '11.5px',
+                      letterSpacing: '.24em',
+                      textTransform: 'uppercase',
+                      fontWeight: 600,
+                      padding: '18px 24px',
+                      borderRadius: '2px',
+                      border: 'none',
+                      cursor: 'not-allowed',
+                      opacity: 0.85
+                    }}
+                  >
+                    Sold Out
+                  </button>
+                )}
+              </div>
             </div>
 
             {/* <div id="razorpay-container" className="checkout-payment" ref={containerRef} style={{ marginTop: '12px' }}></div> */}
@@ -856,9 +953,74 @@ export default function RudrakshaPage() {
       {showStickyCta && (
         <div style={{ position: 'fixed', left: 0, right: 0, bottom: 0, zIndex: 90, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '14px', padding: '12px 18px calc(12px + env(safe-area-inset-bottom))', background: 'rgba(15, 12, 8, .94)', backdropFilter: 'blur(12px)', borderTop: '1px solid rgba(215, 176, 111, .28)' }}>
           <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '1.1' }}>
-            <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '22px', color: '#f4ecdd', fontFeatureSettings: "'tnum'" }}>₹499</span>
+            <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '22px', color: '#f4ecdd', fontFeatureSettings: "'tnum'" }}>₹1</span>
           </div>
-          <div style={{ flex: 1, maxWidth: '220px' }} ref={stickyContainerRef} className="sticky-payment"></div>
+          <div style={{ flex: 1, maxWidth: '240px', display: 'flex', gap: '8px' }}>
+            {isAvailable ? (
+              <>
+                <button
+                  type="button"
+                  onClick={handleBuyNow}
+                  style={{
+                    flex: 1,
+                    background: '#d7b06f',
+                    color: '#14100b',
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '11px',
+                    letterSpacing: '.18em',
+                    textTransform: 'uppercase',
+                    fontWeight: 600,
+                    padding: '12px 14px',
+                    border: 'none',
+                    borderRadius: '2px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Buy Now
+                </button>
+                <button
+                  type="button"
+                  onClick={handleAddToCart}
+                  style={{
+                    flex: 1,
+                    background: 'transparent',
+                    color: '#F8F2E6',
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '11px',
+                    letterSpacing: '.18em',
+                    textTransform: 'uppercase',
+                    padding: '12px 10px',
+                    border: '1px solid rgba(248,242,230,.35)',
+                    borderRadius: '2px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Add
+                </button>
+              </>
+            ) : (
+              <button
+                type="button"
+                disabled
+                style={{
+                  flex: 1,
+                  background: 'rgba(255,255,255,0.15)',
+                  color: 'rgba(255,255,255,0.5)',
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '10.5px',
+                  letterSpacing: '.14em',
+                  textTransform: 'uppercase',
+                  fontWeight: 600,
+                  padding: '12px 10px',
+                  border: 'none',
+                  borderRadius: '2px',
+                  cursor: 'not-allowed'
+                }}
+              >
+                Sold Out
+              </button>
+            )}
+          </div>
         </div>
       )}
 

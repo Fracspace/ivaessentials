@@ -81,7 +81,7 @@ export default function TermsOfServicePage() {
                 3. No Guaranteed Outcomes
               </h2>
               <p style={{ fontSize: '15.5px', lineHeight: 1.8, color: '#3A332C', margin: '0 0 16px', fontWeight: 300 }}>
-                IVA Essentials performs all rituals and preparations with sincerity, devotion, and care. However, spiritual experiences and outcomes are personal and may vary for each devotee.
+                IVA Essentials performs all rituals and preparations with sincerity, devotion, and care. However, spiritual experiences and outcomes are personal and may vary for each individual.
               </p>
               <p style={{ fontSize: '15.5px', lineHeight: 1.8, color: '#3A332C', margin: '0 0 12px', fontWeight: 500 }}>
                 We do not guarantee:

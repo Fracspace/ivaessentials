@@ -44,18 +44,18 @@ export default function HomePage() {
             width: '100%',
             maxWidth: '1400px',
             margin: '0 auto',
-            padding: 'clamp(48px,9vh,120px) clamp(20px,4vw,56px) clamp(44px,7vh,80px)',
+            padding: 'clamp(85px, 11vh, 115px) clamp(20px,4vw,56px) clamp(40px,6vh,72px)',
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,320px), 1fr))',
             gap: 'clamp(28px,5vw,72px)',
             alignItems: 'end'
           }}
         >
-          <RevealOnScroll style={{ maxWidth: '960px', paddingTop: 'clamp(30px, 4vh, 60px)' }}>
+          <RevealOnScroll style={{ maxWidth: '960px', paddingTop: 'clamp(14px, 1.8vh, 24px)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: 'clamp(20px,3vh,34px)' }}>
               <span style={{ width: '34px', height: '2px', background: '#17130F', display: 'block' }} />
               <span style={{ fontSize: '10.5px', letterSpacing: '.34em', textTransform: 'uppercase', color: '#17130F', fontWeight: 600 }}>
-                AUTHENTIC PUJA ESSENTIALS FROM KASHI
+                AUTHENTIC SACRED PUJA ESSENTIALS
               </span>
             </div>
             <h1
@@ -120,10 +120,10 @@ export default function HomePage() {
             }}
           >
             <span style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontSize: 'clamp(17px,1.6vw,22px)', color: '#E8CFA3', lineHeight: 1.4 }}>
-              “Bring home the divine grace of Kashi.”
+              “Bring home sacred purity and timeless devotion.”
             </span>
             <span style={{ fontSize: '11px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'rgba(245,238,226,.6)' }}>
-              The Blessed Kit · ₹1,499
+              The Yatra Kit · ₹1
             </span>
           </RevealOnScroll>
         </div>
@@ -172,7 +172,7 @@ export default function HomePage() {
                   />
                 </DevotionalFrame>
                 <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontSize: 'clamp(15px,1.4vw,19px)', lineHeight: 1.55, color: '#E8CFA3', margin: 0 }}>
-                  Assembled in Hyderabad. Rooted in Kashi.
+                  Curated with reverence. Rooted in sacred tradition.
                 </p>
               </div>
             </RevealOnScroll>
@@ -185,7 +185,7 @@ export default function HomePage() {
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(72px,12vh,140px) clamp(20px,4vw,56px)' }}>
           <RevealOnScroll style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 'clamp(36px,6vh,68px)' }}>
             <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(30px,4vw,56px)', lineHeight: 1.1, margin: 0, maxWidth: '18ch', color: '#17130F' }}>
-              Four ways to keep tradition close.
+              Sacred ways to keep tradition close.
             </h2>
             <span style={{ fontSize: '11px', letterSpacing: '.24em', textTransform: 'uppercase', color: '#8A7B6B' }}>
               Collections
@@ -193,6 +193,7 @@ export default function HomePage() {
           </RevealOnScroll>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,300px), 1fr))', gap: 'clamp(20px,3vw,40px)' }}>
+            {/* Blessed Kit card temporarily hidden
             <RevealOnScroll variant="float">
               <Link href="/blessed-kit" style={{ display: 'block', position: 'relative', overflow: 'hidden', background: '#DFD3C0', borderRadius: '3px' }}>
                 <img
@@ -211,6 +212,7 @@ export default function HomePage() {
                 </div>
               </Link>
             </RevealOnScroll>
+            */}
 
             <RevealOnScroll delay={100} variant="float">
               <Link href="/rudraksha" style={{ display: 'block', position: 'relative', overflow: 'hidden', background: '#DFD3C0', borderRadius: '3px' }}>
@@ -272,15 +274,15 @@ export default function HomePage() {
         </div>
       </ScrollBackgroundSection>
 
-      {/* 4. Signature Section (Kashi Obsidian & Copper Theme - Dark Nav Theme) */}
+      {/* 4. Signature Section (Obsidian & Copper Theme - Dark Nav Theme) */}
       <ScrollBackgroundSection navTheme="dark" defaultBg="#FAF5EC" activeBg="#1C1410">
         <div style={{ maxWidth: '1500px', margin: '0 auto', padding: 'clamp(72px,12vh,150px) clamp(20px,4vw,56px)' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,360px), 1fr))', gap: 'clamp(36px,6vw,90px)', alignItems: 'center' }}>
-            {/* SELECTIVE BOLD GOLD BORDER around Signature Blessed Kit feature showcase */}
+            {/* Showcase Sacred Yatra Kit */}
             <RevealOnScroll variant="zoom" style={{ overflow: 'hidden', background: '#14100D', borderRadius: '3px', border: '2px solid #B18F52', boxShadow: '0 20px 48px rgba(0,0,0,0.6)' }}>
               <img
-                src={IMAGES.hero.fallbackSigBlessedKit}
-                alt="The Blessed Kit"
+                src={IMAGES.products.yatraKit.url}
+                alt="The Sacred Yatra Kit"
                 style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.3s cubic-bezier(.2,.7,.2,1)' }}
                 className="product-card-img"
               />
@@ -291,18 +293,19 @@ export default function HomePage() {
                 Signature
               </span>
               <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(34px,4.6vw,66px)', lineHeight: 1.04, margin: '18px 0 22px', color: '#F8F2E6' }}>
-                The Blessed Kit
+                The Sacred Yatra Kit
               </h2>
               <p style={{ fontSize: 'clamp(15px,1.25vw,18px)', lineHeight: 1.8, color: 'rgba(248,242,230,.84)', fontWeight: 300, margin: '0 0 30px', maxWidth: '46ch', textWrap: 'pretty' }}>
-                A thoughtfully curated puja kit with complete samagri, a personalized sankalp card, and offerings prepared near Kashi Vishwanath.              </p>
+                A travel-ready sacred companion crafted for darshan and holy pilgrimages, with leak-proof containers and essential samagri.
+              </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', margin: '0 0 36px', padding: '26px 0', borderTop: '1px solid rgba(177,143,82,.25)', borderBottom: '1px solid rgba(177,143,82,.25)' }}>
                 <div style={{ display: 'flex', gap: '14px', alignItems: 'baseline' }}>
                   <span style={{ width: '6px', height: '6px', background: '#B18F52', borderRadius: '50%', flex: 'none', transform: 'translateY(-3px)' }} />
-                  <span style={{ fontSize: '14px', color: '#F8F2E6', fontWeight: 300 }}>Complete ritual samagri — thoughtfully assembled for your puja</span>
+                  <span style={{ fontSize: '14px', color: '#F8F2E6', fontWeight: 300 }}>Compact, leak-proof containers for holy Gangajal and Vibhuti</span>
                 </div>
                 <div style={{ display: 'flex', gap: '14px', alignItems: 'baseline' }}>
                   <span style={{ width: '6px', height: '6px', background: '#B18F52', borderRadius: '50%', flex: 'none', transform: 'translateY(-3px)' }} />
-                  <span style={{ fontSize: '14px', color: '#F8F2E6', fontWeight: 300 }}>Sankalp card prepared in your name and gotra</span>
+                  <span style={{ fontSize: '14px', color: '#F8F2E6', fontWeight: 300 }}>Pure Kumkum, Pasupu and brass diya for meaningful darshan</span>
                 </div>
                 <div style={{ display: 'flex', gap: '14px', alignItems: 'baseline' }}>
                   <span style={{ width: '6px', height: '6px', background: '#B18F52', borderRadius: '50%', flex: 'none', transform: 'translateY(-3px)' }} />
@@ -312,11 +315,11 @@ export default function HomePage() {
 
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(18px,3vw,36px)', alignItems: 'center' }}>
                 <div>
-                  <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(28px,3vw,40px)', lineHeight: 1, color: '#E8CFA3' }}>₹1,499</div>
+                  <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(28px,3vw,40px)', lineHeight: 1, color: '#E8CFA3' }}>₹1</div>
                   <div style={{ fontSize: '10.5px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'rgba(248,242,230,.6)', marginTop: '6px' }}>Inclusive of taxes</div>
                 </div>
                 <Link
-                  href="/product/blessed-kit"
+                  href="/yatra-kit"
                   style={{
                     background: '#F7F2E9',
                     color: '#17130F',
@@ -330,7 +333,7 @@ export default function HomePage() {
                   }}
                   className="cart-btn"
                 >
-                  Explore Blessed Kit
+                  Explore Yatra Kit
                 </Link>
               </div>
             </RevealOnScroll>
@@ -368,61 +371,6 @@ export default function HomePage() {
           </div>
         </div>
       </ScrollBackgroundSection>
-
-      {/* 6. Kashi Section with Parallax (Intact Dark Theme) */}
-      <section data-nav-theme="dark" style={{ position: 'relative', overflow: 'hidden', background: '#14100D' }}>
-        <ParallaxImage
-          src={IMAGES.hero.fallbackKashiSilhouette}
-          alt="Temple silhouette at dusk"
-          speed={0.14}
-          opacity={0.5}
-        />
-        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(120% 90% at 30% 60%, rgba(14,10,8,.55) 0%, rgba(14,10,8,.92) 70%)', zIndex: 1 }} />
-
-        <div style={{ position: 'relative', zIndex: 2, maxWidth: '1400px', margin: '0 auto', padding: 'clamp(90px,18vh,200px) clamp(20px,4vw,56px)' }}>
-          <RevealOnScroll style={{ maxWidth: '660px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '28px' }}>
-              <span style={{ width: '7px', height: '7px', border: '1px solid #B18F52', transform: 'rotate(45deg)', display: 'block', animation: 'ivaFlame 4s ease-in-out infinite' }} />
-              <span style={{ fontSize: '10.5px', letterSpacing: '.34em', textTransform: 'uppercase', color: '#D9BE8B' }}>Kashi</span>
-            </div>
-            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(34px,5.6vw,80px)', lineHeight: 1.03, color: '#F5EEE2', margin: '0 0 26px', maxWidth: '20ch' }}>
-              From Your Sankalp to Your Home
-            </h2>
-            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontSize: 'clamp(18px,2vw,27px)', lineHeight: 1.5, color: '#E8CFA3', margin: '0 0 34px', maxWidth: '32ch' }}>
-              Your intention begins the ritual. We take care of the sacred preparations in Kashi and bring them home to you.
-            </p>
-            <p style={{ fontSize: 'clamp(14px,1.2vw,16.5px)', lineHeight: 1.85, color: 'rgba(242,235,224,.78)', fontWeight: 300, maxWidth: '50ch', margin: '0 0 40px', textWrap: 'pretty' }}>
-              Each Blessed Kit begins with your sankalp — Share your name, gotra, and prayer intention with us. From there, your sankalp becomes part of the ritual journey in Kashi before your prepared kit reaches your home.
-            </p>
-            <Link href="/blessed-kit" style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '11.5px', letterSpacing: '.2em', textTransform: 'uppercase', color: '#E8CFA3', borderBottom: '1px solid rgba(232,207,163,.5)', paddingBottom: '9px', textDecoration: 'none' }} className="footer-link">
-              Discover the Blessed Kit
-            </Link>
-          </RevealOnScroll>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,200px), 1fr))', gap: 'clamp(20px,3vw,40px)', marginTop: 'clamp(56px,9vh,110px)', paddingTop: 'clamp(30px,4vh,48px)', borderTop: '1px solid rgba(232,207,163,.2)' }}>
-            <RevealOnScroll>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '13px', color: '#B18F52', letterSpacing: '.14em', marginBottom: '12px' }}>01</div>
-              <h4 style={{ fontSize: '12px', letterSpacing: '.2em', textTransform: 'uppercase', color: '#F0E7D8', margin: '0 0 10px', fontWeight: 400 }}>Sankalp received</h4>
-              <p style={{ fontSize: '13.5px', lineHeight: 1.7, color: 'rgba(240,231,216,.62)', margin: 0, fontWeight: 300 }}>Your prayer intention is noted with care.</p>
-            </RevealOnScroll>
-            <RevealOnScroll delay={100}>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '13px', color: '#B18F52', letterSpacing: '.14em', marginBottom: '12px' }}>02</div>
-              <h4 style={{ fontSize: '12px', letterSpacing: '.2em', textTransform: 'uppercase', color: '#F0E7D8', margin: '0 0 10px', fontWeight: 400 }}>Rituals in Kashi</h4>
-              <p style={{ fontSize: '13.5px', lineHeight: 1.7, color: 'rgba(240,231,216,.62)', margin: 0, fontWeight: 300 }}>Offerings are included in temple archana near Kashi Vishwanath.</p>
-            </RevealOnScroll>
-            <RevealOnScroll delay={200}>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '13px', color: '#B18F52', letterSpacing: '.14em', marginBottom: '12px' }}>03</div>
-              <h4 style={{ fontSize: '12px', letterSpacing: '.2em', textTransform: 'uppercase', color: '#F0E7D8', margin: '0 0 10px', fontWeight: 400 }}>Prepared &amp; packed</h4>
-              <p style={{ fontSize: '13.5px', lineHeight: 1.7, color: 'rgba(240,231,216,.62)', margin: 0, fontWeight: 300 }}>Sacred items and your sankalp card, packed respectfully.</p>
-            </RevealOnScroll>
-            <RevealOnScroll delay={300}>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '13px', color: '#B18F52', letterSpacing: '.14em', marginBottom: '12px' }}>04</div>
-              <h4 style={{ fontSize: '12px', letterSpacing: '.2em', textTransform: 'uppercase', color: '#F0E7D8', margin: '0 0 10px', fontWeight: 400 }}>Delivered to your home</h4>
-              <p style={{ fontSize: '13.5px', lineHeight: 1.7, color: 'rgba(240,231,216,.62)', margin: 0, fontWeight: 300 }}>Your kit reaches your home across India.</p>
-            </RevealOnScroll>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

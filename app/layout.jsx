@@ -1,5 +1,6 @@
 import './globals.css';
 import Script from 'next/script';
+import { AuthProvider } from '../context/AuthContext';
 import { CartProvider } from '../context/CartContext';
 import SiteNav from '../components/SiteNav';
 import SiteFooter from '../components/SiteFooter';
@@ -11,13 +12,19 @@ export const viewport = {
 
 export const metadata = {
   title: 'IVA Essentials | Ancient Rituals Reimagined for Modern Life',
-  description: 'Thoughtfully curated sacred essentials for everyday devotion, meaningful journeys, and moments that matter. Assembled in Hyderabad. Rooted in Kashi.',
+  description: 'Thoughtfully curated sacred essentials for everyday devotion, meaningful journeys, and moments that matter. Assembled in Hyderabad. Rooted in sacred tradition.',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* Razorpay Checkout SDK */}
+        <Script
+          id="razorpay-checkout-sdk"
+          src="https://checkout.razorpay.com/v1/checkout.js"
+          strategy="lazyOnload"
+        />
         {/* Google Analytics (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-GLXFFSP3Y9"
@@ -71,11 +78,13 @@ export default function RootLayout({ children }) {
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
-        <CartProvider>
+        <AuthProvider>
+          <CartProvider>
           <SiteNav />
           <main>{children}</main>
           <SiteFooter />
-        </CartProvider>
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );

@@ -1,51 +1,130 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import RevealOnScroll from '../../components/RevealOnScroll';
+import { useAuth } from '../../context/AuthContext';
+import { IMAGES } from '../../lib/images';
+
+const resolveProductImage = (identifier) => {
+  if (!identifier) return '/assets/rudrakshaImg1.png';
+  const str = String(identifier).toLowerCase();
+  if (str.includes('rudraksha') || str.includes('12be')) return '/assets/rudrakshaImg1.png';
+  if (str.includes('yatra') || str.includes('yaki')) return IMAGES?.products?.yatraKit?.secondaryUrl || '/images/yatra-kit-secondary.jpg';
+  if (str.includes('blessed') || str.includes('blki')) return IMAGES?.products?.blessedKit?.heroUrl || '/images/blessed-kit.jpg';
+  if (str.includes('shiva') || str.includes('shpo')) return IMAGES?.products?.shivaSamagri?.url || '/images/shiva-kit.jpg';
+  if (str.includes('ganesh') || str.includes('vipo') || str.includes('vinayaka')) return IMAGES?.products?.ganeshSamagri?.url || '/images/ganesh-kit.jpg';
+  return '/images/blessed-kit.jpg';
+};
 
 export default function OrdersPage() {
+  const { user, token, isLoading: authLoading } = useAuth();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState('all');
   const [expandedOrder, setExpandedOrder] = useState(null);
+  const currentUser = user;
 
-  const loadUserOrders = async () => {
+  const loadUserOrders = useCallback(async () => {
     setLoading(true);
-    let apiOrders = [];
-    let localOrders = [];
 
-    // 1. Fetch from API
+    const userPhone = user?.phone ? user.phone.replace(/\D/g, '').slice(-10) : null;
+    const userEmail = user?.email || null;
+
     try {
-      const res = await fetch('/api/orders');
+      const params = new URLSearchParams();
+      if (userPhone) params.set('phone', userPhone);
+      if (userEmail) params.set('email', userEmail);
+
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+
+      const API_URL = (process.env.NEXT_PUBLIC_API_URL || 'https://api.ivaessentials.com').replace(/\/+$/, '');
+      const endpoint = params.toString() ? `${API_URL}/api/orders?${params.toString()}` : `${API_URL}/api/orders`;
+      const res = await fetch(endpoint, {
+        headers,
+        credentials: 'include',
+        cache: 'no-store'
+      });
+
       if (res.ok) {
         const data = await res.json();
-        apiOrders = data.orders || [];
+        const rawOrders = data.data || data.orders || [];
+
+        const normalized = rawOrders.map((order) => {
+          const dateStr = order.createdAt
+            ? new Date(order.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
+            : 'Recent';
+
+          const mappedStatus = (() => {
+            switch (order.status) {
+              case 'PAID':
+                return 'Order Confirmed - Preparing with Care';
+              case 'CONFIRMED':
+                return 'Order Confirmed';
+              case 'PROCESSING':
+                return 'Preparing Sacred Order';
+              case 'SHIPPED':
+                return 'Shipped with Bluedart';
+              case 'DELIVERED':
+                return 'Delivered';
+              case 'CANCELLED':
+                return 'Cancelled';
+              case 'PENDING':
+                return 'Payment Pending';
+              default:
+                return order.status || 'Order Confirmed';
+            }
+          })();
+
+          return {
+            id: order.orderNumber || order.id,
+            rawId: order.id,
+            date: dateStr,
+            status: mappedStatus,
+            rawStatus: order.status,
+            total: Number(order.totalAmount || order.amount || 0),
+            items: (order.items || []).map((it) => ({
+              name: it.productName || 'Sacred Offering',
+              quantity: it.quantity || 1,
+              price: Number(it.unitPrice || 0),
+              image: resolveProductImage(it.sku || it.productId || it.productName)
+            })),
+            shippingInfo: {
+              name: order.shippingName || order.customerName || 'Customer',
+              address: [order.shippingAddressLine1, order.shippingAddressLine2].filter(Boolean).join(', ') || 'Varanasi',
+              city: order.shippingCity || '',
+              state: order.shippingState || '',
+              pincode: order.shippingPostalCode || '',
+              phone: order.shippingPhone || order.customerPhone || ''
+            },
+            trackingNumber: order.shipment?.trackingNumber || (order.status === 'PAID' ? `AWB-IVA-${(order.orderNumber || order.id).slice(-6)}` : null),
+            courier: order.shipment?.carrier || 'Bluedart Express',
+            estimatedDelivery: 'Dispatched within 48 Hours',
+            paymentMethod: order.razorpayOrderId ? 'Online Payment (Razorpay)' : 'Cash on Delivery (COD)',
+            paymentStatus: order.status,
+            razorpayPaymentId: order.razorpayPaymentId,
+            razorpayOrderId: order.razorpayOrderId
+          };
+        });
+
+        setOrders(normalized);
+      } else {
+        setOrders([]);
       }
     } catch (err) {
-      console.error('Error fetching orders from API:', err);
+      console.error('Error fetching authentic orders from database:', err);
+      setOrders([]);
+    } finally {
+      setLoading(false);
     }
-
-    // 2. Fetch from LocalStorage (placed by user during session)
-    try {
-      const stored = localStorage.getItem('iva_user_orders');
-      if (stored) localOrders = JSON.parse(stored);
-    } catch (e) {}
-
-    // Merge & deduplicate orders by ID
-    const combined = [...localOrders, ...apiOrders];
-    const uniqueMap = new Map();
-    combined.forEach((item) => {
-      if (item && item.id) uniqueMap.set(item.id, item);
-    });
-
-    setOrders(Array.from(uniqueMap.values()));
-    setLoading(false);
-  };
+  }, [user, token]);
 
   useEffect(() => {
-    loadUserOrders();
-  }, []);
+    if (!authLoading) {
+      loadUserOrders();
+    }
+  }, [authLoading, loadUserOrders]);
 
   const filteredOrders = orders.filter((order) => {
     if (activeFilter === 'active') {
@@ -115,33 +194,63 @@ export default function OrdersPage() {
             <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '24px', color: '#17130F' }}>Loading your orders...</p>
           </div>
         ) : filteredOrders.length === 0 ? (
-          /* Empty Orders View (No dummy data) */
-          <RevealOnScroll style={{ textAlign: 'center', padding: '90px 20px', background: '#EFE7DA', border: '1px solid rgba(23,19,15,.08)' }}>
-            <div style={{ fontSize: '36px', marginBottom: '16px' }}>🛍️</div>
-            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '32px', margin: '0 0 12px', color: '#17130F' }}>
-              No orders placed yet
-            </h2>
-            <p style={{ fontSize: '14.5px', color: '#5C5147', marginBottom: '28px', maxWidth: '460px', margin: '0 auto 28px', lineHeight: 1.6 }}>
-              When you complete a purchase, your order history, live tracking details, and Kashi sankalp notes will appear here.
-            </p>
-            <Link
-              href="/shop"
-              style={{
-                background: '#17130F',
-                color: '#F7F2E9',
-                padding: '16px 34px',
-                fontSize: '11.5px',
-                letterSpacing: '.2em',
-                textTransform: 'uppercase',
-                textDecoration: 'none',
-                borderRadius: '2px',
-                display: 'inline-block'
-              }}
-              className="cart-btn"
-            >
-              Explore Collection
-            </Link>
-          </RevealOnScroll>
+          !currentUser ? (
+            /* Not Logged In View */
+            <RevealOnScroll style={{ textAlign: 'center', padding: '80px 20px', background: '#EFE7DA', border: '1px solid rgba(23,19,15,.08)' }}>
+              <div style={{ fontSize: '38px', marginBottom: '16px' }}>🔐</div>
+              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '32px', margin: '0 0 12px', color: '#17130F' }}>
+                Sign In to View Your Orders
+              </h2>
+              <p style={{ fontSize: '14.5px', color: '#5C5147', marginBottom: '28px', maxWidth: '480px', margin: '0 auto 28px', lineHeight: 1.6 }}>
+                Please sign in with your verified mobile number to view your sacred orders, live courier shipment tracking, and consecrated order details.
+              </p>
+              <Link
+                href="/account"
+                style={{
+                  background: '#17130F',
+                  color: '#F7F2E9',
+                  padding: '16px 34px',
+                  fontSize: '11.5px',
+                  letterSpacing: '.2em',
+                  textTransform: 'uppercase',
+                  textDecoration: 'none',
+                  borderRadius: '2px',
+                  display: 'inline-block'
+                }}
+                className="cart-btn"
+              >
+                📱 Sign In with Mobile OTP
+              </Link>
+            </RevealOnScroll>
+          ) : (
+            /* Logged In but No Orders View */
+            <RevealOnScroll style={{ textAlign: 'center', padding: '90px 20px', background: '#EFE7DA', border: '1px solid rgba(23,19,15,.08)' }}>
+              <div style={{ fontSize: '36px', marginBottom: '16px' }}>🛍️</div>
+              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '32px', margin: '0 0 12px', color: '#17130F' }}>
+                No orders placed yet
+              </h2>
+              <p style={{ fontSize: '14.5px', color: '#5C5147', marginBottom: '28px', maxWidth: '460px', margin: '0 auto 28px', lineHeight: 1.6 }}>
+                You are signed in as <strong>{currentUser.name || currentUser.phone}</strong>. When you complete a purchase, your order history, live tracking details, and sacred notes will appear here.
+              </p>
+              <Link
+                href="/shop"
+                style={{
+                  background: '#17130F',
+                  color: '#F7F2E9',
+                  padding: '16px 34px',
+                  fontSize: '11.5px',
+                  letterSpacing: '.2em',
+                  textTransform: 'uppercase',
+                  textDecoration: 'none',
+                  borderRadius: '2px',
+                  display: 'inline-block'
+                }}
+                className="cart-btn"
+              >
+                Explore Collection
+              </Link>
+            </RevealOnScroll>
+          )
         ) : (
           /* Functional Orders List */
           <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
@@ -270,10 +379,13 @@ export default function OrdersPage() {
                                 Delivery Address
                               </h4>
                               <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#5C5147', margin: 0 }}>
-                                <strong>{order.shippingInfo.firstName} {order.shippingInfo.lastName}</strong><br />
+                                <strong>{order.shippingInfo.name || `${order.shippingInfo.firstName || ''} ${order.shippingInfo.lastName || ''}`.trim() || 'Customer'}</strong><br />
                                 {order.shippingInfo.address}<br />
                                 {order.shippingInfo.city}, {order.shippingInfo.state} - {order.shippingInfo.pincode}<br />
-                                Phone: {order.shippingInfo.phone}
+                                <strong>Delivery Phone:</strong> +91 {order.shippingInfo.deliveryPhone || order.shippingInfo.phone}
+                                {order.shippingInfo.deliveryPhone && order.shippingInfo.phone && order.shippingInfo.deliveryPhone !== order.shippingInfo.phone && (
+                                  <><br /><span style={{ color: '#8A7B6B' }}>Account Phone: +91 {order.shippingInfo.phone}</span></>
+                                )}
                               </p>
                             </div>
                           )}
@@ -289,6 +401,24 @@ export default function OrdersPage() {
                               <strong>Est. Delivery:</strong> {order.estimatedDelivery || 'Dispatched within 48 Hours'}
                             </p>
                           </div>
+
+                          {/* Payment Details */}
+                          {(order.paymentMethod || order.razorpayPaymentId) && (
+                            <div style={{ background: '#F2EADD', padding: '18px 20px', borderRadius: '2px' }}>
+                              <h4 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '18px', margin: '0 0 10px', color: '#17130F' }}>
+                                Payment Details
+                              </h4>
+                              <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#5C5147', margin: 0 }}>
+                                <strong>Method:</strong> {order.paymentMethod || 'Online'}<br />
+                                <strong>Status:</strong> <span style={{ color: order.paymentStatus === 'PAID' ? '#2E5A36' : '#A2543A', fontWeight: 600 }}>{order.paymentStatus || 'Confirmed'}</span><br />
+                                {order.razorpayPaymentId && (
+                                  <>
+                                    <strong>Razorpay ID:</strong> <code style={{ background: 'rgba(23,19,15,.06)', padding: '2px 6px' }}>{order.razorpayPaymentId}</code><br />
+                                  </>
+                                )}
+                              </p>
+                            </div>
+                          )}
 
                           {/* Sankalp Details */}
                           {order.sankalp && (order.sankalp.name || order.sankalp.gotram || order.sankalp.gotra) && (

@@ -45,53 +45,61 @@ export default function SiteNav({ active }) {
 
   // Sample searchable products
   const productsList = [
+    // {
+    //   id: 'blessed-kit',
+    //   name: 'The Blessed Kit',
+    //   category: 'Blessed Kit',
+    //   price: '₹1',
+    //   image: '/images/blessed-kit.jpg',
+    //   href: '/product/blessed-kit'
+    // },
     {
-      id: 'blessed-kit',
-      name: 'The Blessed Kashi Kit',
-      category: 'Blessed Kit',
-      price: '₹1,499',
-      image: '/images/blessed-kit.jpg',
-      href: '/product/blessed-kit'
-    },
-    {
-      id: 'yatra-kit-deluxe',
-      name: 'Sacred Yatra Experience Kit',
-      category: 'Yatra Kit',
-      price: '₹2,499',
-      image: '/images/yatra-kit-secondary.jpg',
-      href: '/yatra-kit'
-    },
-    {
-      id: 'yatra-kit-lite',
+      id: 'yatra-kit',
       name: 'Yatra Kit',
       category: 'Yatra Kit',
-      price: '₹199',
+      price: '₹1',
       image: '/images/yatra-kit-secondary.jpg',
       href: '/yatra-kit'
+    },
+    {
+      id: 'rudraksha-band',
+      name: '12 Bead Rudraksha Band',
+      category: 'Rudraksha',
+      price: '₹1',
+      image: '/assets/rudrakshaImg1.png',
+      href: '/rudraksha'
+    },
+    {
+      id: 'vishnu-samagri',
+      name: 'Shree Vishnu Pooja Samagri',
+      category: 'Pooja Samagri',
+      price: '₹699',
+      image: 'https://res.cloudinary.com/sqgnrpnw/image/upload/v1793356662/iva_essentials/products/q0ux8p0uktkp6buwtccw.png',
+      href: '/product/shree-vishnu-pooja-samagri'
     },
     {
       id: 'lakshmi-samagri',
-      name: 'Shree Mahalakshmi Pooja Samagri',
+      name: 'Shree Mahalaxmi Pooja Samagri',
       category: 'Pooja Samagri',
       price: '₹699',
-      image: IMAGES?.products?.lakshmiSamagri?.url || '/images/blessed-kit.jpg',
-      href: '/shop'
+      image: 'https://res.cloudinary.com/sqgnrpnw/image/upload/v1793350606/iva_essentials/products/hpgd11l4ie3cvd6vxim6.png',
+      href: '/product/shree-mahalaxmi-pooja-samagri'
     },
     {
       id: 'shiva-samagri',
       name: 'Shree Shiva Pooja Samagri',
       category: 'Pooja Samagri',
       price: '₹699',
-      image: IMAGES?.products?.shivaSamagri?.url || '/images/blessed-kit.jpg',
-      href: '/shop'
+      image: 'https://res.cloudinary.com/sqgnrpnw/image/upload/v1791781645/iva_essentials/products/qr5f0iixwwovmkaef8ow.png',
+      href: '/product/shiva-pooja-samagri'
     },
     {
       id: 'ganesh-samagri',
       name: 'Shree Vinayaka Pooja Samagri',
       category: 'Pooja Samagri',
       price: '₹699',
-      image: IMAGES?.products?.ganeshSamagri?.url || '/images/ganesh-kit.jpg',
-      href: '/shop'
+      image: 'https://res.cloudinary.com/sqgnrpnw/image/upload/v1791779120/iva_essentials/products/k3bxwsprq8abjrezlqcp.png',
+      href: '/product/vinayaka-pooja-samagri'
     }
   ];
 
@@ -105,7 +113,7 @@ export default function SiteNav({ active }) {
   });
 
   const isShopPage = pathname === '/shop';
-  const isDarkHeroPage = pathname === '/' || pathname === '/blessed-kit' || pathname === '/yatra-kit';
+  const isDarkHeroPage = pathname === '/' || pathname === '/yatra-kit';
   const defaultPageTheme = isDarkHeroPage ? 'dark' : 'light';
   const [scrolled, setScrolled] = useState(false);
   const [activeNavTheme, setActiveNavTheme] = useState(defaultPageTheme);
@@ -159,9 +167,8 @@ export default function SiteNav({ active }) {
 
   const links = [
     { label: 'Shop', href: '/shop', key: 'shop' },
-    { label: 'Rudraksha', href: '/rudraksha', key: 'rudraksha' },
-    { label: 'Blessed Kit', href: '/blessed-kit', key: 'blessed' },
     { label: 'Yatra Kit', href: '/yatra-kit', key: 'yatra' },
+    { label: 'Rudraksha Band', href: '/rudraksha', key: 'rudraksha' },
     { label: 'Contact', href: '/contact', key: 'contact' },
   ];
 
@@ -217,7 +224,7 @@ export default function SiteNav({ active }) {
           style={{
             maxWidth: '1400px',
             margin: '0 auto',
-            padding: compact ? '10px clamp(20px,4vw,56px)' : '18px clamp(20px,4vw,56px)',
+            padding: compact ? '8px clamp(20px,4vw,56px)' : '14px clamp(20px,4vw,56px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -231,7 +238,7 @@ export default function SiteNav({ active }) {
               src={isDarkCurrentNav ? IMAGES.logo.lightText : IMAGES.logo.darkText}
               alt="IVA Essentials"
               style={{
-                height: compact ? '34px' : '42px',
+                height: compact ? '52px' : '74px',
                 width: 'auto',
                 objectFit: 'contain',
                 transition: 'height .35s ease'
@@ -439,7 +446,7 @@ export default function SiteNav({ active }) {
             {/* Quick Suggestions Pills */}
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '16px' }}>
               <span style={{ fontSize: '11px', letterSpacing: '.14em', textTransform: 'uppercase', color: '#8A7B6B' }}>Popular:</span>
-              {['Blessed Kit', 'Yatra Kit', 'Shiva', 'Samagri'].map(term => (
+              {['Yatra Kit', 'Rudraksha Band', 'Shiva', 'Samagri'].map(term => (
                 <button
                   key={term}
                   type="button"
@@ -486,7 +493,7 @@ export default function SiteNav({ active }) {
 
                     {/* Suggested Search Pills */}
                     <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '24px' }}>
-                      {['Blessed Kit', 'Yatra Kit', 'Samagri'].map(term => (
+                      {['Yatra Kit', 'Rudraksha Band', 'Samagri'].map(term => (
                         <button
                           key={term}
                           type="button"
@@ -539,7 +546,7 @@ export default function SiteNav({ active }) {
                           borderRadius: '2px'
                         }}
                       >
-                        Ask Kashi Advisor
+                        Ask Puja Advisor
                       </Link>
                     </div>
                   </div>

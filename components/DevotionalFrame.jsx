@@ -128,6 +128,7 @@ export default function DevotionalFrame({
         }}
         className={className}
       >
+
         <FiligreeCorner position="top-left" />
         <FiligreeCorner position="top-right" />
         <FiligreeCorner position="bottom-left" />

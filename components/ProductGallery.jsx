@@ -7,6 +7,10 @@ export default function ProductGallery({ images = [], name = 'Product' }) {
   const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
+    setCurrentIndex(0);
+  }, [images]);
+
+  useEffect(() => {
     if (!images || images.length <= 1 || isPaused) return;
 
     const timer = setInterval(() => {

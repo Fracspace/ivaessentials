@@ -81,7 +81,7 @@ export default function SiteFooter() {
             <img
               src="/images/iva-logo-light.png"
               alt="IVA Essentials"
-              style={{ height: '42px', width: 'auto', marginBottom: '14px', objectFit: 'contain' }}
+              style={{ height: '62px', width: 'auto', marginBottom: '14px', objectFit: 'contain' }}
             />
             <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontSize: '16.5px', lineHeight: 1.5, color: 'rgba(242,235,224,.72)', margin: 0, maxWidth: '280px' }}>
               Ancient rituals. Reimagined for modern life.
@@ -92,8 +92,8 @@ export default function SiteFooter() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '11px', fontSize: '13.5px', fontWeight: 300 }}>
               <Link href="/" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Home</Link>
               <Link href="/shop" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Shop</Link>
-              <Link href="/blessed-kit" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Blessed Kit</Link>
               <Link href="/yatra-kit" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Yatra Kit</Link>
+              <Link href="/rudraksha" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Rudraksha Band</Link>
             </div>
           </div>
           <div>

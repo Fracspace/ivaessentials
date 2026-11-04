@@ -6,10 +6,11 @@ import RevealOnScroll from '../../components/RevealOnScroll';
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage(null);
 
@@ -19,7 +20,26 @@ export default function ContactPage() {
       return;
     }
 
-    setSubmitted(true);
+    setIsSubmitting(true);
+    try {
+      const API_URL = (process.env.NEXT_PUBLIC_API_URL || 'https://api.ivaessentials.com').replace(/\/+$/, '');
+      const res = await fetch(`${API_URL}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && data.success) {
+        setSubmitted(true);
+      } else {
+        setErrorMessage(data.error || 'Failed to send your message. Please try again or email us directly at support@ivaessentials.com.');
+      }
+    } catch (err) {
+      setErrorMessage('Network error while sending your message. Please check your internet connection or email support@ivaessentials.com.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -37,10 +57,29 @@ export default function ContactPage() {
           <RevealOnScroll>
             {submitted ? (
               <div style={{ padding: '36px', background: '#EFE7DA', borderRadius: '2px', borderLeft: '4px solid #2E5A36' }}>
-                <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '26px', margin: '0 0 12px', color: '#17130F' }}>Thank you 🙏</h3>
-                <p style={{ fontSize: '14.5px', color: '#5C5147', lineHeight: 1.7, margin: 0 }}>
-                  Your message has been received. Our team will reach out to you within 24 hours.
+                <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '26px', margin: '0 0 12px', color: '#17130F' }}>Thank you, {formData.name} 🙏</h3>
+                <p style={{ fontSize: '14.5px', color: '#5C5147', lineHeight: 1.7, margin: '0 0 20px' }}>
+                  Your message has been sent directly to our care team at <strong style={{ color: '#17130F' }}>support@ivaessentials.com</strong>. We will review your message and reach out to <strong style={{ color: '#17130F' }}>{formData.email}</strong> within 24 hours.
                 </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSubmitted(false);
+                    setFormData({ name: '', email: '', message: '' });
+                  }}
+                  style={{
+                    background: 'transparent',
+                    border: '1px solid #17130F',
+                    padding: '12px 22px',
+                    fontSize: '11px',
+                    letterSpacing: '.18em',
+                    textTransform: 'uppercase',
+                    cursor: 'pointer',
+                    color: '#17130F'
+                  }}
+                >
+                  Send Another Inquiry
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -57,6 +96,7 @@ export default function ContactPage() {
                   <input
                     type="text"
                     required
+                    disabled={isSubmitting}
                     aria-required="true"
                     placeholder="Enter your name"
                     value={formData.name}
@@ -71,8 +111,9 @@ export default function ContactPage() {
                   <input
                     type="email"
                     required
+                    disabled={isSubmitting}
                     aria-required="true"
-                    placeholder="devotee@example.com"
+                    placeholder="customer@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     style={{ width: '100%', background: 'transparent', border: '1px solid rgba(23,19,15,.2)', padding: '14px 16px', fontSize: '14px', color: '#17130F', outline: 'none' }}
@@ -85,6 +126,7 @@ export default function ContactPage() {
                   <textarea
                     rows={5}
                     required
+                    disabled={isSubmitting}
                     aria-required="true"
                     placeholder="Write your message or inquiry here..."
                     value={formData.message}
@@ -94,10 +136,24 @@ export default function ContactPage() {
                 </div>
                 <button
                   type="submit"
-                  style={{ background: '#17130F', color: '#F7F2E9', border: 'none', fontSize: '11.5px', letterSpacing: '.2em', textTransform: 'uppercase', padding: '17px 34px', borderRadius: '2px', cursor: 'pointer', alignSelf: 'flex-start' }}
+                  disabled={isSubmitting}
+                  style={{
+                    background: isSubmitting ? '#5C5147' : '#17130F',
+                    color: '#F7F2E9',
+                    border: 'none',
+                    fontSize: '11.5px',
+                    letterSpacing: '.2em',
+                    textTransform: 'uppercase',
+                    padding: '17px 34px',
+                    borderRadius: '2px',
+                    cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                    alignSelf: 'flex-start',
+                    opacity: isSubmitting ? 0.7 : 1,
+                    transition: 'all .3s'
+                  }}
                   className="cart-btn"
                 >
-                  Send Message
+                  {isSubmitting ? 'Sending Message...' : 'Send Message'}
                 </button>
               </form>
             )}

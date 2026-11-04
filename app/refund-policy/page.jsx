@@ -171,7 +171,7 @@ export default function RefundPolicyPage() {
                 6. Ritual & Spiritual Disclaimer
               </h2>
               <p style={{ fontSize: '15.5px', lineHeight: 1.7, color: '#3A332C', margin: '0 0 16px' }}>
-                IVA Essentials respectfully performs spiritual rituals with devotion and sincerity. Spiritual experiences and personal beliefs may vary from devotee to devotee.
+                IVA Essentials respectfully performs spiritual rituals with devotion and sincerity. Spiritual experiences and personal beliefs may vary from individual to individual.
               </p>
               <p style={{ fontSize: '15.5px', lineHeight: 1.7, color: '#3A332C', margin: 0 }}>
                 While every ritual is conducted with utmost authenticity and care, we do not guarantee specific spiritual, emotional, or life outcomes from any ritual, blessing, or sacred offering.
