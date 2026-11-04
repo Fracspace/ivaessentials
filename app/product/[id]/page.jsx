@@ -78,7 +78,7 @@ export default function ProductDetailPage({ params }) {
       sku: 'IVA-RIT-SHPO-926',
       name: 'Shiva Pooja Samagri',
       subtitle: 'Vibhuti, bilva and abhishek essentials.',
-      price: 1,
+      price: 699,
       images: [IMAGES.products.shivaSamagri?.url || '/images/shiva-kit.jpg'],
       description: 'Pure samagri specifically curated for Shiva pooja and sacred abhishek offerings.',
       included: [
@@ -94,7 +94,7 @@ export default function ProductDetailPage({ params }) {
       sku: 'IVA-RIT-SHPO-926',
       name: 'Shiva Pooja Samagri',
       subtitle: 'Vibhuti, bilva and abhishek essentials.',
-      price: 1,
+      price: 699,
       images: [IMAGES.products.shivaSamagri?.url || '/images/shiva-kit.jpg'],
       description: 'Pure samagri specifically curated for Shiva pooja and sacred abhishek offerings.',
       included: [
@@ -110,7 +110,7 @@ export default function ProductDetailPage({ params }) {
       sku: 'IVA-RIT-VIPO-367',
       name: 'Vinayaka Pooja Samagri',
       subtitle: 'Begin well with pure authentic samagri for Ganesha pooja.',
-      price: 1,
+      price: 699,
       images: [IMAGES.products.ganeshSamagri?.url || '/images/ganesh-kit.jpg'],
       description: 'Authentic offerings to invoke Lord Ganesha before commencing any sacred endeavor.',
       included: [
@@ -126,7 +126,7 @@ export default function ProductDetailPage({ params }) {
       sku: 'IVA-RIT-VIPO-367',
       name: 'Vinayaka Pooja Samagri',
       subtitle: 'Begin well with pure authentic samagri for Ganesha pooja.',
-      price: 1,
+      price: 699,
       images: [IMAGES.products.ganeshSamagri?.url || '/images/ganesh-kit.jpg'],
       description: 'Authentic offerings to invoke Lord Ganesha before commencing any sacred endeavor.',
       included: [
@@ -142,7 +142,7 @@ export default function ProductDetailPage({ params }) {
       sku: 'IVA-RIT-12BE-664',
       name: '12 Bead Rudraksha Band',
       subtitle: 'Natural Rudraksha Hand-strung sacred daily wristband.',
-      price: 1,
+      price: 2,
       images: ['/assets/rudrakshaImg1.png'],
       description: 'Sacred 12-bead wristband hand-crafted from natural five-mukhi Rudraksha beads.',
       included: [

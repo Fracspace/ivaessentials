@@ -85,12 +85,13 @@ export default function RudrakshaPage() {
   const [addedNotice, setAddedNotice] = useState(false);
   const [isAvailable, setIsAvailable] = useState(true);
   const [stockInfo, setStockInfo] = useState({ stock: 20, isActive: true });
+  const [price, setPrice] = useState(2);
 
   useEffect(() => {
     trackViewItem({
       id: 'rudraksha-band',
       name: '12-Bead Rudraksha Band',
-      price: 1
+      price: price
     });
 
     async function checkAvailability() {
@@ -103,6 +104,9 @@ export default function RudrakshaPage() {
           const active = live.isActive !== false;
           setIsAvailable(Boolean(active && remainingStock > 0));
           setStockInfo({ stock: remainingStock, isActive: active });
+          if (live.price !== undefined && live.price !== null) {
+            setPrice(Number(live.price));
+          }
         }
       } catch (e) {}
     }
@@ -122,7 +126,7 @@ export default function RudrakshaPage() {
       sku: 'IVA-RIT-12BE-664',
       name: '12 Bead Rudraksha Band',
       subtitle: 'Natural Rudraksha Hand-strung',
-      price: 1,
+      price: price,
       quantity: qty || 1,
       image: '/assets/rudrakshaImg1.png',
       href: '/rudraksha'
@@ -139,7 +143,7 @@ export default function RudrakshaPage() {
       sku: 'IVA-RIT-12BE-664',
       name: '12 Bead Rudraksha Band',
       subtitle: 'Natural Rudraksha Hand-strung',
-      price: 1,
+      price: price,
       quantity: qty || 1,
       image: '/assets/rudrakshaImg1.png',
       href: '/rudraksha'
@@ -341,7 +345,7 @@ export default function RudrakshaPage() {
             </a>
 
             <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '11.5px', letterSpacing: '.16em', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(238, 230, 216, .6)', borderLeft: '1px solid rgba(238, 230, 216, .2)', paddingLeft: '22px' }}>
-              ₹1
+              ₹{price}
             </span>
           </div>
         </div>
@@ -705,7 +709,7 @@ export default function RudrakshaPage() {
 
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '14px', borderTop: '1px solid rgba(23, 19, 15, .16)', borderBottom: '1px solid rgba(23, 19, 15, .16)', padding: '20px 0', marginBottom: '28px' }}>
               <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(44px, 6vw, 72px)', lineHeight: 1, color: '#17130F', fontFeatureSettings: "'tnum'" }}>
-                ₹1
+                ₹{price}
               </span>
             </div>
 
@@ -761,7 +765,7 @@ export default function RudrakshaPage() {
                         e.currentTarget.style.boxShadow = '0 4px 14px rgba(215, 176, 111, 0.25)';
                       }}
                     >
-                      Buy Now Directly · ₹{1 * qty}
+                      Buy Now Directly · ₹{price * qty}
                     </button>
                     <button
                       type="button"
@@ -953,7 +957,7 @@ export default function RudrakshaPage() {
       {showStickyCta && (
         <div style={{ position: 'fixed', left: 0, right: 0, bottom: 0, zIndex: 90, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '14px', padding: '12px 18px calc(12px + env(safe-area-inset-bottom))', background: 'rgba(15, 12, 8, .94)', backdropFilter: 'blur(12px)', borderTop: '1px solid rgba(215, 176, 111, .28)' }}>
           <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '1.1' }}>
-            <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '22px', color: '#f4ecdd', fontFeatureSettings: "'tnum'" }}>₹1</span>
+            <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '22px', color: '#f4ecdd', fontFeatureSettings: "'tnum'" }}>₹{price * qty}</span>
           </div>
           <div style={{ flex: 1, maxWidth: '240px', display: 'flex', gap: '8px' }}>
             {isAvailable ? (

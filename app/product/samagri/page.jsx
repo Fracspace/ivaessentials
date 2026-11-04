@@ -11,7 +11,7 @@ const samagriKits = [
     desc: 'Vibhuti, bilva and abhishek essentials for Shiva pooja.',
     heroImg: 'https://ivaessentials.com/cdn/shop/files/shivaPoojaKit.png?v=1777456301&width=1600',
     thumbImg: 'https://ivaessentials.com/cdn/shop/files/shivaPoojaKit.png?v=1777456301&width=500',
-    price: '₹1',
+    price: '₹699',
     contents: ['Vibhuti & Bilva patra', 'Chandanam', 'Cotton wicks', 'Pure Camphor', 'Divine Agarbatti', 'Shiva Abhishek Offerings']
   },
   {
@@ -20,7 +20,7 @@ const samagriKits = [
     desc: 'For abundance — pure samagri for Lakshmi pooja.',
     heroImg: 'https://ivaessentials.com/cdn/shop/files/lakshmiPookaKit.png?v=1777456303&width=1600',
     thumbImg: 'https://ivaessentials.com/cdn/shop/files/lakshmiPookaKit.png?v=1777456303&width=500',
-    price: '₹1',
+    price: '₹699',
     contents: ['Lotus seed garland', 'Sacred Kumkum & Pasupu', 'Akshata & Chandanam', 'Cotton wicks', 'Fragrant Agarbatti', 'Lakshmi Pooja Offerings']
   },
   {
@@ -29,7 +29,7 @@ const samagriKits = [
     desc: 'Begin well — samagri for Ganesha pooja.',
     heroImg: 'https://ivaessentials.com/cdn/shop/files/ganeshPoojaKit.png?v=1777456304&width=1600',
     thumbImg: 'https://ivaessentials.com/cdn/shop/files/ganeshPoojaKit.png?v=1777456304&width=500',
-    price: '₹1',
+    price: '₹699',
     contents: ['Durva grass blend', 'Sindoor & Haldi', 'Chandanam', 'Pure Camphor', 'Natural Agarbatti', 'Modak Arpan Essentials']
   },
   {
@@ -38,7 +38,7 @@ const samagriKits = [
     desc: 'Tulsi, chandanam and offerings for satyanarayana vratam.',
     heroImg: 'https://ivaessentials.com/cdn/shop/files/hanumanPoojaKit.png?v=1777456300&width=1600',
     thumbImg: 'https://ivaessentials.com/cdn/shop/files/hanumanPoojaKit.png?v=1777456300&width=500',
-    price: '₹1',
+    price: '₹699',
     contents: ['Sacred Tulsi', 'Pure Chandanam', 'Haldi & Kumkum', 'Desi Ghee Batti', 'Camphor & Agarbatti', 'Satyanarayana Vratam Samagri']
   }
 ];

@@ -157,6 +157,7 @@ export default function YatraKitPage() {
   const [activeItem, setActiveItem] = useState(null);
   const [isAvailable, setIsAvailable] = useState(true);
   const [stockInfo, setStockInfo] = useState({ stock: 10, isActive: true });
+  const [price, setPrice] = useState(1);
 
   useEffect(() => {
     async function checkAvailability() {
@@ -169,6 +170,9 @@ export default function YatraKitPage() {
           const active = live.isActive !== false;
           setIsAvailable(Boolean(active && remainingStock > 0));
           setStockInfo({ stock: remainingStock, isActive: active });
+          if (live.price !== undefined && live.price !== null) {
+            setPrice(Number(live.price));
+          }
         }
       } catch (e) {}
     }
@@ -183,7 +187,7 @@ export default function YatraKitPage() {
       sku: 'IVA-RIT-YAKI-546',
       name: 'yatra kit',
       subtitle: 'Travel-ready essentials',
-      price: 1,
+      price: price,
       quantity: 1,
       image: IMAGES.products.yatraKit.secondaryUrl,
       href: '/product/yatra-kit',
@@ -200,7 +204,7 @@ export default function YatraKitPage() {
       sku: 'IVA-RIT-YAKI-546',
       name: 'yatra kit',
       subtitle: 'Travel-ready essentials',
-      price: 1,
+      price: price,
       quantity: 1,
       image: IMAGES.products.yatraKit.secondaryUrl,
       href: '/product/yatra-kit',
@@ -353,7 +357,7 @@ export default function YatraKitPage() {
                   }}
                   className="btn-primary"
                 >
-                  Buy Now Directly · ₹1
+                  Buy Now Directly · ₹{price}
                 </button>
                 <button
                   type="button"
@@ -374,7 +378,7 @@ export default function YatraKitPage() {
                   Add to Cart
                 </button>
                 <span style={{ fontSize: '12px', color: 'rgba(232,207,163,0.75)', letterSpacing: '.1em', marginLeft: '6px' }}>
-                  ₹1 · Express Dispatched in 48h
+                  ₹{price} · Express Dispatched in 48h
                 </span>
               </div>
             ) : (
@@ -557,7 +561,7 @@ export default function YatraKitPage() {
                     }}
                     className="cart-btn"
                   >
-                    Buy Now Directly (₹1)
+                    Buy Now Directly (₹{price})
                   </button>
                   <button
                     type="button"
@@ -875,7 +879,7 @@ export default function YatraKitPage() {
 
               <div style={{ textAlign: 'center', justifySelf: 'stretch' }}>
                 <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '38px', color: '#E8CFA3', lineHeight: 1 }}>
-                  ₹1
+                  ₹{price}
                 </div>
                 <div style={{ fontSize: '11px', letterSpacing: '.18em', textTransform: 'uppercase', color: 'rgba(248,242,230,0.6)', margin: '4px 0 16px' }}>
                   Complete 8-Piece Set
@@ -1091,7 +1095,7 @@ export default function YatraKitPage() {
                     }}
                     className="btn-primary"
                   >
-                    Buy Now Directly · ₹1
+                    Buy Now Directly · ₹{price}
                   </button>
 
                   <button

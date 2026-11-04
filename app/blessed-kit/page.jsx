@@ -21,6 +21,7 @@ export default function BlessedKitPage() {
   const { addItem, sankalpNote } = useCart();
   const [isAvailable, setIsAvailable] = useState(true);
   const [stockInfo, setStockInfo] = useState({ stock: 10, isActive: true });
+  const [price, setPrice] = useState(1);
 
   useEffect(() => {
     async function checkAvailability() {
@@ -33,6 +34,9 @@ export default function BlessedKitPage() {
           const active = live.isActive !== false;
           setIsAvailable(Boolean(active && remainingStock > 0));
           setStockInfo({ stock: remainingStock, isActive: active });
+          if (live.price !== undefined && live.price !== null) {
+            setPrice(Number(live.price));
+          }
         }
       } catch (e) {}
     }
@@ -43,9 +47,9 @@ export default function BlessedKitPage() {
     trackViewItem({
       id: 'blessed-kit',
       name: 'Blessed Kit',
-      price: 1
+      price: price
     });
-  }, []);
+  }, [price]);
 
   const handleClaim = () => {
     if (!isAvailable) return;
@@ -55,7 +59,7 @@ export default function BlessedKitPage() {
       sku: 'IVA-RIT-BLKI-538',
       name: 'Blessed Kit',
       subtitle: 'Shravan sankalp included',
-      price: 1,
+      price: price,
       quantity: 1,
       image: IMAGES.products.blessedKit.heroUrl,
       href: '/product/blessed-kit',
@@ -73,7 +77,7 @@ export default function BlessedKitPage() {
       sku: 'IVA-RIT-BLKI-538',
       name: 'Blessed Kit',
       subtitle: 'Shravan sankalp included',
-      price: 1,
+      price: price,
       quantity: 1,
       image: IMAGES.products.blessedKit.heroUrl,
       href: '/product/blessed-kit',
@@ -141,7 +145,7 @@ export default function BlessedKitPage() {
                   }}
                   className="btn-primary"
                 >
-                  Buy Now Directly · ₹1
+                  Buy Now Directly · ₹{price}
                 </button>
                 <button
                   type="button"
@@ -329,7 +333,7 @@ export default function BlessedKitPage() {
                   }}
                   className="cart-btn"
                 >
-                  Buy Now Directly (₹1)
+                  Buy Now Directly (₹{price})
                 </button>
                 <button
                   type="button"
