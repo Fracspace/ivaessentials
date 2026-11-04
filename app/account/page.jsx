@@ -479,10 +479,10 @@ export default function AccountPage() {
               <div style={{ padding: 'clamp(28px,4vw,42px)', background: '#F2EADD', borderBottom: '1px solid rgba(23,19,15,.12)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}>
                 <div>
                   <span style={{ fontSize: '11px', letterSpacing: '.24em', textTransform: 'uppercase', color: '#8A7B6B', display: 'block', marginBottom: '4px' }}>
-                    Sacred Account Profile
+                    Account Profile
                   </span>
                   <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(28px,3.5vw,40px)', margin: 0, color: '#17130F' }}>
-                    Namaste, {user.name} 🙏
+                    Hi, {user.name}
                   </h1>
                 </div>
                 <button
