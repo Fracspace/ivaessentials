@@ -231,7 +231,7 @@ export default function HomePage() {
             <RevealOnScroll delay={100} variant="float">
               <Link href="/rudraksha" style={{ display: 'block', position: 'relative', overflow: 'hidden', background: '#DFD3C0', borderRadius: '3px' }}>
                 <img
-                  src="/assets/rudraksha-heroimg.png"
+                  src="/assets/rudrakshaImg2.png"
                   alt="Rudraksha Band"
                   style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover', transition: 'transform 1.2s cubic-bezier(.2,.7,.2,1)' }}
                   className="product-card-img"
