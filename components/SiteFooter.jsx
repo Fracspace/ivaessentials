@@ -107,10 +107,7 @@ export default function SiteFooter() {
             </div>
           </div>
           <div className="site-footer-contact">
-            <h5 style={{ fontSize: '10.5px', letterSpacing: '.24em', textTransform: 'uppercase', color: '#8A7B6B', margin: '0 0 18px', fontWeight: 400 }}>Follow &amp; Contact</h5>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13.5px', fontWeight: 300, marginBottom: '20px' }}>
-              <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">Instagram</a>
-            </div>
+            <h5 style={{ fontSize: '10.5px', letterSpacing: '.24em', textTransform: 'uppercase', color: '#8A7B6B', margin: '0 0 18px', fontWeight: 400 }}>Contact</h5>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '9px', fontSize: '13.5px', fontWeight: 300 }}>
               <a href="mailto:support@ivaessentials.com" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">support@ivaessentials.com</a>
               <a href="tel:+919063448273" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">+91 9063448273</a>
