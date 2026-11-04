@@ -1,14 +1,28 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import RevealOnScroll from '../components/RevealOnScroll';
 import ScrollBackgroundSection from '../components/ScrollBackgroundSection';
 import ParallaxImage from '../components/ParallaxImage';
 import DevotionalFrame from '../components/DevotionalFrame';
 import { IMAGES } from '../lib/images';
+import { fetchProductBySlugApi } from '../lib/products';
 
 export default function HomePage() {
+  const [rudrakshaPrice, setRudrakshaPrice] = useState(2);
+
+  useEffect(() => {
+    async function loadLivePrice() {
+      try {
+        const live = await fetchProductBySlugApi('12-bead-rudraksha-band');
+        if (live && live.price !== undefined && live.price !== null) {
+          setRudrakshaPrice(Number(live.price));
+        }
+      } catch (e) {}
+    }
+    loadLivePrice();
+  }, []);
   return (
     <div style={{ background: '#14100D' }}>
       {/* 1. Hero Section (UNTOUCHED with background image - Dark Theme) */}
@@ -120,10 +134,10 @@ export default function HomePage() {
             }}
           >
             <span style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontSize: 'clamp(17px,1.6vw,22px)', color: '#E8CFA3', lineHeight: 1.4 }}>
-              “Bring home sacred purity and timeless devotion.”
+              “Carry strength, stillness and sacred intention every day.”
             </span>
             <span style={{ fontSize: '11px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'rgba(245,238,226,.6)' }}>
-              The Yatra Kit · ₹1
+              12-Bead Rudraksha Band · ₹{rudrakshaPrice}
             </span>
           </RevealOnScroll>
         </div>
@@ -222,6 +236,9 @@ export default function HomePage() {
                   style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover', transition: 'transform 1.2s cubic-bezier(.2,.7,.2,1)' }}
                   className="product-card-img"
                 />
+                <div style={{ position: 'absolute', top: '16px', right: '16px', background: 'rgba(46,90,54,0.92)', backdropFilter: 'blur(6px)', padding: '5px 11px', borderRadius: '2px', fontSize: '9px', letterSpacing: '.18em', textTransform: 'uppercase', color: '#FFFFFF', fontWeight: 600 }}>
+                  Available Now
+                </div>
                 <div style={{ position: 'absolute', inset: 'auto 0 0 0', padding: 'clamp(22px,3vw,34px)', background: 'linear-gradient(to top, rgba(18,13,10,.82), rgba(18,13,10,0))' }}>
                   <h3 style={{ fontSize: '11.5px', letterSpacing: '.26em', textTransform: 'uppercase', color: '#E8CFA3', margin: '0 0 10px', fontWeight: 400 }}>
                     Rudraksha Band
@@ -241,6 +258,9 @@ export default function HomePage() {
                   style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover', transition: 'transform 1.2s cubic-bezier(.2,.7,.2,1)' }}
                   className="product-card-img"
                 />
+                <div style={{ position: 'absolute', top: '16px', right: '16px', background: 'rgba(23,19,15,0.85)', backdropFilter: 'blur(6px)', padding: '5px 11px', borderRadius: '2px', fontSize: '9px', letterSpacing: '.18em', textTransform: 'uppercase', color: '#D9BE8B', fontWeight: 600 }}>
+                  Sold Out
+                </div>
                 <div style={{ position: 'absolute', inset: 'auto 0 0 0', padding: 'clamp(22px,3vw,34px)', background: 'linear-gradient(to top, rgba(18,13,10,.82), rgba(18,13,10,0))' }}>
                   <h3 style={{ fontSize: '11.5px', letterSpacing: '.26em', textTransform: 'uppercase', color: '#E8CFA3', margin: '0 0 10px', fontWeight: 400 }}>
                     Yatra Kits
@@ -278,48 +298,57 @@ export default function HomePage() {
       <ScrollBackgroundSection navTheme="dark" defaultBg="#FAF5EC" activeBg="#1C1410">
         <div style={{ maxWidth: '1500px', margin: '0 auto', padding: 'clamp(72px,12vh,150px) clamp(20px,4vw,56px)' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%,360px), 1fr))', gap: 'clamp(36px,6vw,90px)', alignItems: 'center' }}>
-            {/* Showcase Sacred Yatra Kit */}
+            {/* Showcase 12-Bead Rudraksha Band */}
             <RevealOnScroll variant="zoom" style={{ overflow: 'hidden', background: '#14100D', borderRadius: '3px', border: '2px solid #B18F52', boxShadow: '0 20px 48px rgba(0,0,0,0.6)' }}>
               <img
-                src={IMAGES.products.yatraKit.url}
-                alt="The Sacred Yatra Kit"
+                src="/assets/rudrakshaImg1.png"
+                alt="12-Bead Rudraksha Band"
                 style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', transition: 'transform 1.3s cubic-bezier(.2,.7,.2,1)' }}
                 className="product-card-img"
               />
             </RevealOnScroll>
 
             <RevealOnScroll delay={150} style={{ maxWidth: '520px' }}>
-              <span style={{ fontSize: '10.5px', letterSpacing: '.32em', textTransform: 'uppercase', color: '#E8CFA3' }}>
-                Signature
-              </span>
-              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(34px,4.6vw,66px)', lineHeight: 1.04, margin: '18px 0 22px', color: '#F8F2E6' }}>
-                The Sacred Yatra Kit
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+                <span style={{ fontSize: '10.5px', letterSpacing: '.32em', textTransform: 'uppercase', color: '#E8CFA3' }}>
+                  Signature
+                </span>
+                <span style={{ color: 'rgba(232,207,163,0.4)' }}>·</span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '10px', letterSpacing: '.14em', textTransform: 'uppercase', color: '#90d49f', fontWeight: 600 }}>
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#90d49f' }} />
+                  Available Now
+                </span>
+              </div>
+              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(34px,4.6vw,66px)', lineHeight: 1.04, margin: '0 0 22px', color: '#F8F2E6' }}>
+                12-Bead Rudraksha Band
               </h2>
               <p style={{ fontSize: 'clamp(15px,1.25vw,18px)', lineHeight: 1.8, color: 'rgba(248,242,230,.84)', fontWeight: 300, margin: '0 0 30px', maxWidth: '46ch', textWrap: 'pretty' }}>
-                A travel-ready sacred companion crafted for darshan and holy pilgrimages, with leak-proof containers and essential samagri.
+                A sacred daily reminder of strength, stillness, and intention. Inspired by the timeless association of Rudraksha with Lord Shiva, crafted with natural Panchamukhi beads and an authentic copper Trishul charm.
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', margin: '0 0 36px', padding: '26px 0', borderTop: '1px solid rgba(177,143,82,.25)', borderBottom: '1px solid rgba(177,143,82,.25)' }}>
                 <div style={{ display: 'flex', gap: '14px', alignItems: 'baseline' }}>
                   <span style={{ width: '6px', height: '6px', background: '#B18F52', borderRadius: '50%', flex: 'none', transform: 'translateY(-3px)' }} />
-                  <span style={{ fontSize: '14px', color: '#F8F2E6', fontWeight: 300 }}>Compact, leak-proof containers for holy Gangajal and Vibhuti</span>
+                  <span style={{ fontSize: '14px', color: '#F8F2E6', fontWeight: 300 }}>12 Authentic Panchamukhi Rudraksha beads for daily calm &amp; focus</span>
                 </div>
                 <div style={{ display: 'flex', gap: '14px', alignItems: 'baseline' }}>
                   <span style={{ width: '6px', height: '6px', background: '#B18F52', borderRadius: '50%', flex: 'none', transform: 'translateY(-3px)' }} />
-                  <span style={{ fontSize: '14px', color: '#F8F2E6', fontWeight: 300 }}>Pure Kumkum, Pasupu and brass diya for meaningful darshan</span>
+                  <span style={{ fontSize: '14px', color: '#F8F2E6', fontWeight: 300 }}>Intricately carved copper Trishul &amp; Damru emblem of Lord Shiva</span>
                 </div>
                 <div style={{ display: 'flex', gap: '14px', alignItems: 'baseline' }}>
                   <span style={{ width: '6px', height: '6px', background: '#B18F52', borderRadius: '50%', flex: 'none', transform: 'translateY(-3px)' }} />
-                  <span style={{ fontSize: '14px', color: '#F8F2E6', fontWeight: 300 }}>Packed respectfully, delivered across India</span>
+                  <span style={{ fontSize: '14px', color: '#F8F2E6', fontWeight: 300 }}>Handcrafted durable braided cord, adjustable for all wrist sizes</span>
                 </div>
               </div>
 
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(18px,3vw,36px)', alignItems: 'center' }}>
                 <div>
-                  <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(28px,3vw,40px)', lineHeight: 1, color: '#E8CFA3' }}>₹1</div>
+                  <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(28px,3vw,40px)', lineHeight: 1, color: '#E8CFA3' }}>
+                    ₹{rudrakshaPrice}
+                  </div>
                   <div style={{ fontSize: '10.5px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'rgba(248,242,230,.6)', marginTop: '6px' }}>Inclusive of taxes</div>
                 </div>
                 <Link
-                  href="/yatra-kit"
+                  href="/rudraksha"
                   style={{
                     background: '#F7F2E9',
                     color: '#17130F',
@@ -329,11 +358,12 @@ export default function HomePage() {
                     padding: '18px 34px',
                     borderRadius: '2px',
                     transition: 'background .35s, color .35s',
-                    textDecoration: 'none'
+                    textDecoration: 'none',
+                    fontWeight: 600
                   }}
                   className="cart-btn"
                 >
-                  Explore Yatra Kit
+                  Explore Rudraksha Band
                 </Link>
               </div>
             </RevealOnScroll>
