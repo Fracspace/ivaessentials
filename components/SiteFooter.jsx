@@ -111,6 +111,9 @@ export default function SiteFooter() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '9px', fontSize: '13.5px', fontWeight: 300 }}>
               <a href="mailto:support@ivaessentials.com" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">support@ivaessentials.com</a>
               <a href="tel:+919063448273" style={{ color: 'rgba(242,235,224,.82)', textDecoration: 'none' }} className="footer-link">+91 9063448273</a>
+              <span style={{ color: 'rgba(242,235,224,.65)', fontSize: '12.5px', marginTop: '6px' }}>
+                Co-powered by Metropodz Living Pvt Ltd
+              </span>
             </div>
           </div>
         </div>
