@@ -146,7 +146,9 @@ export default function CheckoutPage() {
       const syncResult = await syncOtpUserWithBackend({
         phone: cleanPhone,
         name: shippingInfo.name || `Customer ${cleanPhone.slice(-4)}`,
-        email: shippingInfo.email
+        email: shippingInfo.email,
+        verifiedUser: res.user,
+        verifiedToken: res.token
       });
 
       const authenticatedUser = syncResult.user;

@@ -84,7 +84,7 @@ export default function AccountPage() {
       }
 
       setOtpStep(2);
-      setResendTimer(30);
+      setResendTimer(res.cooldownSeconds || 60);
       setMessage({ type: 'success', text: res.message || `OTP sent successfully to +91 ${cleanPhone}.` });
     } catch (err) {
       setMessage({ type: 'error', text: err.message || 'Failed to send OTP. Please try again.' });
@@ -106,7 +106,7 @@ export default function AccountPage() {
       if (!res.success) {
         throw new Error(res.message);
       }
-      setResendTimer(30);
+      setResendTimer(res.cooldownSeconds || 60);
       setMessage({ type: 'success', text: `New OTP sent to +91 ${cleanPhone}.` });
     } catch (err) {
       setMessage({ type: 'error', text: err.message || 'Failed to resend OTP.' });
@@ -139,7 +139,7 @@ export default function AccountPage() {
         if (lower.includes('expired')) {
           errorMsg = 'Verification code has expired. Please click "Didn\'t receive code? Resend OTP" below to receive a new code.';
         } else if (lower.includes('invalid') || lower.includes('wrong') || lower.includes('incorrect')) {
-          errorMsg = 'Incorrect verification code. Please enter the 6-digit code received on your mobile.';
+          errorMsg = res.message || 'Incorrect verification code. Please enter the 6-digit code received on your mobile.';
         }
         throw new Error(errorMsg);
       }
@@ -147,7 +147,9 @@ export default function AccountPage() {
       // Sync with backend to register or login user and generate authentic token
       const syncResult = await syncOtpUserWithBackend({
         phone: cleanPhone,
-        name: userName.trim()
+        name: userName.trim(),
+        verifiedUser: res.user,
+        verifiedToken: res.token
       });
 
       loginUser(syncResult.user, syncResult.token);
@@ -198,7 +200,7 @@ export default function AccountPage() {
       }
 
       setRegStep(2);
-      setRegResendTimer(30);
+      setRegResendTimer(res.cooldownSeconds || 60);
       setMessage({ type: 'success', text: res.message || `Verification code sent to +91 ${cleanPhone}. Please verify to complete registration.` });
     } catch (err) {
       setMessage({ type: 'error', text: err.message || 'Failed to send verification code. Please try again.' });
@@ -221,7 +223,7 @@ export default function AccountPage() {
         throw new Error(res.message);
       }
 
-      setRegResendTimer(30);
+      setRegResendTimer(res.cooldownSeconds || 60);
       setMessage({ type: 'success', text: `New verification code sent to +91 ${cleanPhone}.` });
     } catch (err) {
       setMessage({ type: 'error', text: err.message || 'Failed to resend verification code.' });
@@ -252,7 +254,7 @@ export default function AccountPage() {
     setIsLoading(true);
 
     try {
-      // 1. Verify Mobile OTP first with Fracspace API
+      // 1. Verify Mobile OTP with Customer SMS OTP API
       console.log('📱 [Register] Verifying Mobile OTP for:', cleanPhone, 'code:', cleanOtp);
       const otpRes = await verifyOtpApi(cleanPhone, cleanOtp);
 
@@ -262,68 +264,40 @@ export default function AccountPage() {
         if (lower.includes('expired')) {
           errorMsg = 'The verification code has expired. Please click "Didn\'t receive code? Resend OTP" below to request a fresh OTP.';
         } else if (lower.includes('invalid') || lower.includes('wrong') || lower.includes('incorrect')) {
-          errorMsg = 'Incorrect verification code. Please check the 6-digit code received on your mobile or request a new OTP.';
+          errorMsg = otpRes.message || 'Incorrect verification code. Please check the 6-digit code received on your mobile or request a new OTP.';
         }
         throw new Error(errorMsg);
       }
 
-      // 2. Prepare payload for Register API
-      const formattedPhone = `+91${cleanPhone}`;
-      const payload = {
+      // 2. Synchronize profile details with authentic verified session
+      const syncResult = await syncOtpUserWithBackend({
+        phone: cleanPhone,
         name: (signUpData.fullName || 'Customer').trim(),
         email: (signUpData.email || '').trim(),
-        password: signUpData.password,
-        phoneNumber: formattedPhone
-      };
-
-      if (!payload.email) {
-        throw new Error('Email address is missing. Please click "Edit Details" to review your registration information.');
-      }
-      if (!payload.password) {
-        throw new Error('Password is missing. Please click "Edit Details" to set your account password.');
-      }
-
-      console.log('➡️ [Register API] Sending Request Data:', { ...payload, password: '[PROTECTED]' });
-
-      const API_URL = (process.env.NEXT_PUBLIC_API_URL || 'https://api.ivaessentials.com').replace(/\/+$/, '');
-      const res = await fetch(`${API_URL}/api/auth/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify(payload)
+        verifiedUser: otpRes.user,
+        verifiedToken: otpRes.token
       });
 
-      let data = {};
-      try {
-        data = await res.json();
-      } catch (jsonErr) {
-        data = {};
-      }
-
-      console.log(`⬅️ [Register API] Response (${res.status}):`, data);
-
-      if (!res.ok || !data.success) {
-        console.error('❌ [Register API] Error Details:', data);
-        let errorMsg = data.error || data.message || `Registration failed (Status ${res.status}). Please try again.`;
-        if (errorMsg.toLowerCase().includes('already exists') || res.status === 409) {
-          errorMsg = `An account with this email (${payload.email}) or phone already exists. Please switch to "Mobile OTP" or "Password" sign in above.`;
+      // If user set a password, save it to their profile on the backend
+      if (signUpData.password && syncResult.token) {
+        try {
+          const API_URL = (process.env.NEXT_PUBLIC_API_URL || 'https://api.ivaessentials.com').replace(/\/+$/, '');
+          await fetch(`${API_URL}/api/users/me`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${syncResult.token}`
+            },
+            credentials: 'include',
+            body: JSON.stringify({ password: signUpData.password })
+          });
+        } catch (pwErr) {
+          console.warn('Password sync notice:', pwErr.message);
         }
-        throw new Error(errorMsg);
       }
 
-      // 3. Set logged-in user in Auth state
-      const newUser = {
-        id: data.data?.user?.id,
-        name: data.data?.user?.name || payload.name,
-        email: data.data?.user?.email || payload.email,
-        phone: data.data?.user?.phoneNumber || formattedPhone,
-        joinedDate: new Date().toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })
-      };
-
-      loginUser(newUser, data.data?.token);
-      setMessage({ type: 'success', text: data.message || 'Mobile verified! Account created successfully. Welcome to IVA Essentials!' });
+      loginUser(syncResult.user, syncResult.token);
+      setMessage({ type: 'success', text: 'Mobile verified! Account created successfully. Welcome to IVA Essentials!' });
       setRegStep(1);
       setRegOtp('');
       setSignUpData({
@@ -701,7 +675,7 @@ export default function AccountPage() {
                         }}
                         className="cart-btn"
                       >
-                        {isLoading ? 'Sending Sacred OTP...' : 'Send OTP →'}
+                        {isLoading ? 'Sending OTP...' : 'Send OTP →'}
                       </button>
                     </form>
                   ) : (
@@ -785,7 +759,7 @@ export default function AccountPage() {
                         }}
                         className="cart-btn"
                       >
-                        {isLoading ? 'Verifying Sacred Code...' : 'Verify OTP & Enter Portal →'}
+                        {isLoading ? 'Verifying Code...' : 'Verify OTP & Sign In →'}
                       </button>
                     </form>
                   )}
