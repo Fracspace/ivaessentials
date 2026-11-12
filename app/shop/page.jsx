@@ -122,7 +122,7 @@ const INITIAL_FALLBACK_PRODUCTS = [
     productId: 'eabdb7da-bdfe-4a48-a517-05c1144985bd',
     name: '12 Bead Rudraksha Band',
     description: 'Natural Rudraksha Hand-strung sacred daily wristband.',
-    price: 1,
+    price: 1299,
     image: '/assets/rudrakshaImg1.png',
     href: '/rudraksha',
     soldOut: false,

@@ -10,7 +10,7 @@ import { IMAGES } from '../lib/images';
 import { fetchProductBySlugApi } from '../lib/products';
 
 export default function HomePage() {
-  const [rudrakshaPrice, setRudrakshaPrice] = useState(2);
+  const [rudrakshaPrice, setRudrakshaPrice] = useState(1299);
 
   useEffect(() => {
     async function loadLivePrice() {

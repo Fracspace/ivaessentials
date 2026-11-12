@@ -142,7 +142,7 @@ export default function ProductDetailPage({ params }) {
       sku: 'IVA-RIT-12BE-664',
       name: '12 Bead Rudraksha Band',
       subtitle: 'Natural Rudraksha Hand-strung sacred daily wristband.',
-      price: 2,
+      price: 1299,
       images: ['/assets/rudrakshaImg1.png'],
       description: 'Sacred 12-bead wristband hand-crafted from natural five-mukhi Rudraksha beads.',
       included: [

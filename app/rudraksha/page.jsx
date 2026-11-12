@@ -85,7 +85,7 @@ export default function RudrakshaPage() {
   const [addedNotice, setAddedNotice] = useState(false);
   const [isAvailable, setIsAvailable] = useState(true);
   const [stockInfo, setStockInfo] = useState({ stock: 20, isActive: true });
-  const [price, setPrice] = useState(2);
+  const [price, setPrice] = useState(1299);
 
   useEffect(() => {
     trackViewItem({

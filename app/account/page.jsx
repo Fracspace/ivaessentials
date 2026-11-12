@@ -13,7 +13,6 @@ export default function AccountPage() {
   // Mobile OTP Sign In State
   const [otpStep, setOtpStep] = useState(1); // 1 = Phone Input, 2 = Enter OTP
   const [mobilePhone, setMobilePhone] = useState('');
-  const [userName, setUserName] = useState('');
   const [otpValue, setOtpValue] = useState('');
   const [resendTimer, setResendTimer] = useState(0);
 
@@ -147,7 +146,6 @@ export default function AccountPage() {
       // Sync with backend to register or login user and generate authentic token
       const syncResult = await syncOtpUserWithBackend({
         phone: cleanPhone,
-        name: userName.trim(),
         verifiedUser: res.user,
         verifiedToken: res.token
       });
@@ -269,7 +267,20 @@ export default function AccountPage() {
         throw new Error(errorMsg);
       }
 
-      // 2. Synchronize profile details with authentic verified session
+      // 2. If user already has an existing account with this mobile number, reject registration and prompt sign in
+      if (otpRes.isNewUser === false) {
+        setRegStep(1);
+        setRegOtp('');
+        setAuthMethod('otp');
+        setMobilePhone(cleanPhone);
+        setMessage({
+          type: 'error',
+          text: `An account with mobile number +91 ${cleanPhone} already exists. Please sign in below.`
+        });
+        return;
+      }
+
+      // 3. New user registration: synchronize profile details with authentic verified session
       const syncResult = await syncOtpUserWithBackend({
         phone: cleanPhone,
         name: (signUpData.fullName || 'Customer').trim(),
@@ -710,19 +721,6 @@ export default function AccountPage() {
                           onChange={(e) => setOtpValue(e.target.value.replace(/\D/g, ''))}
                           style={{ width: '100%', background: '#F7F2E9', border: '1px solid rgba(23,19,15,.2)', padding: '16px', fontSize: '22px', letterSpacing: '.4em', textAlign: 'center', color: '#17130F', outline: 'none', borderRadius: '2px', fontWeight: 600 }}
                           autoFocus
-                        />
-                      </div>
-
-                      <div>
-                        <label style={{ display: 'block', fontSize: '11.5px', letterSpacing: '.14em', textTransform: 'uppercase', color: '#5C5147', marginBottom: '8px' }}>
-                          Your Full Name (Optional)
-                        </label>
-                        <input
-                          type="text"
-                          placeholder="Full Name"
-                          value={userName}
-                          onChange={(e) => setUserName(e.target.value)}
-                          style={{ width: '100%', background: '#F7F2E9', border: '1px solid rgba(23,19,15,.2)', padding: '14px 16px', fontSize: '14px', color: '#17130F', outline: 'none', borderRadius: '2px' }}
                         />
                       </div>
 
