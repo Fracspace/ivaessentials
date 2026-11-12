@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import RevealOnScroll from '../../components/RevealOnScroll';
 import { useAuth } from '../../context/AuthContext';
-import { sendOtpApi, verifyOtpApi, formatPhoneNumber, syncOtpUserWithBackend } from '../../lib/otpService';
+import { sendOtpApi, verifyOtpApi, formatPhoneNumber, syncOtpUserWithBackend, checkUserExistsApi } from '../../lib/otpService';
 
 export default function AccountPage() {
   const { user, loginUser, logout, isLoading: authLoading } = useAuth();
@@ -192,8 +192,39 @@ export default function AccountPage() {
     setIsLoading(true);
 
     try {
-      const res = await sendOtpApi(cleanPhone);
+      // 1. Pre-check if an account already exists BEFORE dispatching any OTP SMS
+      const checkRes = await checkUserExistsApi({
+        phone: cleanPhone,
+        email: signUpData.email.trim()
+      });
+
+      if (checkRes.exists) {
+        setAuthMethod('otp');
+        setMobilePhone(cleanPhone);
+        setMessage({
+          type: 'error',
+          text: checkRes.message || `An account with mobile number +91 ${cleanPhone} already exists. Please sign in below.`
+        });
+        return;
+      }
+
+      // 2. Dispatch OTP specifically for registration (backend blocks SMS if user exists)
+      const res = await sendOtpApi(cleanPhone, {
+        purpose: 'register',
+        type: 'register',
+        email: signUpData.email.trim()
+      });
+
       if (!res.success) {
+        if (res.isExistingUser || (res.message && res.message.toLowerCase().includes('already exists'))) {
+          setAuthMethod('otp');
+          setMobilePhone(cleanPhone);
+          setMessage({
+            type: 'error',
+            text: res.message || `An account with mobile number +91 ${cleanPhone} already exists. Please sign in below.`
+          });
+          return;
+        }
         throw new Error(res.message);
       }
 
@@ -201,7 +232,17 @@ export default function AccountPage() {
       setRegResendTimer(res.cooldownSeconds || 60);
       setMessage({ type: 'success', text: res.message || `Verification code sent to +91 ${cleanPhone}. Please verify to complete registration.` });
     } catch (err) {
-      setMessage({ type: 'error', text: err.message || 'Failed to send verification code. Please try again.' });
+      const errMsg = err.message || '';
+      if (errMsg.toLowerCase().includes('already exists')) {
+        setAuthMethod('otp');
+        setMobilePhone(cleanPhone);
+        setMessage({
+          type: 'error',
+          text: errMsg || `An account with mobile number +91 ${cleanPhone} already exists. Please sign in below.`
+        });
+      } else {
+        setMessage({ type: 'error', text: errMsg || 'Failed to send verification code. Please try again.' });
+      }
     } finally {
       setIsLoading(false);
     }
@@ -216,8 +257,24 @@ export default function AccountPage() {
     setIsLoading(true);
 
     try {
-      const res = await sendOtpApi(cleanPhone);
+      const res = await sendOtpApi(cleanPhone, {
+        purpose: 'register',
+        type: 'register',
+        email: signUpData.email.trim()
+      });
+
       if (!res.success) {
+        if (res.isExistingUser || (res.message && res.message.toLowerCase().includes('already exists'))) {
+          setRegStep(1);
+          setRegOtp('');
+          setAuthMethod('otp');
+          setMobilePhone(cleanPhone);
+          setMessage({
+            type: 'error',
+            text: res.message || `An account with mobile number +91 ${cleanPhone} already exists. Please sign in below.`
+          });
+          return;
+        }
         throw new Error(res.message);
       }
 
